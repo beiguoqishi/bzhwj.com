@@ -5,8 +5,8 @@ return array (
   array (
     'cycle' => 'custom',
     'interval' => 3600,
-    'due_time' => 1396004269,
-    'last_time' => 1396000669,
+    'due_time' => 1396007871,
+    'last_time' => 1396004271,
   ),
 );
 

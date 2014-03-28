@@ -1,6 +1,0 @@
-Thu, 16 Jan 2014 20:06:43 +0800	[2]mt_rand(): max(24) is smaller than min(26)	/includes/libraries/captcha.lib.php	288
-Thu, 16 Jan 2014 20:06:55 +0800	[2]mt_rand(): max(24) is smaller than min(26)	/includes/libraries/captcha.lib.php	288
-Thu, 16 Jan 2014 20:07:16 +0800	[2]mt_rand(): max(24) is smaller than min(26)	/includes/libraries/captcha.lib.php	288
-Thu, 16 Jan 2014 20:07:28 +0800	[2]mt_rand(): max(24) is smaller than min(26)	/includes/libraries/captcha.lib.php	288
-Thu, 16 Jan 2014 20:08:23 +0800	[2]mt_rand(): max(0) is smaller than min(1)	/includes/libraries/captcha.lib.php	274
-Thu, 16 Jan 2014 20:08:49 +0800	[2]mt_rand(): max(0) is smaller than min(1)	/includes/libraries/captcha.lib.php	274
