@@ -1,0 +1,6 @@
+Thu, 08 Aug 2013 16:08:55 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TYPE=MyISAM' at line 1
+MySQL Query:TYPE=MyISAM
+Wrong File:  D:\wwwroot\ecmalljd\admin\app\db.app.php[507]	\eccore\model\mysql.php	286
+Thu, 22 Aug 2013 11:50:58 +0800	[256]MySQL Error[1060]: Duplicate column name 'business_scope'
+MySQL Query:ALTER TABLE ecm_store ADD `business_scope` VARCHAR( 50 ) NOT NULL AFTER `hot_search`
+Wrong File:  D:\wwwroot\ecmalltm\includes\libraries\init.lib.php(2) : eval()'d code(1) : eval()'d code(1) : eval()'d code[28]	\eccore\model\mysql.php	286

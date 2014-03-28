@@ -1,0 +1,19 @@
+<div class="full_module">
+    <h2><b>{$widget_data.model_name}</b></h2>
+    <div class="piclink">
+    	<!--{foreach from=$widget_data.partners item=partner name=fe_partner}-->
+        <!--{if $smarty.foreach.fe_partner.iteration le 9}-->
+        <span><a href="{$partner.link}" target="_blank"><img src="{$partner.logo}" title="{$partner.title}" alt="{$partner.title}" width="88" height="31" ></a></span>
+        <!--{/if}-->
+        <!--{/foreach}-->
+        <div class="clr"></div>
+    </div>
+    <div class="textlink">
+    	<!--{foreach from=$widget_data.partners item=partner name=fe_partner}-->
+        <!--{if $smarty.foreach.fe_partner.iteration gt 9}-->
+        <span><a href="{$partner.link}" target="_blank" title="{$partner.title}">{$partner.title}</a></span>
+        <!--{/if}-->
+        <!--{/foreach}-->
+        <div class="clr"></div>
+    </div>
+  </div>

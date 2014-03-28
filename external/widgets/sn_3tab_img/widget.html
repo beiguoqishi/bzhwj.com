@@ -1,0 +1,102 @@
+﻿<div id="timg" class="mb10">
+	 <ul>
+          <li class="img1"><a href="{$widget_data.link_url1}" target="_blank">
+            	<b class="b1"></b><p>{$widget_data.title1|escape}</p></a></li>
+          <li class="img2"><a href="{$widget_data.link_url2}" target="_blank">
+            	<b class="b2"></b><p>{$widget_data.title2|escape}</p></a></li>
+          <li class="img3"><a href="{$widget_data.link_url3}" target="_blank">
+            	<b class="b3"></b><p>{$widget_data.title3|escape}</p></a></li>
+      </ul> 
+      <div class="box1">
+           <p class="title">{$widget_data.title1|escape}</p>
+           <div class="txt">{$widget_data.content1|escape}</div>
+           <div class="extra"><a target="_blank" href="{$widget_data.link_url1}">了解详细信息&nbsp;&gt;</a></div>
+      </div>
+       <div class="box2">
+           <p class="title">{$widget_data.title2|escape}</p>
+           <div class="txt">{$widget_data.content2|escape}</div>
+           <div class="extra"><a target="_blank" href="{$widget_data.link_url2}">了解详细信息&nbsp;&gt;</a></div>
+       </div>
+       <div class="box3">
+            <p class="title">{$widget_data.title3|escape}</p>
+            <div class="txt">{$widget_data.content3|escape}</div>
+            <div class="extra"><a target="_blank" href="{$widget_data.link_url3}">了解详细信息&nbsp;&gt;</a></div>
+        </div>         
+</div>
+
+
+<script type="text/javascript">
+	$(function(){
+		$("#timg .img1").hover(function(){
+			$(".box1").show();
+			$(this).addClass("on");
+			$(this).css("border-bottom-color","#fff");
+			$("#notice").hide();
+		},function(){
+			$(".box1").hide();
+			$(this).removeClass("on");
+			$(this).css("border-bottom-color","#ddd");
+			$("#notice").show();
+		});
+
+		$("#timg .img2").hover(function(){
+			$(".box2").show();
+			$(this).addClass("on");
+			$(this).css("border-bottom-color","#fff");
+			$("#notice").hide();
+		},function(){
+			$(".box2").hide();
+			$(this).removeClass("on");
+			$(this).css("border-bottom-color","#ddd");
+			$("#notice").show();
+		});
+		
+		$("#timg .img3").hover(function(){
+			$(".box3").show();
+			$(this).addClass("on");
+			$(this).css("border-bottom-color","#fff");
+			$("#notice").hide();
+		},function(){
+			$(".box3").hide();
+			$(this).removeClass("on");
+			$(this).css("border-bottom-color","#ddd");
+			$("#notice").show();
+		});
+		
+		$("#timg .box1").hover(function(){
+			$(this).show();
+			$("#timg .img1").css("border-bottom-color","#fff");
+			$("#timg .img1").addClass("on");
+			$("#notice").hide();
+		},function(){
+			$(this).hide();
+			$("#timg .img1").css("border-bottom-color","#ddd");
+			$("#timg .img1").removeClass("on");
+			$("#notice").show();
+		});
+		
+		$("#timg .box2").hover(function(){
+			$(this).show();
+			$("#timg .img2").css("border-bottom-color","#fff");
+			$("#timg .img2").addClass("on");
+			$("#notice").hide();
+		},function(){
+			$(this).hide();
+			$("#timg .img2").css("border-bottom-color","#ddd");
+			$("#timg .img2").removeClass("on");
+			$("#notice").show();
+		});
+		
+		$("#timg .box3").hover(function(){
+			$(this).show();
+			$("#timg .img3").css("border-bottom-color","#fff");
+			$("#timg .img3").addClass("on");
+			$("#notice").hide();
+		},function(){
+			$(this).hide();
+			$("#timg .img3").css("border-bottom-color","#ddd");
+			$("#timg .img3").removeClass("on");
+			$("#notice").show();
+		});
+	})
+</script>

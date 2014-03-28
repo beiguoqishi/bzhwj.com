@@ -1,0 +1,58 @@
+<div class="sn_banner clearfix">
+	<div class="w1000 clearfix" style="position:relative; z-index:1">
+		<div class="share">
+        </div>
+        <script language="javascript">
+			$(function(){
+				$(".share").hover(function(){
+					$(".sharelist").show();
+				},function(){
+					$(".sharelist").hide();
+				});
+				$(".sharelist").hover(function(){
+					$(this).show();
+				},function(){
+					$(this).hide();
+				});
+			});
+		</script>
+        <div class="sharelist" style="position: absolute; z-index: 99; display:none; left:30px; top: 78px;">
+        <!-- JiaThis Button BEGIN -->
+            <div id="ckepop">
+                <a class="jiathis_button_qzone"></a>
+                <a class="jiathis_button_tsina"></a>
+                <a class="jiathis_button_tqq"></a>
+                <a class="jiathis_button_renren"></a>
+                <a class="jiathis_button_kaixin001"></a>
+                <a class="jiathis_button_taobao"></a>
+                <a class="jiathis_button_xiaoyou"></a>
+                <a class="jiathis_button_douban"></a>
+                <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+            </div>
+            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1340804611789901" charset="utf-8"></script>
+            <!-- JiaThis Button END -->
+        </div>
+		<div class="shop-name">
+			<h2>{$store.store_name|escape}</h2>
+            <h3 style="font-size:18px;font-family:微软雅黑,黑体,arial;">{$store.store_desc|escape}</h3>
+		</div>
+		<div class="favorite">
+			<a href="javascript:collect_store({$store.store_id})"></a>
+		</div>
+	</div>
+</div>
+<div id="nav1">
+    <ul>
+        <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'index'}home{else}normal{/if}" href="{url app=store&id=$store.store_id}"><span>{$lang.store_index}</span></a></li>
+        {if $store.functions.groupbuy}
+        <li><a class="{if $smarty.get.app eq 'groupbuy' or $smarty.get.act eq 'groupbuy'}active{else}normal{/if}" href="{url app=store&act=groupbuy&id=$store.store_id}"><span>{$lang.nav_groupbuy}</span></a></li>
+        {/if}
+        <!--{foreach from=$store.store_navs item=store_nav}-->
+        <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'article' and $smarty.get.id eq $store_nav.article_id}active{else}normal{/if}" href="{url app=store&act=article&id=$store_nav.article_id}"><span>{$store_nav.title|escape}</span></a></li>
+        <!--{/foreach}-->
+        <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'credit'}active{else}normal{/if}" href="{url app=store&act=credit&id=$store.store_id}"><span>{$lang.credit_evaluation}</span></a></li>
+        <!--{if $smarty.get.app eq 'goods'}-->
+        <li><a class="active" href="javascript:;"><span>商品详情</span></a></li>
+        <!--{/if}-->
+    </ul>
+</div>

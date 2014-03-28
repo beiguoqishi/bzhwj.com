@@ -1,0 +1,11 @@
+﻿<div class="txtact">
+    <!--{if $widget_data}-->
+    <ul>
+        <!-- {foreach from=$widget_data item=image name=fe_image} -->
+        <li><a {if $smarty.foreach.fe_image.iteration le 3 } style="color:#FF6600"{/if} href="{$image.ad_link_url}" target="_blank" title="{$image.ad_title}">{$image.ad_title}</a></li>
+        <!-- {/foreach} -->
+    </ul>
+   <!-- {else} -->
+  <div style="padding:10px; text-align:center;">请配置</div>
+  <!-- {/if} -->
+</div>

@@ -1,0 +1,24 @@
+<div id="J_Slide" class="slide">
+   <ul class="slide-list">
+   		<!--{foreach from=$widget_data item=image name=image}-->
+        <li style="display: block; opacity: 1; position: absolute; z-index: 9;">          
+            <div  class="leftBanner"> 
+                  <div class="modelLayer"><a href="{$image.0.link|escape}" title="{$image.0.title|escape}" target="_blank"><img src="{$image.0.imgurl|escape}" /></a></div>
+                 </div>
+                <div class="rightBanner">
+                  <div class="j_MaskBanner rightBanner1"><a title="{$image.1.title|escape}" href="{$image.1.link|escape}"><img src="{$image.1.imgurl|escape}" /></a><div class="black"></div>             
+                  </div>
+                  <hr class="hr1">
+                  <div  class="j_MaskBanner rightBanner2"><a title="{$image.2.title|escape}" href="{$image.2.link|escape}"><img src="{$image.2.imgurl|escape}" /></a><div class="black"></div></div>
+                  <hr class="hr2">
+                  <div  class="j_MaskBanner rightBanner3"><a title="{$image.3.title|escape}" href="{$image.3.link|escape}"><img src="{$image.3.imgurl|escape}" /></a><div class="black"></div></div>
+            </div>
+        </li>
+       <!--{/foreach}-->
+  </ul>
+  <ul class="slide-nav slide-trigger" style="display: block;">
+  	  <!--{foreach from=$widget_data item=image name=image}-->
+      <li  class="dot {if $smarty.foreach.image.first}selected{/if}"><span></span></li>
+      <!--{/foreach}-->
+  </ul>
+</div>

@@ -1,0 +1,18 @@
+<div class="c_category mb10">
+	<h3>{$widget_data.model_name|escape}</h3>
+   <div class="content">
+      <!-- {foreach from=$widget_data.gcategories item=category name=fe_gcate} -->
+      <div class="item">
+          <h2><a target="_blank" href="{url app=search&cate_id=$category.cate_id}"><i></i>{$category.cate_name|escape}</a><div class="up"></div>
+          <div class="out">
+              <div class="subcategory">
+                    <!-- {foreach from=$category.child item=child name=fe_children} -->
+                    	<a style="border:none;" title="{$child.cate_name|escape}" target="_blank" href="{url app=search&cate_id=$child.cate_id}">{$child.cate_name|escape}</a>
+                    <!--{/foreach}-->
+              </div>
+          </div>
+          </h2>
+      </div>
+      <!--{/foreach}-->
+    </div>
+</div>

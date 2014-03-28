@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html;charset={$charset}" />
+{$page_seo}
+
+<meta name="author" content="ecmall.shopex.cn" />
+<meta name="copyright" content="ShopEx Inc. All Rights Reserved" />
+<link href="{res file=shop.css}" rel="stylesheet" type="text/css" />
+<link href="themes/mall/jdb/styles/default/css/top.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=select.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=cart.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=kissy/build/kissy.js}"></script>
+<script type="text/javascript" src="{lib file=kissy/build/switchable/switchable-pkg.js}"></script>
+<!--[if lte IE 6]>
+<script type="text/javascript" language="Javascript" src="{lib file=hoverForIE6.js}"></script>
+<![endif]-->
+
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var PRICE_FORMAT = '{$price_format}';
+
+$(function(){
+    var span = $("#child_nav");
+    span.hover(function(){
+        $("#float_layer:not(:animated)").show();
+    }, function(){
+        $("#float_layer").hide();
+    });
+});
+//]]>
+</script>
+{$_head_tags}
+</head>
+
+<body>
+<style type="text/css">
+
+</style>
+<div class="kefu fixed-top fixed-right">
+      <div class="show">
+            <div class="title">
+                <h3></h3>
+                <div class="um-text">客服中心</div>
+            </div>
+            <div class="content">
+            	<div class="um-group">
+                    <div class="um-title">QQ交谈</div>
+                    <ul>
+                            <!--{foreach from=$store.qq item=qq}-->
+                            <li>
+                                <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$qq.num|escape}&amp;Site={$store.store_name|escape}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$qq.num|escape}:4" alt="QQ"></a>{$qq.name|escape}
+                            </li>
+                            <!--{/foreach}-->
+                    </ul>
+                 </div>
+                 <div class="um-group">
+                     <div class="um-title">旺旺联系</div>
+                     	<ul>
+                             <!--{foreach from=$store.ww item=ww}-->  
+                             <li>            
+                                <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$store.im_ww|escape:url}&site=cntaobao&s=2&charset={$charset}" alt="Wang Wang" /></a>
+                                {$ww.name|escape}
+                              </li>
+                            <!--{/foreach}-->
+                       </ul>
+                 </div>  
+                 <div class="um-group"><div class="um-title">工作时间</div><div class="um-worktime">{$store.work_time|escape}</div></div> 
+                 <div class="um-group"><div class="um-title">联系方式</div><div class="um-contact">TEL:{$store.tel|escape}</div></div>  
+                 <div class="um-group"><div class="um-title">分享店铺</div>
+                 	<div class="um-share">
+                    	<!-- JiaThis Button BEGIN -->
+                        <div id="ckepop">
+                            <a class="jiathis_button_qzone"></a>
+                            <a class="jiathis_button_tsina"></a>
+                            <a class="jiathis_button_tqq"></a>
+                            <a class="jiathis_button_renren"></a>
+                            <a class="jiathis_button_douban"></a>
+                        </div>
+                        <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1340804611789901" charset="utf-8"></script>
+                        <!-- JiaThis Button END -->
+                 	</div>
+                </div>    
+            </div>
+            <div class="bottom">
+                <h3><a href="javascript:collect_store({$store.store_id})"></a></h3>
+                <div class="back"><a onclick="javascript:scroll(0,0)">返回顶部&uarr;</a></div>
+            </div>
+        </div>
+      <div class="hide" style=" display:none;">
+      	 <div class="um-open"><div class="um-sign um-bg"><b>+</b></div><span class="um-text um-bg">展开客服</span></div>
+      </div>
+      <script>
+   		$(function(){
+			$('.kefu .show .title h3').click(function(){
+				$('.kefu .show').hide();
+				$('.kefu .hide').show();
+			});
+			$('.kefu .hide').click(function(){
+				$(this).hide();
+				$('.kefu .show').show();
+			});
+		});
+  </script>
+</div>
+<div id="site-nav" class="w-full">
+   <div class="shoptop w1000 clearfix">
+      <div class="login_info">
+         {$lang.hello},
+         <!--{if !$visitor.user_id}-->
+         {$visitor.user_name|escape}
+         <a href="{url app=member&act=login&ret_url=$ret_url}">{$lang.login}</a>
+         <a href="{url app=member&act=register&ret_url=$ret_url}">{$lang.register}</a>
+         <!--{else}-->
+         <a href="{url app=member}"><span>{$visitor.user_name|escape}</span></a>
+         <a href="{url app=member&act=logout}">{$lang.logout}</a>
+         <a href="{url app=message&act=newpm}">{$lang.pm}<!--{if $new_message}-->(<span>{$new_message}</span>)<!--{/if}--></a>
+         <!--{/if}-->
+      </div>
+      <ul class="quick-menu">
+      	{if !$index}<li class="home"><a href="{$site_url}">回到首页</a></li>{/if}
+        <li class="item">
+           <div class="menu iwantbuy">
+              <a class="menu-hd" href="{url app=category}">{$lang.i_want_buy}<b></b></a>
+              <div class="menu-bd">
+                 <div class="menu-bd-panel">
+                    <div>
+                       <p><a href="{url app=category}">{$lang.gcategory}</a></p>
+                       <p><a href="#">大家正在买</a></p>
+					   <p><a href="#">品味连连看</a></p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+         </li>
+         <li class="item">
+            <div class="menu mytb">
+               <a class="menu-hd" href="{url app=member}">我是买家<b></b></a>
+               <div class="menu-bd">
+                  <div class="menu-bd-panel">
+                     <div>
+                        <p><a href="{url app=buyer_order}">已买到的宝贝</a></p>
+                        <p><a href="{url app=friend}">我的好友</a></p>
+                        <p><a href="{url app=my_question}">我的咨询</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </li>
+         <li class="item">
+            <div class="menu seller-center">
+               <a class="menu-hd" href="{url app=member}">卖家中心<b></b></a>
+               <div class="menu-bd">
+                  <div class="menu-bd-panel">
+                     <div>
+                        <p><a href="{url app=seller_order}">已卖出的宝贝</a></p>
+                        <p><a href="{url app=my_goods}">出售中的宝贝</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </li>
+         <li class="service">
+            <a href="{url app=article&code=help}">帮助中心</a>
+         </li>
+         <li class="item">
+            <div class="menu mini-cart">
+               <a class="ac" href="{url app=cart}">
+                  <s></s>购物车<strong>{$cart_goods_kinds}</strong>件<b></b>
+               </a>
+               <div class="mini-cart-content menu-bd">
+                  <dl class="mini-cart-bd">
+                     <!--{if $cart_goods_kinds}-->
+                     <dt class="mini-cart-hd">最近加入的宝贝：</dt>
+                     <!--{foreach from=$carts_top item=cart}-->
+                     <dd class="mini-cart-each clearfix" id="cart_goods{$cart.rec_id}">
+                        <div class="mini-cart-img">
+                           <a href="{url app=goods&id=$cart.goods_id}" target="_top">
+                              <img alt="{$cart.goods_name}" src="{$cart.goods_image}" width="40" height="40">
+                           </a>
+                        </div>
+                        <div class="mini-cart-title">
+                           <a title="{$cart.goods_name}" href="{url app=goods&id=$cart.goods_id}" target="_top">{$cart.goods_name}</a>
+                        </div>
+                        <div class="price-admin">
+                           <div class="mini-cart-count"><strong class="mini-cart-price">{$cart.price|price}</strong></div>
+                           <div class="mini-cart-del"><a href="javascript:;" onclick="drop_cart_item({$cart.store_id}, {$cart.rec_id});">删除</a></div>
+                        </div>
+                     </dd>
+                     <!--{/foreach}-->
+                     <!--{else}-->
+                     <dt class="mt10 fleft mini-cart-empty">您购物车里还没有任何宝贝</dt>
+                     <!--{/if}-->
+                     <dd class="mini-cart-bt">
+                        <a href="{url app=cart}">查看我的购物车</a>
+                     </dd>                          
+                  </dl>
+               </div>
+            </div>
+         </li>
+         <li class="item">
+            <div class="menu favorite">
+               <a class="menu-hd" href="{url app=my_favorite}">收藏夹<b></b></a>
+               <div class="menu-bd">
+                  <div class="menu-bd-panel">
+                     <div>
+                       <p><a href="{url app=my_favorite}">收藏的宝贝</a></p>
+                       <p><a href="{url app=my_favorite&type=store}">收藏的店铺</a></p>
+                    </div>
+                 </div>
+               </div>
+           </div>
+         </li>
+         <li class="item" style="background:none">
+            <div class="menu sites">
+               <a class="menu-hd" href="javascript:;">网站导航<b></b></a>
+               <div class="menu-bd padding10">
+                  <!--{foreach from=$navs.header item=nav}-->
+                  <a href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}>{$nav.title|escape}</a>
+                  <!--{/foreach}-->
+               </div>
+            </div>
+        </li>
+     </ul>
+   </div>
+</div>

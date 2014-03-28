@@ -1,0 +1,24 @@
+#footer{border-top:1px #ddd solid;}
+#footer a{text-decoration:none;}
+#footer a:hover{color:#990000; text-decoration:underline;}
+
+#footer .foot-service {padding-left:100px;}
+#footer .foot-service dl{float:left;width:25%;*width:24%;padding-bottom:10px;margin-top:30px; text-align:left;color:#666;}
+#footer .foot-service dt{background:url(../images/foot-service.gif) no-repeat;width:198px; height:27px; overflow:hidden}
+#footer .foot-service dt.fts-2{ background-position:0 -28px;}
+#footer .foot-service dt.fts-3{ background-position:0 -55px;}
+#footer .foot-service dt.fts-4{ background-position:0 -84px;}
+#footer .foot-service dd{padding-left:30px; line-height:30px;}
+#footer .foot-service dd a{color:#666;}
+#footer .foot-service dd a:hover{color:#990000;}
+
+#footer .foot-group,#footer .foot-copyright,#footer .foot-parter{ text-align:center;color:#666; background:#fff}
+#footer .foot-group{margin: 5px auto 10px auto;border-top:1px #ddd solid;padding-top:15px;}
+#footer .foot-group a { margin: 0 7px;}
+
+#footer .foot-copyright {margin: 5px auto 10px auto; font-family:Tahoma, Geneva, sans-serif}
+#footer .foot-parter a{margin-right:15px;}
+
+#footer .footer-fixed{right: 10px;position: fixed;_position: absolute;top: 400px;_display:none;overflow: hidden;}
+#footer .footer-fixed .toTop {display:block;z-index: 999;width:60px;height:60px;background:url(../images/back-top-normal.gif) no-repeat;}
+#footer .footer-fixed .toTop:hover{background:url(../images/back-top-active.gif) no-repeat;}

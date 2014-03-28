@@ -1,0 +1,25 @@
+﻿<div class="cfloor mt10">
+     <div class="top clearfix" style="border-bottom:2px solid {if $widget_data.color}{$widget_data.color}{else}#076BBE{/if};">
+          <h3>{$widget_data.model_name}</h3>
+             <div class="keysword"> 
+             	<!--{foreach from=$widget_data.keyword_list item=keyword}-->
+             	<a href="{url app=search&keyword=$keyword}">{$keyword}</a>
+             	<!--{/foreach}-->
+             </div>         
+     </div>
+     <div class="con clearfix">
+          <div  class="left">
+                 <a target="_blank" title="{$widget_data.ad1_title}" href="{$widget_data.ad1_link_url}">
+                       <img width="210" height="350" src="{$widget_data.ad1_image_url}"/></a>
+            </div>
+          <div class="right"> 
+            	<!--{foreach from=$widget_data.goodslist item=goods}-->
+            	<dl>
+                	<dt><a target="_blank" title="{$goods.goods_name}" href="{url app=goods&id=$goods.goods_id}"><img alt="{$goods.goods_name}" src="{$goods.default_image}" width="128" height="128"/></a></dt>
+                    <dd class="name"><a href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name}</a></dd>
+                    <dd class="price"><del>{$goods.mk_price|price}</del><strong>{$goods.price|price}</strong> </dd>
+                </dl>
+                <!--{/foreach}-->  
+      	</div>            
+     </div>
+</div>

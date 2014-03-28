@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" target="_blank"/>
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+{$page_seo}
+
+<meta name="author" content="Cengnlaeng" />
+<meta name="generator" content="Bluefish 2.2.2" />
+<meta name="copyright" content="ShopEx Inc. All Rights Reserved" />
+
+<link type="text/css" href="{res file=css/header.css}" rel="stylesheet" />
+<link type="text/css" href="{res file=css/footer.css}" rel="stylesheet" />
+<link type="text/css" href="{res file=css/main.css}" rel="stylesheet" />
+<link type="text/css" href="{res file=css/tmall.css}" rel="stylesheet" />
+
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=cart.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/main.js}" charset="utf-8"></script> 
+<script type="text/javascript" src="{lib file=kissy/build/kissy.js}"></script>
+<script type="text/javascript" src="{lib file=kissy/build/switchable/switchable-pkg.js}"></script>
+<!--[if lte IE 6]>
+<script type="text/javascript" language="Javascript" src="{res file=js/hoverForIE6.js}"></script>
+<![endif]-->
+
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var PRICE_FORMAT = '{$price_format}';
+//]]>
+</script>
+
+{$_head_tags}
+<!--<editmode></editmode>-->
+</head>
+<body>
+<div id="site-nav" class="w-full">
+   <div class="shoptop w clearfix">
+      <div class="login_info">
+         
+      </div>
+      <ul class="quick-menu">
+      
+         <li style="line-height:23px;" class="login_area">{$lang.hello},
+         <!--{if !$visitor.user_id}-->
+         {$visitor.user_name|escape}</li>
+         <li class="login_area">[<a class="ml5 mr5" href="{url app=member&act=login&ret_url=$ret_url}">{$lang.login}</a>]</li>
+         <li style="margin-right: 738px" class="login_area">[<a class="ml5 mr5" href="{url app=member&act=register&ret_url=$ret_url}">{$lang.register}</a>]</li>
+         <!--{else}-->
+         <a href="{url app=member}"><span>{$visitor.user_name|escape}</span></a></li>
+         <li class="login_area"><a href="{url app=member&act=logout}">{$lang.logout}</a></li>
+         <li style="margin-right: 730px" class="login_area"></li>
+         <!--{/if}-->
+          <li class="service">
+              <a href="/index.php?app=recommendgoods">项目推荐</a>
+          </li>
+          <li class="service">
+              <a href="/index.php?app=newestgoods">最新项目</a>
+          </li>
+         <li class="item">
+            <div class="menu favorite">
+               <a class="menu-hd" href="{url app=my_favorite}">收藏夹<b></b></a>
+               <div class="menu-bd">
+                  <div class="menu-bd-panel">
+                     <div>
+                       <p><a href="{url app=my_favorite}">收藏的宝贝</a></p>
+                       <p><a href="{url app=my_favorite&type=store}">收藏的店铺</a></p>
+                    </div>
+                 </div>
+               </div>
+           </div>
+         </li>
+          <li class="service">
+          <a href="{url app=bzhwjcontact}">联系客服</a>
+          </li>
+     </ul>
+   </div>
+</div>

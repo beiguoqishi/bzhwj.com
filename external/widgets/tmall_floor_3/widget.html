@@ -1,0 +1,116 @@
+  <div  class="floor">
+      <div   class="title clearfix">
+          <h2 class="floor-title">{$widget_data.model_name}</h2>
+          <div class="keywords clearfix">
+             <ul class="keywords-nav clearfix">
+                <!--{foreach from=$widget_data.keywords item=keyword}-->
+                <li><a href="index.php?app=search&keyword={$keyword|escape:url}">{$keyword}</a></li> 
+                <!--{/foreach}-->        
+             </ul>
+          </div>
+      </div>
+      <div class="content clearfix">
+          <div class="brand-logo" id="focus-{$widget_data.model_id}_3">
+              <ul class="brands-box element" style="position: absolute; width: 360px; left: -240px;">
+              	  <!--{foreach from=$widget_data.brands item=brand}-->
+                  <li style="display: block; float: left;">
+                  	   <!--{foreach from=$brand item=b}-->
+                       <a title="{$b.brand_name}" href="index.php?app=search&brand={$b.brand_name|escape:url}" target="_blank"><img width="90" height="45" alt="{$b.brand_name}" src="{$b.brand_logo}"></a>
+                       <!--{/foreach}-->
+                  </li>
+                  <!--{/foreach}-->
+              </ul>
+               <ul class="brand-nav slide-mini-nav index">
+               	  <!--{foreach from=$widget_data.brands item=brand}-->
+                  <li class="">•</li>
+                  <!--{/foreach}-->
+               </ul>
+            </div>
+            <div class="floorCon-slide" id="focus-{$widget_data.model_id}_3_3">
+              <ul class="fCs-con element" style="position: absolute; width: 600px;">
+                   <li style="display: block; float: left;"><a title="{$widget_data.ad1_title_url}" target="_blank" href="{$widget_data.ad1_link_url}"><img style="width:200px; height:320px;" alt="{$widget_data.ad1_title_url}" src="{$widget_data.ad1_image_url}"></a></li>
+                   <li style="display: block; float: left;"><a title="{$widget_data.ad2_title_url}" target="_blank" href="{$widget_data.ad2_link_url}"><img style="width:200px; height:320px;" alt="{$widget_data.ad2_title_url}" src="{$widget_data.ad2_image_url}"></a></li>
+                   <li style="display: block; float: left;"><a title="{$widget_data.ad3_title_url}" target="_blank" href="{$widget_data.ad3_link_url}"><img style="width:200px; height:320px;" alt="{$widget_data.ad3_title_url}" src="{$widget_data.ad3_image_url}"></a></li>
+					<script type="text/javascript" >
+                        $(document).ready(function() {
+                            myfocus({wrapper:"#focus-{$widget_data.model_id}_3_3",element:"ul.element li",index:"ul.index li",tmclass:'active',time:300,startindex:0});
+                            myfocus({wrapper:"#focus-{$widget_data.model_id}_3",element:"ul.element li",index:"ul.index li",tmclass:"active",time:400,startindex:2});
+                        });
+                    </script>
+              </ul>
+              <ul class="fCs-nav fCs-nav-num3 index">
+              	  <li class=" fCs-nav1" style="left: 220px;"><a title="{$widget_data.ad1_title_url}" target="_blank" href="{$widget_data.ad1_link_url}">{$widget_data.ad1_title_url}</a><s></s></li>                
+				  <li class=" fCs-nav2" style="left: 220px;"><a title="{$widget_data.ad2_title_url}" target="_blank" href="{$widget_data.ad2_link_url}">{$widget_data.ad2_title_url}</a><s></s></li>                
+				  <li class=" fCs-nav3" style="left: 220px;"><a title="{$widget_data.ad3_title_url}" target="_blank" href="{$widget_data.ad3_link_url}">{$widget_data.ad3_title_url}</a><s></s></li>                
+			  </ul>
+            </div>
+            <div class="floorCon-img">
+                <div class="floorPro">
+                    <p class="floorPro-list"><em>{$widget_data.ad4_keyword_url.0}</em> 
+						<a href="index.php?app=search&keyword={$widget_data.ad4_keyword_url.1|escape:url}">{$widget_data.ad4_keyword_url.1}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad4_keyword_url.2|escape:url}">{$widget_data.ad4_keyword_url.2}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad4_keyword_url.2|escape:url}">{$widget_data.ad4_keyword_url.3}</a>
+					</p>
+                    <a title="{$widget_data.ad4_title_url}" target="_blank" href="{$widget_data.ad4_link_url}" class="floorPro-img"> <img style="width:150px;height:150px;" alt="{$widget_data.ad4_title_url}"  src="{$widget_data.ad4_image_url}">
+                    <p class="imgame">{$widget_data.ad4_title_url}</p>
+                    <p class="imgTitle">{$widget_data.ad4_about_url}</p>
+                    </a>
+                </div>
+                <div class="floorPro">
+                    <p class="floorPro-list"><em>{$widget_data.ad5_keyword_url.0}</em> 
+						<a href="index.php?app=search&keyword={$widget_data.ad5_keyword_url.1|escape:url}">{$widget_data.ad5_keyword_url.1}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad5_keyword_url.2|escape:url}">{$widget_data.ad5_keyword_url.2}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad5_keyword_url.3|escape:url}">{$widget_data.ad5_keyword_url.3}</a>
+					</p>
+                    <a title="{$widget_data.ad5_title_url}" target="_blank" href="{$widget_data.ad5_link_url}" class="floorPro-img"> <img style="width:150px;height:150px;" alt="{$widget_data.ad5_title_url}"  src="{$widget_data.ad5_image_url}">
+                    <p class="imgame">{$widget_data.ad5_title_url}</p>
+                    <p class="imgTitle">{$widget_data.ad5_about_url}</p>
+                    </a>
+                </div>
+                <div class="floorPro">
+                    <p class="floorPro-list"><em>{$widget_data.ad6_keyword_url.0}</em> 
+						<a href="index.php?app=search&keyword={$widget_data.ad6_keyword_url.1|escape:url}">{$widget_data.ad6_keyword_url.1}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad6_keyword_url.2|escape:url}">{$widget_data.ad6_keyword_url.2}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad6_keyword_url.2|escape:url}">{$widget_data.ad6_keyword_url.3}</a>
+					</p>
+                    <a title="{$widget_data.ad6_title_url}" target="_blank" href="{$widget_data.ad6_link_url}" class="floorPro-img"> <img style="width:150px;height:150px;" alt="{$widget_data.ad6_title_url}"  src="{$widget_data.ad6_image_url}">
+                    <p class="imgame">{$widget_data.ad6_title_url}</p>
+                    <p class="imgTitle">{$widget_data.ad6_about_url}</p>
+                    </a>
+                </div>
+                <div class="floorPro">
+                    <p class="floorPro-list"><em>{$widget_data.ad7_keyword_url.0}</em> 
+						<a href="index.php?app=search&keyword={$widget_data.ad7_keyword_url.1|escape:url}">{$widget_data.ad7_keyword_url.1}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad7_keyword_url.2|escape:url}">{$widget_data.ad7_keyword_url.2}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad7_keyword_url.2|escape:url}">{$widget_data.ad7_keyword_url.3}</a>
+					</p>
+                    <a title="{$widget_data.ad7_title_url}" target="_blank" href="{$widget_data.ad7_link_url}" class="floorPro-img"> <img style="width:150px;height:150px;" alt="{$widget_data.ad7_title_url}"  src="{$widget_data.ad7_image_url}">
+                    <p class="imgame">{$widget_data.ad7_title_url}</p>
+                    <p class="imgTitle">{$widget_data.ad7_about_url}</p>
+                    </a>
+                </div>
+                <div class="floorPro">
+                    <p class="floorPro-list"><em>{$widget_data.ad8_keyword_url.0}</em> 
+						<a href="index.php?app=search&keyword={$widget_data.ad8_keyword_url.1|escape:url}">{$widget_data.ad8_keyword_url.1}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad8_keyword_url.2|escape:url}">{$widget_data.ad8_keyword_url.2}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad8_keyword_url.2|escape:url}">{$widget_data.ad8_keyword_url.3}</a>
+					</p>
+                    <a title="{$widget_data.ad8_title_url}" target="_blank" href="{$widget_data.ad8_link_url}" class="floorPro-img"> <img style="width:150px;height:150px;" alt="{$widget_data.ad8_title_url}"  src="{$widget_data.ad8_image_url}">
+                    <p class="imgame">{$widget_data.ad8_title_url}</p>
+                    <p class="imgTitle">{$widget_data.ad8_about_url}</p>
+                    </a>
+                </div>
+                <div class="floorPro">
+                    <p class="floorPro-list"><em>{$widget_data.ad9_keyword_url.0}</em> 
+						<a href="index.php?app=search&keyword={$widget_data.ad9_keyword_url.1|escape:url}">{$widget_data.ad9_keyword_url.1}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad9_keyword_url.2|escape:url}">{$widget_data.ad9_keyword_url.2}</a>
+						<a href="index.php?app=search&keyword={$widget_data.ad9_keyword_url.2|escape:url}">{$widget_data.ad9_keyword_url.3}</a>
+					</p>
+                    <a title="{$widget_data.ad9_title_url}" target="_blank" href="{$widget_data.ad9_link_url}" class="floorPro-img"> <img style="width:150px;height:150px;" alt="{$widget_data.ad9_title_url}"  src="{$widget_data.ad9_image_url}">
+                    <p class="imgame">{$widget_data.ad9_title_url}</p>
+                    <p class="imgTitle">{$widget_data.ad9_about_url}</p>
+                    </a>
+                </div>
+           </div>
+     </div>
+  </div>

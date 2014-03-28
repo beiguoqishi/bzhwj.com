@@ -1,0 +1,15 @@
+{include file=custom_header.html}
+        <h1 style="width:1180px;padding-left:20px;margin:0 auto;height: 36px;line-height: 36px;font-size: 16px;font-weight: normal;border-top: 1px solid #333;">最新项目</h1>
+<div class="content clearfix" style="width: 1200px;margin: 0 auto;border-top: 2px solid #333;">
+    <!--{foreach from=$goods_list item=goods}-->
+    <a  target="_blank" class="floorCon-banner j_floorBanner" href="{url app=goods&id=$goods.goods_id}" target="_blank"><img width="200" height="300"  src="{$goods.default_image}"></a>
+    <!--{/foreach}-->
+</div>
+{include file=helper_footer.html}
+<div id="footer_index">
+    Copyright 2014-2020 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+        </body>
+        </html>

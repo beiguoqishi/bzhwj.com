@@ -1,0 +1,72 @@
+<div class="hot-star">
+<div class="hot-news section">
+<h2 class="tle">热点新闻</h2>
+<ul class="lft">
+            <!--{foreach from=$widget_data.hot_news[0] item=news name=news_list}-->
+<!--{if $smarty.foreach.news_list.iteration <=10}-->
+<!--{if $smarty.foreach.news_list.iteration == 1}-->
+<li class="first">
+<a href="{$news.link|escape}" target="_blank" class="lft-img"><img src="{$news.imgurl|escape}"></a>
+<div class="rht-detail">
+<a href="{$news.link|escape}" target="_blank" class="rht-tle">{$news.title|escape:html}</a>
+<p class="desc">{$news.intro|escape}</p>
+</div>
+</li>
+<!--{else}-->
+			<li class="item"><a href="{$news.link|escape}" target="_blank">{$news.title|escape:html}</a></li> 
+<!--{/if}--><!--{/if}-->
+            <!--{/foreach}-->        
+</ul>
+<ul class="rht">
+            <!--{foreach from=$widget_data.hot_news[1] item=news name=news_list}-->
+<!--{if $smarty.foreach.news_list.iteration <=10}-->
+<!--{if $smarty.foreach.news_list.iteration == 1}-->
+<li class="first">
+<a href="{$news.link|escape}" target="_blank" class="lft-img"><img src="{$news.imgurl|escape}"></a>
+<div class="rht-detail">
+<a href="{$news.link|escape}" target="_blank" class="rht-tle">{$news.title|escape:html}</a>
+<p class="desc">{$news.intro|escape}</p>
+</div>
+</li>
+<!--{else}-->
+			<li class="item"><a href="{$news.link|escape}" target="_blank">{$news.title|escape:html}</a></li> 
+<!--{/if}--><!--{/if}-->
+            <!--{/foreach}-->        
+</ul>
+</div>
+<div class="star-meirong section">
+<h2 class="tle">明星美容</h2>
+<ul class="lft">
+            <!--{foreach from=$widget_data.star_meirong[0] item=news name=news_list}-->
+<!--{if $smarty.foreach.news_list.iteration <=10}-->
+<!--{if $smarty.foreach.news_list.iteration == 1}-->
+<li class="first">
+<a href="{$news.link|escape}" target="_blank" class="lft-img"><img src="{$news.imgurl|escape}"></a>
+<div class="rht-detail">
+<a href="{$news.link|escape}" target="_blank" class="rht-tle">{$news.title|escape:html}</a>
+<p class="desc">{$news.intro|escape}</p>
+</div>
+</li>
+<!--{else}-->
+			<li class="item"><a href="{$news.link|escape}" target="_blank">{$news.title|escape:html}</a></li> 
+<!--{/if}--><!--{/if}-->
+            <!--{/foreach}-->        
+</ul>
+<ul class="rht">
+            <!--{foreach from=$widget_data.star_meirong[1] item=news name=news_list}-->
+<!--{if $smarty.foreach.news_list.iteration <=10}-->
+<!--{if $smarty.foreach.news_list.iteration == 1}-->
+<li class="first">
+<a href="{$news.link|escape}" target="_blank" class="lft-img"><img src="{$news.imgurl|escape}"></a>
+<div class="rht-detail">
+<a href="{$news.link|escape}" target="_blank" class="rht-tle">{$news.title|escape:html}</a>
+<p class="desc">{$news.intro|escape}</p>
+</div>
+</li>
+<!--{else}-->
+			<li class="item"><a href="{$news.link|escape}" target="_blank">{$news.title|escape:html}</a></li> 
+<!--{/if}--><!--{/if}-->
+            <!--{/foreach}-->        
+</ul>
+</div>
+</div>

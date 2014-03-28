@@ -1,0 +1,13 @@
+﻿<div class="floor_right mt10" style="border-top:2px solid {if $widget_data.color}{$widget_data.color}{else}#076BBE{/if}">
+	<h3>{$widget_data.model_name}<a target="_blank" href="{url app=brand}">更多品牌&gt;</a></h3>
+	<ul>
+    	<!--{foreach from=$widget_data.brands item=img name=fe_img}-->
+        <li><a target="_blank" href="{$img.link}"><img width="90" height="30" src="{$img.url}"></a></li>
+        <!--{/foreach}-->
+	</ul>
+	<ol>
+    	<!--{foreach from=$widget_data.ads item=ad name=fe_ad}-->
+        <li><a target="_blank" href="{$ad.link}"><img width="258" height="85" src="{$ad.url}"></a></li>
+        <!--{/foreach}-->
+	</ol>
+</div>

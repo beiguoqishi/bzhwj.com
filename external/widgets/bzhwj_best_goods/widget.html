@@ -1,0 +1,17 @@
+    <div  class="floor floor1">
+       <div   class="title">
+          <h2 class="floor-title">精品项目推荐</h2>
+       </div>
+      <div class="keywords">
+         <ul class="keywords-nav">
+            <!--{foreach from=$widget_data.keywords item=keyword}-->
+			<li><a href="index.php?app=search&keyword={$keyword|escape:url}">{$keyword}</a></li> 
+            <!--{/foreach}-->        
+         </ul>
+      </div>
+      <div class="content clearfix">
+<!--{foreach from=$widget_data.data item=goods}-->
+            <a  target="_blank" class="floorCon-banner j_floorBanner" href="{$goods.url|escape}" target="_blank"><img width="200" height="300"  src="{$goods.imgurl|escape}"></a>
+<!--{/foreach}-->
+     </div>
+   </div>

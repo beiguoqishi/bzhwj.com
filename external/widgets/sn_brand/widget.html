@@ -1,0 +1,9 @@
+<div class="brand mt10">
+    <h2>{$widget_data.model_name}</h2>
+    <a class="more" title="更多" target="_blank" href="{url app=brand}">更多&gt;&gt;</a>
+    <ul>
+    	 <!--{foreach from=$widget_data.brands item=brand}-->
+    	 <li><a href="{url app=search&brand=$brand.brand_name|escape:url}" target="_blank"><img src="{$brand.brand_logo}" alt="{$brand.brand_name|escape}" width="94" height="50" title="{$brand.brand_name|escape}" /></a></li>
+         <!--{/foreach}-->
+    </ul>
+</div>

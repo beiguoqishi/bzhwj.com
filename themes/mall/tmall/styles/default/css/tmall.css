@@ -1,0 +1,99 @@
+.hot-star {
+width:100%;
+overflow:hidden;
+margin-top:20px;
+}
+.hot-star .section{
+width:48%;
+float:left;
+overflow:hidden;
+}
+.hot-star .hot-news {
+margin-right:4%;
+}
+.hot-star .section h2.tle {
+font-size:18px;
+font-family:"Microsoft yahei";
+height:36px;
+line-height:36px;
+padding-left:10px;
+border-bottom:2px solid #000;
+}
+.floor h2 {
+font-family:"Microsoft yahei";
+}
+.hot-star .section ul {
+float:left;
+width:48%;
+overflow:hidden;
+}
+.hot-star .section ul.lft {
+margin-right:4%;
+}
+.hot-star .section ul li {
+float:left;
+width:100%;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+zoom:1;
+height:36px;
+line-height:36px;
+border-bottom:1px solid #c0c0c0;
+}
+.hot-star .section ul li.first {
+padding-top:10px;
+height:100px;
+}
+.hot-star .section ul li.first a.lft-img{
+width:80px;
+float:left;
+height:100px;
+overflow:hidden;
+padding-left:0;
+}
+.hot-star .section ul li.first a.lft-img img{
+width:80px;
+}
+.hot-star .section ul li.first .rht-detail{
+float:left;
+margin-left:10px;
+width:186px;
+overflow:hidden;
+}
+.hot-star .section ul li.first .rht-detail a.rht-tle{
+font-size:14px;
+font-weight:bold;
+color:#333;
+display:inline-block;
+overflow:hiden;
+text-overflow:ellipsis;
+white-space:nowrap;
+zoom:1;
+width:100%;
+}
+.hot-star .section ul li.first .rht-detail .desc{
+width: 186px;
+height: 3.6em;
+overflow: hidden;
+white-space: normal;
+line-height: 1.2em;
+}
+.hot-star .section ul li a{
+display:inline-block;
+height:36px;
+color:#333;
+background-color:#fff;
+-webkit-transition:all 0.3s;
+-moz-transition:all 0.3s;
+-ms-transition:all 0.3s;
+-o-transition:all 0.3s;
+transition:all 0.3s;
+width:96%;
+padding-left:4%;
+}
+.hot-star .section ul li a:hover{
+color:#f30;
+background-color:#f1f1f1;
+}
+

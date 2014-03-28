@@ -1,0 +1,81 @@
+{include file=header.html}
+
+{include file=top.html}
+<style type="text/css">
+    a:hover{
+        color: #f30!important;
+        text-decoration: underline!important;
+    }
+</style>
+<div id="content">
+    <div id="left">
+        {include file=left.html}
+    </div>
+    
+    <div id="right">
+        <div class="die6"></div>
+
+        <div class="module_special">
+            <h2 class="common_title veins2">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <span class="ico1"><span class="ico2">美容院概況</span></span>
+            </h2>
+            <div class="wrap" style="padding: 15px">
+                <div class="wrap_child">
+                    <div class="major">
+                        <!--{if $archive}-->
+                        {$archive.intro}
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module_special">
+            <h2 class="common_title veins2">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <span class="ico1"><span class="ico2">工商注册信息</span></span>
+            </h2>
+            <div class="wrap" style="padding: 15px">
+                <div class="wrap_child">
+                    <div class="major">
+                        <!--{if $archive}-->
+                        {$archive.business_info}
+                        <!--{/if}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="module_special">
+            <h2 class="common_title veins2">
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <span class="ico1"><span class="ico2">美容院图片</span></span>
+            </h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <!--{if $archive}-->
+                    <div>
+                        <ul class="list">
+                            <!--{foreach from=$archive.pics item=ngoods}-->
+                            <li style="margin: 20px;text-align: center">
+                                <div class="pic"><img src="{$ngoods.pic|escape}" style="max-width: 100%;text-align: center"/></div>
+                                <h3 style="margin-top: 10px;">{$ngoods.title|escape}</h3>
+                            </li>
+                            <!--{/foreach}-->
+                        </ul>
+                    </div>
+                    <!--{else}-->
+                    <div class="nothing"><p>{$lang.no_records}</p></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="clear"></div>
+</div>
+
+{include file=footer.html}

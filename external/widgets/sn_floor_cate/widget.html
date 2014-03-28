@@ -1,0 +1,14 @@
+﻿<div class="floor_cate mt10" style="border:1px solid {if $widget_data.color}{$widget_data.color}{else}#076BBE{/if}; border-top-width:2px">
+	<h2 style="background:url({$widget_data.ad0_image_url}) 0 0 no-repeat;">{$widget_data.cate_name|escape}</h2>
+	<ul>
+		<!--{foreach from=$widget_data.cates item=cate name=fe_cate}-->
+        	<!--{if $smarty.foreach.fe_cate.iteration le 16}-->
+        	<li><a target="_blank" href="{url app=search&cate_id=$cate.cate_id}">·{$cate.cate_name}</a></li>
+            <!--{/if}-->
+        <!--{/foreach}-->
+	</ul>
+
+	<div class="layBanner">
+    	<a target="_blank" href="{$widget_data.ad1_link_url}"><img width="188" height="190" src="{$widget_data.ad1_image_url}"></a>
+    </div>
+</div>

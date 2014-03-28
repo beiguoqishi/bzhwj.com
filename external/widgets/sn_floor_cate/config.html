@@ -1,0 +1,30 @@
+﻿<script type="text/javascript">
+var _d = DialogManager.get('config_dialog');
+_d.setWidth(350);
+_d.setPosition('center');
+</script>
+<div class="field_item">
+    <p><label>边框颜色：</label><input type="text" name="color" value="{$options.color}" /></p>
+</div> 
+<div class="field_item">
+    <p><label>楼层名称：</label><input type="text" name="cate_name" value="{$options.cate_name}" /></p>
+</div>
+<div class="field_item">
+	<label>楼层名称背景图片:(<span>图片尺寸：188*39，支持 gif|jpg|jpeg|png 格式</span>)</label>
+    <p><input type="file" name="ad0_image_file" /><input type="hidden" name="ad0_image_url" value="{$options.ad0_image_url}" /></p>
+    <!-- {if $options.ad0_image_url} --><p><img src="{$options.ad0_image_url}" height="20" /></p><!-- {/if} --> 
+</div>
+<div class="field_item">
+    <label>选择分类:</label>
+    <select name="cate_id">
+        <option value="0">请选择分类...</option>
+        <!-- {html_options options=$gcategories selected=$options.cate_id} -->
+    </select></p>
+</div>
+<div class="field_item">
+	<label>广告图片:(<span>图片尺寸：188*190，支持 gif|jpg|jpeg|png 格式</span>)</label>
+    <p><input type="file" name="ad1_image_file" /><input type="hidden" name="ad1_image_url" value="{$options.ad1_image_url}" /></p>
+    <!-- {if $options.ad1_image_url} --><p><img src="{$options.ad1_image_url}" height="20" /></p><!-- {/if} -->
+    <label>图片1链接地址:</label>
+    <p><input type="text" name="ad1_link_url" value="{$options.ad1_link_url}" /></p>
+</div>

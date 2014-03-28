@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<body>
+<!--{if $store_id > 0}-->
+<a href="http://admin.bzhwj.com/generaldata/page_interpose_intellij?table=app_bzhwj_people&app_id=2&custom_js=window.store_id={$store_id}" target="_blank">增加风云人物</a>
+<!--{/if}-->
+<div style="margin-top: 20px">
+    <h1>风云人物列表</h1>
+    <!--{if $people}-->
+    <ul>
+        <!--{foreach from=$people item=person}-->
+        <li>
+            <a href="http://admin.bzhwj.com/generaldata/page_interpose_intellij?table=app_bzhwj_people&app_id=2&custom_js=window.store_id={$person.store_id}&id={$person.id}" target="_blank">{$person.title|escape}</a>
+            <a style="margin-left: 20px" href="/index.php?app=storeinterpose&act=store_fengyun_people_do_delete&id={$person.id}">删除</a>
+        </li>
+        <!--{/foreach}-->
+    </ul>
+    <!--{/if}-->
+</div>
+</body>
+</html>

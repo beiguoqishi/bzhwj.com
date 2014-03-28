@@ -1,0 +1,53 @@
+<div class="sale_list mt10 clearfix">
+		<h2>{$widget_data.model_name|escape}</h2>
+        <div>
+             <ul class="ks-nav ks-nav{$widget_data.id}">
+                  <li class="ks-active nav1">{$widget_data.cate_name_1|escape}</li>
+                  <li class="nav2">{$widget_data.cate_name_2|escape}</li>              
+              </ul> 
+              <div class="ks-content">
+                        	<ul class="box" id="box1_{$widget_data.id}">
+                                <!--{foreach from=$widget_data.goods_list_1 item=goods name=fe_goods}-->
+                                <li {if $smarty.foreach.fe_goods.last} style="border-color:#fff;" {/if}>
+                                      <div class="pic"><a href="{url app=goods&id=$goods.goods_id}"><img alt="{$goods.goods_name|escape}" src="{$goods.default_image}" height="60" width="60"></a><b>{$smarty.foreach.fe_goods.iteration}</b></div>
+                                      <div class="info">
+                                          <div class="title"><a href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a></div>
+                                          <div class="price">{$goods.price|price}</div>
+                                      </div>
+                               </li>
+                               <!--{/foreach}-->
+                           </ul>
+                        	<ul class="box box2" id="box2_{$widget_data.id}" style="display:none;">
+                                <!--{foreach from=$widget_data.goods_list_2 item=goods name=fe_goods}-->
+                                <li {if $smarty.foreach.fe_goods.last} style="border-color:#fff;" {/if}>
+                                      <div class="pic"><a href="{url app=goods&id=$goods.goods_id}"><img alt="{$goods.goods_name|escape}" src="{$goods.default_image}" height="60" width="60"></a> <b>{$smarty.foreach.fe_goods.iteration}</b></div>
+                                      <div class="info">
+                                          <div class="title"><a href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name|escape}</a></div>
+                                          <div class="price">{$goods.price|price}</div>
+                                      </div>
+                               </li>
+                               <!--{/foreach}-->
+                           </ul>
+              </div>          
+     	</div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+		$(".ks-nav{$widget_data.id} li.nav1").hover(function(){
+			$(".ks-nav{$widget_data.id} li.nav2").removeClass("ks-active");
+			$(this).addClass("ks-active");
+			$("#box2_{$widget_data.id}").hide();	
+			$("#box1_{$widget_data.id}").show();	
+		});
+		
+		$(".ks-nav{$widget_data.id} li.nav2").hover(function(){
+			$(".ks-nav{$widget_data.id} li.nav1").removeClass("ks-active");
+			$(this).addClass("ks-active");
+			$("#box1_{$widget_data.id}").hide();
+			$("#box2_{$widget_data.id}").show();
+		});
+
+		
+	});
+ </script>

@@ -1,0 +1,37 @@
+﻿<div class="groupbuy carousel-{$widget_data.model_id} mt10">
+	 <h2>{$widget_data.model_name}</h2>
+    <a class="more" title="更多" target="_blank" onclick="go(SITE_URL + '/{url app=search&act=groupbuy}');">更多&gt;&gt;</a>
+  <div class="btn-1">
+    <a class="prev-1 prev" href="javascript:;"></a>
+    <a class="next-1 next" href="javascript:;"></a> 
+  </div>
+  <div class="scroller">
+     <ul class="ks-content ks-switchable-content">
+     	<!--{foreach from=$widget_data.groupbuy_list item=groupbuy} -->
+        <li>
+        	<a class="pic" href="{url app=groupbuy&id=$groupbuy.group_id}" target="_blank"><img src="{$groupbuy.default_image}" width="120" height="120"/></a>
+            <p class="name"><a href="{url app=groupbuy&id=$groupbuy.group_id}" target="_blank">{$groupbuy.group_name|escape}</a></p>
+            <p class="price"><del>{$groupbuy.old_price|price}</del></p>
+            <div class="p_price"><em>团购价 :</em> <strong>{$groupbuy.price|price}</strong> <a target="_blank" href="{url app=groupbuy&id=$groupbuy.group_id}"></a></div>
+        </li>     
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+ </div>
+<script>
+		KISSY.use("switchable", function(S) {
+		var tiny_slide = new S.Carousel('.carousel-{$widget_data.model_id}', {
+		steps:1,
+		effect: 'scrollx',
+		easing: 'easeOutStrong',
+		circular: true,
+		prevBtnCls: 'prev',
+		nextBtnCls: 'next',
+		disableBtnCls: 'disable',
+		interval:4,
+		aria:false,
+		autoplay:true,
+		lazyDataType: 'img-src' //延迟加载图片？
+		});
+		});
+</script>

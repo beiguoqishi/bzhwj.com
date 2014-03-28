@@ -1,0 +1,142 @@
+{include file=custom_header.html}
+<style type="text/css">
+    #header {
+        padding-bottom: 20px;
+    }
+    .news {
+        overflow: hidden;
+    }
+    .news .left {
+        float: left;
+        width: 800px;
+        border-right: 1px solid #333333;
+    }
+    .news .left .pos-tip {
+        padding-left: 20px;
+    }
+    .news .left .tle {
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: 1px solid #333333;
+    }
+    .news .left .pub-date {
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        border-bottom: 1px solid #333333;
+    }
+    .news .left .news-cnt {
+        padding: 20px;
+        border-bottom: 1px solid #333333;
+    }
+    .news .left .editor {
+        line-height: 24px;
+        padding-left: 20px;
+        border-bottom: 1px solid #333333;
+    }
+    .news .left .relation {
+        padding: 20px;
+        line-height: 30px;
+    }
+    .news .left .relation a {
+        font-weight: bold;
+    }
+    .news .right {
+        float: left;
+        width: 380px;
+        overflow: hidden;
+    }
+    .news .right .newest-tle {
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        font-weight: bold;
+        padding-left: 10px;
+        border-bottom: 1px solid #333333;
+    }
+    .news .right .newest-list img {
+        display: block;
+        margin: 0 auto;
+    }
+    .news .right .newest-list li a {
+        display: block;
+    }
+    .news .right .newest-list li a span {
+        display: block;
+        margin-top: 20px;
+    }
+    .news .right .newest-list li {
+        text-align: center;
+    }
+    .news .right .newest-list li a{
+        font-size: 14px;
+        padding-top: 20px;
+    }
+    .news .left,.news .right {
+        padding-bottom: 10000px;
+        margin-bottom: -10000px;
+    }
+
+</style>
+<div class="news" style="border-top: 1px solid #333333;color: #333333;width: 1200px;margin: 0 auto">
+    <div class="left">
+        <div class="pos-tip" style="height: 40px;line-height: 40px;border-bottom: 1px solid #333">
+            <span>当前位置：</span>
+            <a href="/" title="百真无假网">百真无假网</a><span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span>
+            <span>精品项目</span><span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span>
+            <span>{$goods.title|escape}</span>
+        </div>
+        <p class="tle">
+            <span>{$goods.title|escape}</span>
+        </p>
+        <div class="news-cnt">
+            {$goods.content}
+        </div>
+        <p class="editor">
+            <span>编辑：</span><em style="font-weight: bold;margin-left: 5px">{$goods.editor|escape}</em>
+        </p>
+        <div class="editor">
+            <p><span>公司名称：</span><em style="font-weight: bold;margin-left: 5px">{$goods.com_name|escape}</em></p>
+            <p><span>公司地址：</span><em style="font-weight: bold;margin-left: 5px">{$goods.com_address|escape}</em></p>
+        </div>
+    </div>
+    <div class="right">
+        <h2 class="newest-tle">同品牌其它系列</h2>
+        <!--{if $same_brands}-->
+        <ul class="newest-list">
+            <!--{foreach from=$same_brands item=el}-->
+            <li>
+                <a href="{$el.url|escape}" target="_self">
+                    <img style="width: 200px" src="{$el.img|escape}"><span>{$el.title|escape}</span>
+                </a>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+        <!--{/if}-->
+
+        <h2 class="newest-tle" style="border-top: 1px solid #333;margin-top: 30px">其它品牌</h2>
+        <!--{if $other_brands}-->
+        <ul class="newest-list">
+            <!--{foreach from=$other_brands item=el}-->
+            <li>
+                <a href="{$el.url|escape}" target="_self">
+                    <img style="width: 200px" src="{$el.img|escape}"><span>{$el.title|escape}</span>
+                </a>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+        <!--{/if}-->
+    </div>
+</div>
+{include file=helper_footer.html}
+<div id="footer_index">
+    Copyright 2014-2020 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+<script src="http://admin.bzhwj.com/static/js/common/jquery-1.8.0.js"></script>
+</body>
+</html>

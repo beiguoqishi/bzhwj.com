@@ -1,0 +1,12 @@
+﻿<div class="store_recom">
+	<!-- {if $widget_data} -->
+	 <h2>推荐店铺</h2>
+     <ul class="clearfix">
+     	<!-- {foreach from=$widget_data item=image name=fe_image} -->
+        <li><a href="{$image.ad_link_url}" target="_blank"><img src="{$image.ad_image_url}" /></a></li>
+        <!-- {/foreach} -->
+     </ul>
+     <!-- {else} -->
+      <div style="padding:10px; text-align:center;">请配置</div>
+      <!-- {/if} -->
+</div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<body>
+<!--{if $store_id > 0}-->
+<a href="http://admin.bzhwj.com/generaldata/page_interpose_intellij?table=app_bzhwj_tuijian_goods&app_id=3&custom_js=window.store_id={$store_id}" target="_blank">增加</a>
+<!--{/if}-->
+<div style="margin-top: 20px">
+    <h1>推荐商品列表</h1>
+    <!--{if $goods_list}-->
+    <ul>
+        <!--{foreach from=$goods_list item=person}-->
+        <li>
+            <a href="http://admin.bzhwj.com/generaldata/page_interpose_intellij?table=app_bzhwj_tuijian_goods&app_id=3&custom_js=window.store_id={$person.store_id}&id={$person.id}" target="_blank">{$person.title|escape}</a>
+            <a style="margin-left: 20px" href="/index.php?app=storeinterpose&act=store_tuijian_goods_do_delete&id={$person.id}">删除</a>
+        </li>
+        <!--{/foreach}-->
+    </ul>
+    <!--{/if}-->
+</div>
+</body>
+</html>

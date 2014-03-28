@@ -1,0 +1,182 @@
+<script type="text/javascript">
+var _d = DialogManager.get('config_dialog');
+_d.setWidth(400);
+_d.setPosition('center');
+</script>
+
+<div class="field_item">
+    <label>模块标题</label>
+    <p><input type="text" name="model_name" value="{$options.model_name}"/></p>
+</div>
+<div class="field_item">
+    <label>关键字（多个关键字用空格隔开）</label>
+    <p><textarea name="keyword" style="width:300px;height:55px;">{$options.keyword}</textarea></p>
+</div>
+<div class="field_item">
+    <label>品牌分类（在后台推荐的品牌才会显示，多个品牌分类用空格隔开）:</label>
+    <p><input type="text" name="brand" style="width:300px;" value="{$options.brand}"/></p>
+</div>
+<div class="field_item">
+	<label>图片1:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:200px *320px</span>)</label>
+    <p><input type="file" name="ad1_image_file" /><input type="hidden" name="ad1_image_url" value="{$options.ad1_image_url}" /></p>
+     <!-- {if $options.ad1_image_url} --><p><img src="{$options.ad1_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片1标题:</label>
+    <p><input type="text" name="ad1_title_url" value="{$options.ad1_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片1链接地址:</label>
+    <p><input type="text" name="ad1_link_url" value="{$options.ad1_link_url}" /></p>
+</div>
+<div class="field_item">
+	<label>图片2:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:200px *320px</span>)</label>
+    <p><input type="file" name="ad2_image_file" /><input type="hidden" name="ad2_image_url" value="{$options.ad2_image_url}" /></p>
+     <!-- {if $options.ad2_image_url} --><p><img src="{$options.ad2_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片2标题:</label>
+    <p><input type="text" name="ad2_title_url" value="{$options.ad2_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片2链接地址:</label>
+    <p><input type="text" name="ad2_link_url" value="{$options.ad2_link_url}" /></p>
+</div>
+<div class="field_item">
+	<label>图片3:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:200px *320px</span>)</label>
+    <p><input type="file" name="ad3_image_file" /><input type="hidden" name="ad3_image_url" value="{$options.ad3_image_url}" /></p>
+     <!-- {if $options.ad3_image_url} --><p><img src="{$options.ad3_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片3标题:</label>
+    <p><input type="text" name="ad3_title_url" value="{$options.ad3_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片3链接地址:</label>
+    <p><input type="text" name="ad3_link_url" value="{$options.ad3_link_url}" /></p>
+</div>
+<div class="field_item">
+	<label>图片4:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:150px *150px</span>)</label>
+    <p><input type="file" name="ad4_image_file" /><input type="hidden" name="ad4_image_url" value="{$options.ad4_image_url}" /></p>
+     <!-- {if $options.ad4_image_url} --><p><img src="{$options.ad4_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片4关键字（多个用空格隔开）:</label>
+    <p><input type="text" name="ad4_keyword_url" value="{$options.ad4_keyword_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片4标题:</label>
+    <p><input type="text" name="ad4_title_url" value="{$options.ad4_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片4介绍:</label>
+    <p><input type="text" name="ad4_about_url" value="{$options.ad4_about_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片4链接地址:</label>
+    <p><input type="text" name="ad4_link_url" value="{$options.ad4_link_url}" /></p>
+</div>
+<div class="field_item">
+	<label>图片5:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:150px *150px</span>)</label>
+    <p><input type="file" name="ad5_image_file" /><input type="hidden" name="ad5_image_url" value="{$options.ad5_image_url}" /></p>
+     <!-- {if $options.ad5_image_url} --><p><img src="{$options.ad5_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片5关键字（多个用空格隔开）:</label>
+    <p><input type="text" name="ad5_keyword_url" value="{$options.ad5_keyword_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片5标题:</label>
+    <p><input type="text" name="ad5_title_url" value="{$options.ad5_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片5介绍:</label>
+    <p><input type="text" name="ad5_about_url" value="{$options.ad5_about_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片5链接地址:</label>
+    <p><input type="text" name="ad5_link_url" value="{$options.ad5_link_url}" /></p>
+</div>
+<div class="field_item">
+	<label>图片6:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:150px *150px</span>)</label>
+    <p><input type="file" name="ad6_image_file" /><input type="hidden" name="ad6_image_url" value="{$options.ad6_image_url}" /></p>
+     <!-- {if $options.ad6_image_url} --><p><img src="{$options.ad6_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片6关键字（多个用空格隔开）:</label>
+    <p><input type="text" name="ad6_keyword_url" value="{$options.ad6_keyword_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片6标题:</label>
+    <p><input type="text" name="ad6_title_url" value="{$options.ad6_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片6介绍:</label>
+    <p><input type="text" name="ad6_about_url" value="{$options.ad6_about_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片6链接地址:</label>
+    <p><input type="text" name="ad6_link_url" value="{$options.ad6_link_url}" /></p>
+</div>
+<div class="field_item">
+	<label>图片7:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:150px *150px</span>)</label>
+    <p><input type="file" name="ad7_image_file" /><input type="hidden" name="ad7_image_url" value="{$options.ad7_image_url}" /></p>
+     <!-- {if $options.ad7_image_url} --><p><img src="{$options.ad7_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片7关键字（多个用空格隔开）:</label>
+    <p><input type="text" name="ad7_keyword_url" value="{$options.ad7_keyword_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片7标题:</label>
+    <p><input type="text" name="ad7_title_url" value="{$options.ad7_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片7介绍:</label>
+    <p><input type="text" name="ad7_about_url" value="{$options.ad7_about_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片7链接地址:</label>
+    <p><input type="text" name="ad7_link_url" value="{$options.ad7_link_url}" /></p>
+</div>
+<div class="field_item">
+	<label>图片8:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:150px *150px</span>)</label>
+    <p><input type="file" name="ad8_image_file" /><input type="hidden" name="ad8_image_url" value="{$options.ad8_image_url}" /></p>
+     <!-- {if $options.ad8_image_url} --><p><img src="{$options.ad8_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片8关键字（多个用空格隔开）:</label>
+    <p><input type="text" name="ad8_keyword_url" value="{$options.ad8_keyword_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片8标题:</label>
+    <p><input type="text" name="ad8_title_url" value="{$options.ad8_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片8介绍:</label>
+    <p><input type="text" name="ad8_about_url" value="{$options.ad8_about_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片8链接地址:</label>
+    <p><input type="text" name="ad8_link_url" value="{$options.ad8_link_url}" /></p>
+</div><div class="field_item">
+	<label>图片9:(<span>支持 gif|jpg|jpeg|png 格式,尺寸:150px *150px</span>)</label>
+    <p><input type="file" name="ad9_image_file" /><input type="hidden" name="ad9_image_url" value="{$options.ad9_image_url}" /></p>
+     <!-- {if $options.ad9_image_url} --><p><img src="{$options.ad9_image_url}" height="20" /></p><!-- {/if} -->
+</div>
+<div class="field_item">     
+    <label>图片9关键字（多个用空格隔开）:</label>
+    <p><input type="text" name="ad9_keyword_url" value="{$options.ad9_keyword_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片9标题:</label>
+    <p><input type="text" name="ad9_title_url" value="{$options.ad9_title_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片9介绍:</label>
+    <p><input type="text" name="ad9_about_url" value="{$options.ad9_about_url}" /></p>
+</div>
+<div class="field_item">     
+    <label>图片9链接地址:</label>
+    <p><input type="text" name="ad9_link_url" value="{$options.ad9_link_url}" /></p>
+</div>

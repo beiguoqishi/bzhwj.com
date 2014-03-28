@@ -1,0 +1,44 @@
+﻿<script type="text/javascript">
+var _d = DialogManager.get('config_dialog');
+_d.setWidth(350);
+_d.setPosition('center');
+</script>
+<div class="field_item">
+    <label>模块名称:</label>
+    <p><input type="text" name="module_name_a" value="{$options.module_name_a}" /></p>
+</div>
+<div class="field_item">
+    <label>文章分类:</label>
+    <p><select name="a_cate_id_a">
+        <!-- {foreach from=$acategories item=item} -->
+        <option value="{$item.cate_id}" {if $options.a_cate_id_a eq $item.cate_id} selected="selected"{/if}>{$item.cate_name|escape}</option>
+        <!-- {/foreach} -->
+    </select>
+    </p>
+</div>
+<div class="field_item">
+    <label>模块名称:</label>
+    <p><input type="text" name="module_name_b" value="{$options.module_name_b}" /></p>
+</div>
+<div class="field_item">
+    <label>文章分类:</label>
+    <p><select name="a_cate_id_b">
+        <!-- {foreach from=$acategories item=item} -->
+        <option value="{$item.cate_id}" {if $options.a_cate_id_b  eq $item.cate_id} selected="selected"{/if}>{$item.cate_name|escape}</option>
+        <!-- {/foreach} -->
+    </select>
+    </p>
+</div>
+<div class="field_item">
+    <label>模块名称:</label>
+    <p><input type="text" name="module_name_c" value="{$options.module_name_c}" /></p>
+</div>
+<div class="field_item">
+    <label>文章分类:</label>
+    <p><select name="a_cate_id_c">
+        <!-- {foreach from=$acategories item=item} -->
+        <option value="{$item.cate_id}" {if $options.a_cate_id_c  eq $item.cate_id} selected="selected"{/if}>{$item.cate_name|escape}</option>
+        <!-- {/foreach} -->
+    </select>
+    </p>
+</div>

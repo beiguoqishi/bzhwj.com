@@ -1,0 +1,84 @@
+﻿<div class="floor_goods mt10 clearfix" id="floor_recom_{$widget_data.id}" style="border-top:2px solid {if $widget_data.color}{$widget_data.color}{else}#076BBE{/if}">
+      <ul class="ks-switchable-nav ks-nav">
+          <li class="ks-active">{$widget_data.cate_name_1|escape}</li>
+          <li>{$widget_data.cate_name_2|escape}</li>
+          <li>{$widget_data.cate_name_3|escape}</li>
+          <li>{$widget_data.cate_name_4|escape}</li>
+          <li>{$widget_data.cate_name_5|escape}</li>
+          <div class="clr"></div>
+      </ul> 
+      <div class="ks-switchable-content ks-content">
+            <ul>
+                 <!-- {foreach from=$widget_data.goods_list_1 item=goods name=fe_goods} -->
+                  <li>
+                      <a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">
+                          <img src="{$goods.default_image}" width="120" height="120" />
+                      </a>
+                      <p class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                      </p>
+                      <p class="price">{$goods.price|price}</p>
+                   </li>
+                   <!-- {/foreach} -->
+             </ul>
+            <ul style="display:none">
+                 <!-- {foreach from=$widget_data.goods_list_2 item=goods name=fe_goods} -->
+                  <li>
+                      <a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">
+                          <img src="{$goods.default_image}" width="120" height="120" />
+                      </a>
+                      <p class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                      </p>
+                      <p class="price">{$goods.price|price}</p>
+                   </li>
+                   <!-- {/foreach} -->
+             </ul>
+            <ul style="display:none">
+                 <!-- {foreach from=$widget_data.goods_list_3 item=goods name=fe_goods} -->
+                  <li>
+                      <a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">
+                          <img src="{$goods.default_image}" width="120" height="120" />
+                      </a>
+                      <p class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                      </p>
+                      <p class="price">{$goods.price|price}</p>
+                   </li>
+                   <!-- {/foreach} -->
+             </ul>
+            <ul style="display:none">
+                 <!-- {foreach from=$widget_data.goods_list_4 item=goods name=fe_goods} -->
+                  <li>
+                      <a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">
+                          <img src="{$goods.default_image}" width="120" height="120" />
+                      </a>
+                      <p class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                      </p>
+                      <p class="price">{$goods.price|price}</p>
+                   </li>
+                   <!-- {/foreach} -->
+             </ul>
+            <ul style="display:none">
+                 <!-- {foreach from=$widget_data.goods_list_5 item=goods name=fe_goods} -->
+                  <li>
+                      <a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">
+                          <img src="{$goods.default_image}" width="120" height="120" />
+                      </a>
+                      <p class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                      </p>
+                      <p class="price">{$goods.price|price}</p>
+                   </li>
+                   <!-- {/foreach} -->
+             </ul>
+             
+      </div>     
+</div>
+
+
+
+<script>
+    KISSY.ready(function(S) {
+        var tabs = new S.Tabs('#floor_recom_{$widget_data.id}',{
+                    aria:true
+                });
+
+    });
+</script>

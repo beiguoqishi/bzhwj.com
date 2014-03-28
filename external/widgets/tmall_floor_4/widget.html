@@ -1,0 +1,57 @@
+<div  class="floor">
+   	  <div  class="title clearfix">
+          <h2 class="floor-title">{$widget_data.model_name}</h2>
+          <div class="keywords clearfix">
+              <ul class="keywords-nav clearfix">
+                <!--{foreach from=$widget_data.keywords item=keyword}-->
+                <li><a href="index.php?app=search&keyword={$keyword|escape:url}">{$keyword}</a></li> 
+                <!--{/foreach}-->        
+              </ul>
+          </div>
+      </div>
+      <div class="content clearfix">
+          <div class="brand-logo" id="focus-{$widget_data.model_id}_4">
+              <ul class="brands-box element" style="position: absolute; width: 360px; left: -240px;">
+              	  <!--{foreach from=$widget_data.brands item=brand}-->
+                  <li style="display: block; float: left;">
+                  	   <!--{foreach from=$brand item=b}-->
+                       <a title="{$b.brand_name}" href="index.php?app=search&brand={$b.brand_name|escape:url}" target="_blank"><img width="90" height="45" alt="{$b.brand_name}" src="{$b.brand_logo}"></a>
+                       <!--{/foreach}-->
+                  </li>
+                  <!--{/foreach}-->
+              </ul>
+               <ul class="brand-nav slide-mini-nav index">
+               	  <!--{foreach from=$widget_data.brands item=brand}-->
+                  <li class="">•</li>
+                  <!--{/foreach}-->
+               </ul>
+            </div>
+            <div class="floorCon-slide" id="focus-{$widget_data.model_id}_4_4">
+              <ul class="fCs-con element" style="position: absolute; width: 600px;">
+                   <li style="display: block; float: left;"><a title="{$widget_data.ad1_title_url}" target="_blank" href="{$widget_data.ad1_link_url}"><img style="width:200px; height:320px;" alt="{$widget_data.ad1_title_url}" src="{$widget_data.ad1_image_url}"></a></li>
+                   <li style="display: block; float: left;"><a title="{$widget_data.ad2_title_url}" target="_blank" href="{$widget_data.ad2_link_url}"><img style="width:200px; height:320px;" alt="{$widget_data.ad2_title_url}" src="{$widget_data.ad2_image_url}"></a></li>
+                   <li style="display: block; float: left;"><a title="{$widget_data.ad3_title_url}" target="_blank" href="{$widget_data.ad3_link_url}"><img style="width:200px; height:320px;" alt="{$widget_data.ad3_title_url}" src="{$widget_data.ad3_image_url}"></a></li>
+					<script type="text/javascript" >
+                        $(document).ready(function() {
+                            myfocus({wrapper:"#focus-{$widget_data.model_id}_4_4",element:"ul.element li",index:"ul.index li",tmclass:'active',time:300,startindex:0});
+                            myfocus({wrapper:"#focus-{$widget_data.model_id}_4",element:"ul.element li",index:"ul.index li",tmclass:"active",time:400,startindex:2});
+                        });
+                    </script>
+              </ul>
+              <ul class="fCs-nav fCs-nav-num3 index">
+              	  <li class=" fCs-nav1" style="left: 220px;"><a title="{$widget_data.ad1_title_url}" target="_blank" href="{$widget_data.ad1_link_url}">{$widget_data.ad1_title_url}</a><s></s></li>                
+				  <li class=" fCs-nav2" style="left: 220px;"><a title="{$widget_data.ad2_title_url}" target="_blank" href="{$widget_data.ad2_link_url}">{$widget_data.ad2_title_url}</a><s></s></li>                
+				  <li class=" fCs-nav3" style="left: 220px;"><a title="{$widget_data.ad3_title_url}" target="_blank" href="{$widget_data.ad3_link_url}">{$widget_data.ad3_title_url}</a><s></s></li>                
+			  </ul>
+            </div>
+            <!--{foreach from=$widget_data.goods_list item=goods name=goods}-->
+            <dl class="floorCon-banner j_floorBanner">
+            	<dt><a  target="_blank"  href="{url app=goods&id=$goods.goods_id}"><img width="200" src="{$goods.default_image}"></a></dt>
+                <dd class="goods_name"><a  target="_blank"  href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name}">{$goods.goods_name}</a></dd>
+                <dd><strong>{$goods.price|price}</strong></dd> 
+                <dd class="goodsstatistics"><em class="sales">总销量:<b>{$goods.sales}</b></em>|<a href="{url app=store&id=$goods.store_id}">累计评价:<b>{$goods.comments}</b></a></dd> 
+                <dd class="storeinfo"><a href="{url app=store&id=$goods.store_id}">{$goods.store_name}</a></dd>
+            </dl>
+            <!--{/foreach}-->   
+     </div>
+</div>

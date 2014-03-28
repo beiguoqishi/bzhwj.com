@@ -1,0 +1,36 @@
+﻿<div class="hotsale carousel-{$widget_data.model_id}">
+	 <h2>{$widget_data.model_name}</h2>
+  <div class="btn-1">
+    <a class="prev-1 prev" href="javascript:;"></a>
+    <a class="next-1 next" href="javascript:;"></a> 
+  </div>
+  <div class="scroller">
+     <ul class="ks-content ks-switchable-content">
+     	<!--{foreach from=$widget_data.goods_list item=goods} -->
+        <li>
+        	<a class="pic" href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" width="120" height="120"/></a>
+            <p class="name"><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a></p>
+            <p class="price"><strong>{$goods.price|price}</strong><del>{$goods.mk_price|price}</del></p>
+            <div class="buybtn"><a target="_blank" href="{url app=goods&id=$goods.goods_id}">立即购买</a></div>
+        </li>     
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+ </div>
+<script>
+		KISSY.use("switchable", function(S) {
+		var tiny_slide = new S.Carousel('.carousel-{$widget_data.model_id}', {
+		steps:1,
+		effect: 'scrollx',
+		easing: 'easeOutStrong',
+		circular: true,
+		prevBtnCls: 'prev',
+		nextBtnCls: 'next',
+		disableBtnCls: 'disable',
+		interval:4,
+		aria:false,
+		autoplay:true,
+		lazyDataType: 'img-src' //延迟加载图片？
+		});
+		});
+</script>

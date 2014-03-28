@@ -1,0 +1,106 @@
+﻿<div class="recom mt10">
+	 <div class="title">
+          <a href="#" id="hot-1" onmouseover="stab(1,'hot');" style="border:none;">{$widget_data.cate_name_1}</a>
+          <a href="#" id="hot-2" onmouseover="stab(2,'hot');">{$widget_data.cate_name_2}</a>
+          <a href="#" id="hot-3" onmouseover="stab(3,'hot');">{$widget_data.cate_name_3}</a>
+      </div> 
+      <div id="hot-content-1">
+                	<div class="box recom-1">
+                        <ul class="ks-switchable-content">
+                            <div>
+                            	 <!-- {foreach from=$widget_data.goods_list_1 item=goods name=fe_goods} -->
+                                    <li>
+                                        <a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">
+                                            <img src="{$goods.default_image}" width="120" height="120" />
+                                        </a>
+                                        <p class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                                        </p>
+                                        <p class="price">{$goods.price|price}</p>
+                                    </li>
+                                    <!-- {if $smarty.foreach.fe_goods.iteration % 4 eq 0 && !$smarty.foreach.fe_goods.last} -->
+                            </div>
+                            <div>
+                        			<!-- {/if} -->
+                                <!-- {/foreach} -->
+                                </div>
+                        </ul>
+                        <div class="ks-switchable-nav">
+                        	<a href="#" class="ks-active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a>
+                        </div>
+                    </div>
+      </div>
+                <div id="hot-content-2">
+                     <div class="box recom-2">
+                        <ul class="ks-switchable-content">
+                        	<div>
+                            <!-- {foreach from=$widget_data.goods_list_2 item=goods name=fe_goods} -->
+                            <li>
+                            	<a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">
+                                	<img src="{$goods.default_image}" width="120" height="120" />
+                            	</a>
+                                <p class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                        		</p>
+                                <p class="price">{$goods.price|price}</p>
+                            </li>
+                            <!-- {if $smarty.foreach.fe_goods.iteration % 4 eq 0 && !$smarty.foreach.fe_goods.last} -->
+                            </div>
+                            <div>
+                        			<!-- {/if} -->
+                                <!-- {/foreach} -->
+                                </div>
+                        </ul>
+                        <div class="ks-switchable-nav">
+                        	<a href="#" class="ks-active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a>
+                        </div>
+                    </div>
+                 </div>
+                 <div id="hot-content-3">
+                     <div class="box recom-3">
+                        <ul class="ks-switchable-content">
+                        	<div>
+                            <!-- {foreach from=$widget_data.goods_list_3 item=goods name=fe_goods} -->
+                            <li>
+                            	<a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">
+                                	<img src="{$goods.default_image}" width="120" height="120" />
+                            	</a>
+                                <p class="name"><a href="{url app=goods&id=$goods.goods_id}" title="{$goods.goods_name|escape}">{$goods.goods_name|escape}</a>
+                        		</p>
+                                <p class="price">{$goods.price|price}</p>
+                            </li>
+                            <!-- {if $smarty.foreach.fe_goods.iteration % 4 eq 0 && !$smarty.foreach.fe_goods.last} -->
+                            </div>
+                            <div>
+                        			<!-- {/if} -->
+                                <!-- {/foreach} -->
+                             </div>
+                        </ul>
+                        <div class="ks-switchable-nav">
+                        	<a href="#" class="ks-active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a>
+                        </div>
+                    </div>
+                 </div>        
+</div>
+
+
+
+ <script>	
+ 	$(function(){stab(1,'hot');});
+	KISSY.use('switchable', function(S) {
+	   S.Slide('.recom-1', {
+	   effect: 'scrollx',
+	   easing: 'easeOutStrong'
+	   });
+	});
+	KISSY.use('switchable', function(S) {
+	   S.Slide('.recom-2', {
+	   effect: 'scrollx',
+	   easing: 'easeOutStrong'
+	   });
+	});
+	KISSY.use('switchable', function(S) {
+	   S.Slide('.recom-3', {
+	   effect: 'scrollx',
+	   easing: 'easeOutStrong'
+	   });
+	});
+</script>
