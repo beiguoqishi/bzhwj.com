@@ -115,9 +115,6 @@ $(function (){
 							<div class="row_1 float-left"><a href="{url app=store&id=$store.store_id}"><img src="{$store.store_logo}" width="80" height="80" /></a></div>
                             <div class="row_2 float-left">
                                 <h2><a href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a></h2>
-                                <div class="mainbussiness">
-                                    <span>{$lang.mainbussiness}{$lang.colon}</span><a href="{url app=store&id=$store.store_id}">{$store.business_scope}</a>
-                                </div>
                                 <div class="owner_info">
                                     <span>{$lang.owner}{$lang.colon}</span>
                                     <a href="{url app=store&id=$store.store_id}">{$store.user_name|escape}</a>
@@ -128,11 +125,6 @@ $(function (){
                                     <a target="_blank" href="http://www.taobao.com/webww/ww.php?ver=3&touid={$store.im_ww}&siteid=cntaobao&status=1&charset=utf-8"><img border="0" src="http://amos.alicdn.com/realonline.aw?v=2&uid={$store.im_ww}&site=cntaobao&s=1&charset=utf-8" align="absMiddle"/></a>
                                     <!--{/if}-->
                                 </div>
-                            </div>
-                            <div class="row_3 float-left">
-                                <p>{$lang.gong}<b>{$store.goods_count}</b>{$lang.count_of_goods}</p>
-                                <p>{$lang.store_all_sold}<b>{$store.store_sold}</b>{$lang.count_of_goods}</p>
-                                <p><a class="fold" href="javascript:;">{$lang.pull_goods}</a></p>
                             </div>
                             <div class="row_4 float-left">{$store.region_name|escape}</div>
                         </div>
