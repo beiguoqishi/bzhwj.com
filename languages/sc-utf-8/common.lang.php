@@ -219,7 +219,7 @@ return array(
     'not_allowed_size' => '您上传的文件大小超过了允许值',
     'cashier'          => '收银台',
     'create_order'     => '生成订单',
-    'mall_index'       => '商城首页',
+    'mall_index'       => '百真网',
     'order_pending'     => '待付款',
     'order_accepted'   => '待发货',
     'order_canceled'    => '已取消',
