@@ -168,7 +168,7 @@ $(function(){
 								<div class="float-left btn-type">
 									<a href="{url app=search}" class="current">搜索商品</a>
 									<a href="{url app=search&act=store}" style="border-right:0px;">搜索店铺</a>
-									<a href="{url app=search&act=groupbuy}">搜索团购</a>
+									<!--<a href="{url app=search&act=groupbuy}">搜索团购</a>-->
 								</div>
 								<!--{if !$goods_list_order}-->{include file=page.top.html}<!--{/if}-->
                     		</div>	
@@ -179,13 +179,14 @@ $(function(){
                             	</div>
                             	<div class="float-left btn-order">
                                 	<!--<span>{$lang.order_by}{$lang.colon}</span>-->
-                                	<!--{foreach from=$orders item=order key=k name=fe_order}-->
-                                	<!--{if !$k}-->
-                                	<a class="btn-order-click default-sort" id="{$k}" href="javascript:;">{$order}</a>
-                                	<!--{else}-->
-                                	<a class="btn-order-click order-down-gray" ectype="{$k}" id="{$k}" href="javascript:;">{$order}<i></i></a>
-                                	<!--{/if}-->
-                                	<!--{/foreach}-->
+                                    //TODO:temp comment
+                                	<!--&lt;!&ndash;{foreach from=$orders item=order key=k name=fe_order}&ndash;&gt;-->
+                                	<!--&lt;!&ndash;{if !$k}&ndash;&gt;-->
+                                	<!--<a class="btn-order-click default-sort" id="{$k}" href="javascript:;">{$order}</a>-->
+                                	<!--&lt;!&ndash;{else}&ndash;&gt;-->
+                                	<!--<a class="btn-order-click order-down-gray" ectype="{$k}" id="{$k}" href="javascript:;">{$order}<i></i></a>-->
+                                	<!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                	<!--&lt;!&ndash;{/foreach}&ndash;&gt;-->
                             	</div>
                             	<div class="float-left filter-price">
                                 	<div class="filter-price-box">
