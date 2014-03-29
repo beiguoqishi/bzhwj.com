@@ -137,6 +137,7 @@ class SearchApp extends MallbaseApp
 				'fields'=>'thumbnail,image_url',
 				'limit'=>4
             )));
+            print_r($goods_list);
         }
 		return $goods_list;
 	}
