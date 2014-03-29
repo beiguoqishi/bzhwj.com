@@ -129,7 +129,7 @@ class GoodsModel extends BaseModel
         $cg_table  = DB_PREFIX . 'category_goods';
 
 		/* tyioocom */
-        $fields .= "g.goods_id, g.store_id, g.type, g.goods_name, g.cate_id, g.cate_name, g.brand, g.spec_qty, g.spec_name_1, g.spec_name_2, g.if_show, g.closed, g.add_time, g.recommended, g.default_image, " .
+        $fields .= "g.goods_id, g.price,g.store_id, g.type, g.goods_name, g.cate_id, g.cate_name, g.brand, g.spec_qty, g.spec_name_1, g.spec_name_2, g.if_show, g.closed, g.add_time, g.recommended, g.default_image, " .
                 "s.store_name, s.region_id, s.region_name, s.credit_value, s.sgrade ";
         $desc && $fields .= ", g.description";
         $tables = "{$this->table} g " .
