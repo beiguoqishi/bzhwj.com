@@ -75,7 +75,7 @@ class SearchApp extends MallbaseApp
 			$goods_list = $goods_mod->get_list(array(
             	'conditions' => 'if_show=1 AND closed=0 ',
             	'order'      => 'add_time desc',
-				'fields'	 =>'s.praise_rate,s.im_qq,s.im_ww,',
+				'fields'	 =>'s.praise_rate,s.im_qq,s.im_ww,s.price,',
             	'limit'      => 45,
         	));
 			$this->assign('goods_list_order', 1);
@@ -137,7 +137,6 @@ class SearchApp extends MallbaseApp
 				'fields'=>'thumbnail,image_url',
 				'limit'=>4
             )));
-            print_r($goods_list);
         }
 		return $goods_list;
 	}
