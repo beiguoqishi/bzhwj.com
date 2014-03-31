@@ -128,43 +128,6 @@ $(function (){
                             </div>
                             <div class="row_4 float-left">{$store.region_name|escape}</div>
                         </div>
-                        <!--{if $store.goods_list}-->
-						<div class="store-goods mt5 mb5 carousel-{$store.store_id}">
-                            <b></b>
-							<a class="prev" href="javascript:;"></a>
-							<a class="next" href="javascript:;"></a> 
-                            <div class="clr"></div><!--for ie -->
-							<div class="scroller">
-								<div class="ks-switchable-content">
-									<!--{foreach from=$store.goods_list item=list} -->
-                                    <div class="each clearfix">
-                                    <!--{foreach from=$list item=goods} -->
-									<dl>
-										<dt><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img width="160" height="160" src="{$goods.default_image}" /></a></dt>
-										<dd>
-											<div class="desc"><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name}</a></div>
-											<div class="price"><span>{$goods.price|price}</span></div>
-										</dd>
-									</dl>
-                                    <!-- {/foreach} -->
-                                    </div>
-									<!-- {/foreach} -->
-								</div>
-							</div>
-						</div>
-                        <script>
-						KISSY.use("switchable", function(S) {
-						var tiny_slide = new S.Carousel('.carousel-{$store.store_id}', {
-							//steps:5,
-							effect: 'scrollx',
-							circular: true,
-							prevBtnCls: 'prev',
-							nextBtnCls: 'next',
-							autoplay:true
-							});
-						});
-					</script>
-                        <!--{/if}-->
 					</li>	
                     <!-- {foreachelse} -->
              		<div class="store-empty padding10 mb10">{$lang.no_store}</div>
