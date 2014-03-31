@@ -74,21 +74,7 @@ $(function(){
 		<div class="w mb10 clearfix">
    			<div class="col-main">
        			{include file=curlocal.html}
-            
-                <!--{foreach from=$ultimate_store item=store name=fe_store}-->
-        		<div class="ultimate-store mb10">
-                	<div class="item">
-            			<div class="content clearfix">
-                			<a class="float-left store-logo" href="{url app=store&id=$store.store_id}"><img height="50" src="{$store.store_logo}" /> </a>
-                    		<div class="float-left middleside">
-                    			<a href="{url app=store&id=$store.store_id}">{$store.store_name|escape}</a>
-                    			<span class="block">{$store.description|escape}</span>
-                    		</div>
-            			</div>
-                    </div>
-           		</div>
-                <!--{/foreach}-->
-                
+
                 <!-- {if !$goods_list_order || $filters} -->
       			<div class="attribute">
             		<div class="selected-attr title">
@@ -208,11 +194,6 @@ $(function(){
              				<!--{foreach from=$goods_list item=goods}-->
              				<dl class="item clearfix dl-{$goods.goods_id}">
                					<dt><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$goods.default_image}" /></a></dt>
-                				<dd class="sub-images sub-images-{$goods.goods_id}">
-                					<!--{foreach from=$goods._images item=image name=fe_image}-->
-                   					<img src="{$image.thumbnail}" goods_id="{$goods.goods_id}" image_url="{$image.thumbnail}" width="30" height="30" style="{if $smarty.foreach.fe_image.first}border:1px #BF1B30 solid{else}border:1px #ddd solid{/if}"/>
-                    				<!--{/foreach}-->
-                				</dd>
                                 <dd class="price clearfix"><em>{$goods.price|price}</em></dd>
                 				<dd class="desc"><a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape|truncate:66}</a></dd>
                                 <dd class="status"><span class="sales">总销量:<b>{$goods.sales}</b></span><span class="valuation">|累计评价:<b>{$goods.comments}</b>条</span></dd>
