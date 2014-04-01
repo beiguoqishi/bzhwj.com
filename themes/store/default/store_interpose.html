@@ -7,17 +7,52 @@
 <body>
 <a href="/index.php?app=storeinterpose&act=store_goods_edit" target="_blank">增加商品</a>
 <div style="margin-top: 20px">
-    <h1>商品列表</h1>
+    <h1>商品列表<i style="color: #f30;font-size: 14px">(预约体验最多只能选择5个商品)</i></h1>
     <!--{if $goods_list}-->
     <ul>
         <!--{foreach from=$goods_list item=goods}-->
         <li>
             <a href="/index.php?app=storeinterpose&act=store_goods_edit&id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+            <span style="margin: 0 10px;"><b>预约体验</b><input data-id="{$goods.goods_id}" class="experiment" type="checkbox" <!--{if $goods.experiment == 1}-->checked=""<!--{/if}-->></span>
             <a style="margin-left: 20px" href="/index.php?app=storeinterpose&act=store_goods_do_delete&id={$goods.goods_id}">删除</a>
         </li>
         <!--{/foreach}-->
     </ul>
     <!--{/if}-->
 </div>
+<script src="/themes/resource/js/jquery.js"></script>
+<script>
+    function toggleState(params,callback) {
+        $.post('/index.php?app=storeinterpose&act=store_goods_experiment',params,function(d){
+            if (typeof callback === 'function') {
+                callback(d);
+            }
+        });
+    }
+$('body').on('change','input.experiment',function(e) {
+    var self = this,$this = $(this),
+            id = $this.data('id');
+    if (this.checked) {
+        var i = 0,full = false;
+        $('.experiment').each(function(idx,el) {
+            if (el.checked) {
+                i++;
+            }
+            if (i >= 3) {
+                self.checked = false;
+                toggleState({experiment:0,id:id});
+                full = true;
+                alert('不能超过5个商品');
+            }
+        });
+        if (!full) {
+            toggleState({experiment:1,id:id});
+        }
+    } else {
+        toggleState({experiment:0,id:id});
+    }
+
+});
+</script>
 </body>
 </html>

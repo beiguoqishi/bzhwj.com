@@ -257,6 +257,14 @@ if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_
         $this->display('store_tuijian_goods.html');
     }
 
+    function store_goods_experiment() {
+        header('Content-type:application/json;charset=UTF-8');
+        $id = $_POST['id'];
+        $experiment = $_POST['experiment'];
+        $db =& db();
+        echo $db->query("update ecm_goods set experiment = $experiment,experiment_update_date=" . time() . " where goods_id=$id");
+    }
+
     function store_fengyun_people_do_delete() {
 //        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $store_id = intval($_SESSION['user_info']['store_id']);
