@@ -421,7 +421,7 @@ class MallbaseApp extends FrontendApp
     function _run_action()
     {
         /* 只有登录的用户才可访问 */
-        if (!$this->visitor->has_login && in_array(APP, array('apply')))
+        if (!$this->visitor->has_login && in_array(APP, array('apply','appointment','bzhwj_user_appointment')))
         {
             header('Location: index.php?app=member&act=login&ret_url=' . rawurlencode($_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']));
 

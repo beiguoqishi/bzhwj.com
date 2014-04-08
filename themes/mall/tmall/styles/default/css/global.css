@@ -148,7 +148,7 @@ a:hover{color:#B00000; text-decoration:none}
 #site-nav .menu-hd { position:relative; display:block;_display:inline-block;padding-bottom:0px;padding-left:10px;padding-right:22px;padding-top:1px; height:20px;line-height:17px; margin:3px 1px 0px; cursor:pointer; z-index:901;margin-top:8px!important;}
 #site-nav .sites .menu-hd{width:48px;}
 #site-nav .mytb .menu-hd {width: 48px}
-#site-nav .favorite .menu-hd {width: 36px}
+/*#site-nav .favorite .menu-hd {width: 36px}*/
 
 #site-nav .menu-hd b,
 #site-nav .mini-cart b{border-bottom: #B10000 4px solid; position: absolute; border-left: #B10000 4px solid; line-height: 0; width: 0px; height: 0px;font-size: 0px; border-top:#fff 4px solid; top: 7px; right: 10px; border-right: #B10000 4px solid;}

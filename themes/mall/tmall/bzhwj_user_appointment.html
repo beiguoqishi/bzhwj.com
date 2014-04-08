@@ -1,0 +1,86 @@
+{include file=custom_header.html}
+<link href="/themes/resource/js/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+.right {
+    float: left;
+    width: 999px;
+    border-left: 1px solid #333333;
+    overflow: hidden;
+}
+    a {
+        color: #333333;
+    }
+    a:hover {
+        color: #b00000;
+    }
+    .appointment-list {
+        clear: both;
+    }
+    .appointment-list .item {
+        width: 200px;
+        float: left;
+        margin: 0 24px;
+    }
+    .appointment-list .item a.pic {
+        display: block;
+        height: 100%;
+        overflow: hidden;
+    }
+    .appointment-list .item a.pic img {
+        width: 200px;
+        height: 200px;
+    }
+    .appointment-list .item a.txt {
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 8px;
+        text-align: center;
+        width: 100%;
+    }
+    .appointment-list .item .op {
+        margin-top: 8px;
+        text-align: center;
+    }
+    .all-op {
+        overflow: hidden;
+        margin: 0 0 15px;
+    }
+</style>
+<div class="content" style="width: 1200px;margin: 0 auto;overflow: hidden;border-top: 1px solid #666;padding-top: 30px">
+    {include file=bzhwj_menu.html}
+    <div class="right">
+        <!--{if $data}-->
+        <div class="all-op">
+            <h2 style="font-size: 16px;font-weight: bold;margin-left: 24px;float: left;">我预约的项目</h2>
+            <div style="float: right">
+                <span style="font-weight: bold;font-size: 14px;color: #f30;"><input id="select_all" type="checkbox"/><label for="select_all" style="">全选</label></span>
+                <a href="javascript:void(0)" style="margin: 0 20px;font-size: 14px;color: #f30;" class="glyphicon glyphicon-trash">删除</a>
+            </div>
+        </div>
+        <ul class="appointment-list">
+            <!--{foreach from=$data item=goods}-->
+            <li class="item">
+                <a class="pic" href="/index.php?app=goods&id={$goods.goods_id}">
+                    <img src="{$goods.default_image|escape}" alt=""/>
+                </a>
+                <a class="txt" href="/index.php?app=goods&id={$goods.goods_id}">{$goods.goods_name|escape}</a>
+                <p class="op">
+                    <span><input class="select-item" type="checkbox"/><label style="">选择</label></span>
+                    <a store_id="{$goods.store_id}" goods_id="{$goods.goods_id}" href="javascript:void(0)" style="margin: 0 20px;" class="glyphicon glyphicon-trash remove-item">删除</a>
+                </p>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+        <!--{/if}-->
+    </div>
+</div>
+{include file=helper_footer.html}
+<div id="footer_index">
+    Copyright 2014-2020 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+<script src="/themes/resource/js/require.js"></script>
+<script src="/themes/resource/js/app/user_appointment.js"></script>
+</body>
+</html>

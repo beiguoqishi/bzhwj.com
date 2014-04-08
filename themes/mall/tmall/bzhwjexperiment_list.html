@@ -1,0 +1,142 @@
+{include file=custom_header.html}
+<link href="/themes/resource/js/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+    img {
+        max-width: 100%;
+        width: 100%;
+    }
+    table,td {
+        border-collapse: collapse;
+    }
+    td {
+        border: 1px solid #333333;
+        line-height: 2em;
+    }
+    td.col1,td.col3 {
+        padding-left: 1em;
+        font-weight: bold;
+        width: 10%;
+    }
+    td.col2,td.col4 {
+        width: 40%;
+    }
+    td input {
+        width: 95%;
+        line-height: 2em;
+        height: 2em;
+        padding-left: 1em;
+    }
+    td input,td textarea {
+        border: none;
+    }
+    td input,td textarea,td select{
+        color: #f30;
+    }
+    td textarea {
+        padding: 1em;
+        width: 95%;
+        height: 100px;
+    }
+    .nav-bar {
+        border: 1px #ddd solid;
+        padding: 10px;
+        overflow: hidden;
+    }
+    .nav-bar a {
+        line-height: 24px;
+    }
+    .nav-bar a.cur {
+        background: #fff!important;
+        color: #b00!important;
+    }
+    .goods-list {
+        float: left;
+        overflow: hidden;
+        margin-top: 20px;
+        width: 100%;
+    }
+    .goods-list .goods-item {
+        float: left;
+        margin: 0 20px 30px;
+        width: 200px;
+    }
+    .goods-list .goods-item a.pic {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+    }
+    .goods-list .goods-item a.pic img {
+        width: 200px;
+        height: 200px;
+    }
+    .goods-list .goods-item p {
+        padding: 3px 5px;
+    }
+    .goods-list .goods-item p span {
+        color: #999;
+    }
+</style>
+<div style="width: 1200px;margin: 0 auto;overflow: hidden;">
+    <div class="nav-bar">
+        <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'newest'}-->cur<!--{/if}--> default-sort btn-order-click" href="/index.php?app=experiment&sort_type=newest<!--{if $sort_type == 'newest'}-->&sort_order={$sort_order}<!--{/if}-->">最新</a>
+        <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'credit'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=credit<!--{if $sort_type == 'credit'}-->&sort_order={$sort_order}<!--{/if}-->">信用</a>
+        <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'price'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=price<!--{if $sort_type == 'price'}-->&sort_order={$sort_order}<!--{/if}-->">价格</a>
+    </div>
+    <!--{if $data}-->
+    <ul class="goods-list">
+        <!--{foreach from=$data item=goods}-->
+        <li class="goods-item">
+            <a class="pic" href="/index.php?app=goods&id={$goods.goods_id}" target="_blank">
+                <img src="{$goods.default_image|escape}" alt=""/>
+            </a>
+            <p>
+                <span>名称：</span><a class="txt" href="/index.php?app=goods&id={$goods.goods_id}" target="_blank"><em>{$goods.goods_name|escape}</em></a>
+            </p>
+            <p>
+                <span>价格：</span><em>{$goods.price}</em>
+            </p>
+            <p>
+                <span>标签：</span><em>{$goods.tags|escape}</em>
+            </p>
+        </li>
+        <!--{/foreach}-->
+    </ul>
+    <!--{/if}-->
+    <div class="pager">
+        <form action="/index.php" method="get" target="_self">
+            <input type="hidden" name="app" value="experiment">
+            <input type="hidden" name="sort_order" value="{$exact_sort_order}"/>
+            <input type="hidden" name="sort_type"  value="{$sort_type}"/>
+            <button type="submit" style="margin: 0 15px;" id="prev_page">上一页</button>
+            <span>当前是第<input id="cur_page" style="margin: 0 15px;padding-left: 5px" value="{$page}" name="page">页，共&nbsp;&nbsp;{$total}&nbsp;&nbsp;页</span><button type="submit" style="margin-left: 15px">确定</button>
+            <button type="submit" style="margin: 0 15px;" id="next_page">下一页</button>
+        </form>
+    </div>
+</div>
+{include file=helper_footer.html}
+<div id="footer_index">
+    Copyright 2014-2020 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+<script src="/themes/resource/js/require.js"></script>
+<script src="/themes/resource/js/app/appointment.js"></script>
+<script>
+    var total = {$total};
+    $('#prev_page').on('mousedown',function(e) {
+        var curPage = $('#cur_page'),
+                page = parseInt(curPage.val());
+
+        page = page < 2 ? 1 : page - 1;
+        curPage.val(page);
+    });
+    $('#next_page').on('mousedown',function(e) {
+        var curPage = $('#cur_page'),
+                page = parseInt(curPage.val());
+
+        page = page >= total ? total : page + 1;
+        curPage.val(page);
+    });
+</script>
+</body>
+</html>

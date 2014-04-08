@@ -1,0 +1,128 @@
+{include file=custom_header.html}
+<style type="text/css">
+    table,td {
+        border-collapse: collapse;
+    }
+    td {
+        border: 1px solid #333333;
+        line-height: 2em;
+    }
+    td.col1,td.col3 {
+        padding-left: 1em;
+        font-weight: bold;
+        width: 10%;
+    }
+    td.col2,td.col4 {
+        width: 40%;
+    }
+    td input {
+        width: 95%;
+        line-height: 2em;
+        height: 2em;
+        padding-left: 1em;
+    }
+    td input,td textarea {
+        border: none;
+    }
+    td input,td textarea,td select{
+        color: #f30;
+    }
+    td textarea {
+        padding: 1em;
+        width: 95%;
+        height: 100px;
+    }
+</style>
+<div class="appointment-table" style="width: 1200px;margin: 0 auto;">
+    <table style="width: 100%" id="info_table">
+        <input type="hidden" name="data[store_id]" value="{$ids.store_id}"/>
+        <input type="hidden" name="data[goods_id]" value="{$ids.goods_id}"/>
+        <input type="hidden" name="data[user_id]"  value="{$ids.user_id}"/>
+        <caption><h2 style="font-size: 18px;padding: 1em">预约信息</h2></caption>
+        <tr>
+            <td class="col1">姓名：</td>
+            <td class="col2">
+                <input autofocus="" tabindex="1" name="data[name]" value="{$data.name|escape}">
+            </td>
+            <td class="col3">性别：</td>
+            <td class="col4">
+                <select name="data[sex]">
+                    <option value="1" <!--{if $data.sex == 1}-->selected=""<!--{/if}-->>男</option>
+                    <option value="2" <!--{if $data.sex == 2}-->selected=""<!--{/if}-->>女</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1">年龄：</td>
+            <td class="col2">
+                <input name="data[age]" value="{$data.age|escape}">
+            </td>
+            <td class="col3">婚否：</td>
+            <td class="col4">
+                <select name="data[marry]">
+                    <option value="1" <!--{if $data.marry == 1}-->selected=""<!--{/if}-->>是</option>
+                    <option value="2" <!--{if $data.marry == 2}-->selected=""<!--{/if}-->>否</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1">职业：</td>
+            <td class="col2">
+                <input name="data[job]" value="{$data.job|escape}">
+            </td>
+            <td class="col3">是否做过美容：</td>
+            <td class="col4">
+                <input name="data[beauty_history]" value="{$data.beauty_history|escape}" placeholder="做过在哪里做过">
+            </td>
+        </tr>
+        <tr>
+            <td class="col1">联系方式：</td>
+            <td class="colspan3" colspan="3">
+                <input name="data[contact]" value="{$data.contact|escape}"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1">家庭住址：</td>
+            <td class="colspan3" colspan="3">
+                <input name="data[address]" value="{$data.address|escape}"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1">体验理由：</td>
+            <td class="colspan3" colspan="3">
+                <textarea name="data[reason]">{$data.reason|escape}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1">做过什么项目：</td>
+            <td class="colspan3" colspan="3">
+                <textarea name="data[projects]">{$data.projects|escape}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1">做了几年：</td>
+            <td class="colspan3" colspan="3">
+                <input name="data[years]" value="{$data.years|escape}"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="col1">备注：</td>
+            <td class="colspan3" colspan="3">
+                <textarea name="data[remarks]">{$data.remarks|escape}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align: center;font-size: 16px;font-weight: bold;padding: 20px 0"><button id="submit">保存</button></td>
+        </tr>
+    </table>
+</div>
+{include file=helper_footer.html}
+<div id="footer_index">
+    Copyright 2014-2020 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+<script src="/themes/resource/js/require.js"></script>
+<script src="/themes/resource/js/app/appointment.js"></script>
+</body>
+</html>

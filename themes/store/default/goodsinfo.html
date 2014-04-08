@@ -42,11 +42,16 @@
             <!--{$lang.sale_situation}: {$sales_info}{$comments}<br />-->
             {$lang.region}: {$store.region_name|escape}
         </div>
-        <!--{if $goods.lianbao}-->
+
         <div style="padding-left: 20px">
+            <!--{if $goods.lianbao}-->
             <span style="padding: 8px 12px;border-radius: 3px;font-size: 14px;color: white;background:-moz-linear-gradient(top,#f50,#f00);background: -webkit-gradient(linear,0 0,0 50%,from(#f50),to(#f00));background: -o-linear-gradient(top,#f50,#f00);">百真联保</span>
+            <!--{/if}-->
+            <!--{if $goods.experiment}-->
+            <a target="_blank" href="/index.php?app=appointment&store_id={$goods.store_id}&goods_id={$goods.goods_id}&user_id={$user_id}" style="text-decoration:none;margin-left:15px;padding: 8px 12px;border-radius: 3px;font-size: 14px;color: white;background:-moz-linear-gradient(top,#f00,#f00);background: -webkit-gradient(linear,0 0,0 50%,from(#f00),to(#f00));background: -o-linear-gradient(top,#f00,#f00);">预约体验</a>
+            <!--{/if}-->
         </div>
-        <!--{/if}-->
+
         <!-- {if !$share} -->
         <ul id="btn_list">
             <li id="btn_list1" title="{$lang.collect_goods}">

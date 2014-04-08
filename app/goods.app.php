@@ -43,6 +43,8 @@ class GoodsApp extends StorebaseApp
         {
             $this->assign('captcha', 1);
         }
+        $user_id = $_SESSION['user_info'] && $_SESSION['user_info']['user_id'] ? $_SESSION['user_info']['user_id'] : 0;
+        $this->assign('user_id',$user_id);
 
         $this->assign('guest_comment_enable', Conf::get('guest_comment'));
         $this->display('goods.index.html');
@@ -210,6 +212,7 @@ class GoodsApp extends StorebaseApp
         $key = 'page_of_goods_' . $id;
         $data = $cache_server->get($key);
         $cached = true;
+        $data = false;
         if ($data === false)
         {
             $cached = false;

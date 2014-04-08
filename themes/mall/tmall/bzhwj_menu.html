@@ -1,0 +1,38 @@
+<style type="text/css">
+    .menu-list {
+        width: 200px;
+        float: left;
+    }
+
+    .menu-list .menu-item {
+        display: block;
+        text-align: left;
+        width: 100%;
+    }
+
+    .menu-list .menu-item:last-child {
+        border-bottom: none;
+    }
+
+    .menu-list .menu-item a {
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        font-size: 14px;
+        padding-left: 20px;
+        width: 180px;
+        font-weight: bold;
+    }
+    .menu-list .menu-item a:hover,.menu-list .menu-item a.cur {
+        background-color: #ccc;
+        color: #b00000;
+    }
+</style>
+<ul class="menu-list">
+    <li class="menu-item">
+        <a href="/index.php?app=bzhwj_favorite_store" class="<!--{if $tab == 'store'}-->cur<!--{/if}-->" target="_self">收藏的美容院</a>
+    </li>
+    <li class="menu-item"><a href="/index.php?app=bzhwj_favorite_goods" class="<!--{if $tab == 'goods'}-->cur<!--{/if}-->" target="_self">收藏的项目</a></li>
+    <li class="menu-item"><a href="/index.php?app=bzhwj_user_appointment" class="<!--{if $tab == 'appointment'}-->cur<!--{/if}-->" target="_self">预约体验</a>
+    </li>
+</ul>
