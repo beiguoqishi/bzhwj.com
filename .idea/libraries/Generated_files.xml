@@ -2,11 +2,17 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/themes/resource/js/app/test.js" />
+        <item url="file://$PROJECT_DIR$/themes/resource/js/app/user_appointment.js" />
+        <item url="file://$PROJECT_DIR$/themes/resource/js/app/appointment.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/themes/resource/js/app/test.js" />
+      <root url="file://$PROJECT_DIR$/themes/resource/js/app/experiment.js" />
+      <root url="file://$PROJECT_DIR$/themes/resource/js/app/test.js" />
+      <root url="file://$PROJECT_DIR$/themes/resource/js/app/experiment.js" />
+      <root url="file://$PROJECT_DIR$/themes/resource/js/app/user_appointment.js" />
+      <root url="file://$PROJECT_DIR$/themes/resource/js/app/appointment.js" />
     </CLASSES>
     <SOURCES />
   </library>
