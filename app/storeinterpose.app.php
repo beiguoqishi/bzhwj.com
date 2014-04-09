@@ -97,19 +97,28 @@ class StoreInterposeApp extends StorebaseApp
             $store_id = intval($_SESSION['user_info']['store_id']);
             $this->assign('store_id', $store_id);
             $page = intval($_GET['page']);
+            $id = intval($_GET['id']);
             $page = $page < 1 ? 1 : $page;
             if ($_SESSION['user_info']['user_name'] == 'admin') {
                 $store_id = $store_id . " or 1=1";
             }
-            $appointment_list = $this->_get_appointment_list($store_id,$page,20);
-            $this->assign('appointment_list', $appointment_list);
+            if (!empty($id)) {
+                $data = $this->_get_appointment_item_by_id($id);
+            } else {
+                $data = $this->_get_appointment_list($store_id,$page,20);
+            }
             header('Content-type:application/json;charset=utf-8');
-            echo json_encode($appointment_list);
+            echo json_encode($data);
             exit;
         } else {
             header('Location:/');
             exit;
         }
+    }
+
+    function _get_appointment_item_by_id($id) {
+        $db =& db();
+        return $db->getrow("select * from app_bzhwj_appointment where id=$id");
     }
 
     function _get_appointment_list($store_id,$page,$limit = 20) {

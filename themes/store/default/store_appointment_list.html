@@ -4,10 +4,50 @@
     <meta charset="utf-8">
     <title></title>
     <link href="/themes/resource/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        table,td {
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid #333333;
+            line-height: 2em;
+        }
+        td.col1,td.col3 {
+            padding-left: 1em;
+            font-weight: bold;
+            width: 10%;
+        }
+        td.col2,td.col4 {
+            width: 40%;
+        }
+        td input {
+            width: 95%;
+            line-height: 2em;
+            height: 2em;
+            padding-left: 1em;
+        }
+        td input,td textarea {
+            border: none;
+        }
+        td input,td textarea,td select{
+            color: #f30;
+        }
+        td textarea {
+            padding: 1em;
+            width: 95%;
+            height: 100px;
+        }
+        @media (min-width:1200px) {
+            .modal-xlg {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="main">
 <ul class="list-group" id="appointment_list"></ul>
+<div id="item_detail"></div>
 </div>
 <script type="text/tpl" id="appointment_item_tpl">
     <div e_id="<%=id%>">
@@ -19,6 +59,101 @@
       <a e_id="<%=id%>" href="javascript:void(0)" class="remove glyphicon glyphicon-remove" title="删除"></a>
     </div>
 </script>
+<script type="text/tpl" id="item_detail_tpl">
+<div id="item_detail_modal" class="modal fade">
+    <div class="modal-dialog modal-xlg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title"><%-name%></h4>
+            </div>
+            <div class="modal-body">
+                <table style="width: 100%" id="info_table">
+                    <input type="hidden" name="data[store_id]" value="<%=store_id%>"/>
+                    <input type="hidden" name="data[goods_id]" value="<%=goods_id%>"/>
+                    <input type="hidden" name="data[user_id]"  value="<%=user_id%>"/>
+                    <caption><h2 style="font-size: 18px;padding: 1em">预约信息</h2></caption>
+                    <tr>
+                        <td class="col1">姓名：</td>
+                        <td class="col2">
+                            <input autofocus="" tabindex="1" name="data[name]" value="<%-name%>">
+                        </td>
+                        <td class="col3">性别：</td>
+                        <td class="col4">
+                            <select name="data[sex]">
+                                <option value="1" <%if (sex == 1) {%>selected=""<%}%>>男</option>
+                                <option value="2" <%if (sex == 2) {%>selected=""<%}%>>女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">年龄：</td>
+                        <td class="col2">
+                            <input name="data[age]" value="<%=age%>">
+                        </td>
+                        <td class="col3">婚否：</td>
+                        <td class="col4">
+                            <select name="data[marry]">
+                                <option value="1" <%if (marry == 1) {%>selected=""<%}%>>是</option>
+                                <option value="2" <%if (marry == 2) {%>selected=""<%}%>>否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">职业：</td>
+                        <td class="col2">
+                            <input name="data[job]" value="<%-job%>">
+                        </td>
+                        <td class="col3">是否做过美容：</td>
+                        <td class="col4">
+                            <input name="data[beauty_history]" value="<%-beauty_history%>" placeholder="做过在哪里做过">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">联系方式：</td>
+                        <td class="colspan3" colspan="3">
+                            <input name="data[contact]" value="<%-contact%>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">家庭住址：</td>
+                        <td class="colspan3" colspan="3">
+                            <input name="data[address]" value="<%-address%>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">体验理由：</td>
+                        <td class="colspan3" colspan="3">
+                            <textarea name="data[reason]"><%-reason%></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">做过什么项目：</td>
+                        <td class="colspan3" colspan="3">
+                            <textarea name="data[projects]"><%-projects%></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">做了几年：</td>
+                        <td class="colspan3" colspan="3">
+                            <input name="data[years]" value="<%=years%>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">备注：</td>
+                        <td class="colspan3" colspan="3">
+                            <textarea name="data[remarks]"><%-remarks%></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div></script>
 <script src="/themes/resource/js/require.js"></script>
 <script src="/themes/resource/js/app/store_admin_appointment_list.js"></script>
 </body>
