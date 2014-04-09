@@ -57,6 +57,7 @@ create table app_bzhwj_appointment(
   `projects` text,
   `years` varchar(255),
   `remarks` text,
+  `status` tinyint not null default 1,
   `update_at` int unsigned,
   `create_at` int unsigned,
   primary key (`id`),

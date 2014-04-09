@@ -72,7 +72,8 @@ class StoreInterposeApp extends StorebaseApp
             if ($_SESSION['user_info']['user_name'] == 'admin') {
                 $store_id = $store_id . "' or '1=1";
             }
-            $goods_list = $this->_get_goods_list($store_id, $page, 20);
+            //TODO:分页功能后续实现
+            $goods_list = $this->_get_goods_list($store_id, $page, 500);
             $this->assign('goods_list', $goods_list);
 
             $this->display('store_interpose.html');
@@ -80,6 +81,42 @@ class StoreInterposeApp extends StorebaseApp
             header('Location:/');
             exit;
         }
+    }
+
+    function store_appointment_op() {
+        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
+            $this->display('store_appointment_list.html');
+        } else {
+            header('Location:/');
+            exit;
+        }
+    }
+
+    function appointment_list() {
+        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
+            $store_id = intval($_SESSION['user_info']['store_id']);
+            $this->assign('store_id', $store_id);
+            $page = intval($_GET['page']);
+            $page = $page < 1 ? 1 : $page;
+            if ($_SESSION['user_info']['user_name'] == 'admin') {
+                $store_id = $store_id . " or 1=1";
+            }
+            $appointment_list = $this->_get_appointment_list($store_id,$page,20);
+            $this->assign('appointment_list', $appointment_list);
+            header('Content-type:application/json;charset=utf-8');
+            echo json_encode($appointment_list);
+            exit;
+        } else {
+            header('Location:/');
+            exit;
+        }
+    }
+
+    function _get_appointment_list($store_id,$page,$limit = 20) {
+        $offset = ($page - 1) * $limit;
+        $db =& db();
+        $sql = "select * from app_bzhwj_appointment where store_id = $store_id limit $offset,$limit";
+        return $db->getall($sql);
     }
 
     function store_goods_edit()

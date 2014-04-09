@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="/themes/resource/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="main">
+<ul class="list-group" id="appointment_list"></ul>
+</div>
+<script type="text/tpl" id="appointment_item_tpl">
+    <div e_id="<%=id%>">
+      <a href="javascript:void(0)" e_id="<%=id%>" class="a-tle">
+        <em><%-name%></em>
+        <span><%-address%></span>
+      </a>
+      <a e_id="<%=id%>" href="javascript:void(0)" class="view">查看</a>
+      <a e_id="<%=id%>" href="javascript:void(0)" class="remove glyphicon glyphicon-remove" title="删除"></a>
+    </div>
+</script>
+<script src="/themes/resource/js/require.js"></script>
+<script src="/themes/resource/js/app/store_admin_appointment_list.js"></script>
+</body>
+</html>
