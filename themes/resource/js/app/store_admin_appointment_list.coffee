@@ -27,7 +27,6 @@ execute = (Backbone) ->
     el:'#item_detail'
     template: _.template $('#item_detail_tpl').html()
     initialize: ->
-#      this.listenTo this.model,'change','render'
       this.render()
     render: ->
       this.$el.html this.template this.model.toJSON()
@@ -49,8 +48,6 @@ execute = (Backbone) ->
             alert('保存成功！')
             $('#item_detail_modal').modal('hide')
         error:->
-
-
 
   AppointmentView = Backbone.View.extend
     tagName:'li'

@@ -45,6 +45,13 @@ class GoodsApp extends StorebaseApp
         }
         $user_id = $_SESSION['user_info'] && $_SESSION['user_info']['user_id'] ? $_SESSION['user_info']['user_id'] : 0;
         $this->assign('user_id',$user_id);
+        $db =& db();
+        $sql = "select name,update_at from app_bzhwj_appointment where goods_id = $id and status > 0";
+        $appoint_list = $db->getall($sql);
+        foreach($appoint_list as $k => $v) {
+            $appoint_list[$k]['update_at'] = date('Y-m-d',$v['update_at']);
+        }
+        $this->assign('appoint_list',$appoint_list);
 
         $this->assign('guest_comment_enable', Conf::get('guest_comment'));
         $this->display('goods.index.html');

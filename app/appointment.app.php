@@ -44,8 +44,8 @@ class AppointmentApp extends MallbaseApp {
         foreach($data as $key =>$val) {
             $fields[] = "$key = '".mysql_real_escape_string($val) . "'";
         }
-        $conds .= implode(',',$fields);
-        $conds .= ' on duplicate key update ' . implode(',',$fields);
+        $conds .= implode(',',$fields) . ',create_at=' . time() . ',update_at=' . time();
+        $conds .= ' on duplicate key update ' . implode(',',$fields) . ',update_at=' . time();
         $conds = 'insert app_bzhwj_appointment set ' . $conds;
         $data = $db->query($conds);
         header('Content-type:application/json;charset=UTF-8');
