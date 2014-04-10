@@ -1,0 +1,30 @@
+<div id="left">
+    <h2>
+        <strong title="{$lang.user_center}"></strong>
+        <div class="adorn1"></div>
+        <div class="adorn2"></div>
+    </h2>
+    <dl>
+        <dt>我的收藏</dt>
+        <dd>
+            <a href="/index.php?app=my_favorite&type=store" class="normal" target="_self"><span class="ico11">收藏的美容院</span></a>
+        </dd>
+        <dd>
+            <a href="/index.php?app=my_favorite" class="normal" target="_self"><span class="ico8">收藏的项目</span></a>
+        </dd>
+    </dl>
+    <dl>
+        <dt>预约体验</dt>
+        <dd>
+            <a href="/index.php?app=bzhwj_user_appointment" class="cur normal" target="_self"><span class="ico10">我的预约体验</span></a>
+        </dd>
+    </dl>
+    <!--{if $_member_menu.overview}-->
+    <div class="application">
+        <p>{$lang.not_seller}: </p>
+        <a href="{$_member_menu.overview.url}" title="{$_member_menu.overview.text}"></a>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+    <div class="adorn_bottom"></div>
+</div>

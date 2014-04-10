@@ -93,23 +93,49 @@ class StoreInterposeApp extends StorebaseApp
     }
 
     function appointment_list() {
+        header('Content-Type: application/json; charset=utf-8');
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
-            $store_id = intval($_SESSION['user_info']['store_id']);
-            $this->assign('store_id', $store_id);
-            $page = intval($_GET['page']);
-            $id = intval($_GET['id']);
-            $page = $page < 1 ? 1 : $page;
-            if ($_SESSION['user_info']['user_name'] == 'admin') {
-                $store_id = $store_id . " or 1=1";
-            }
-            if (!empty($id)) {
-                $data = $this->_get_appointment_item_by_id($id);
+            if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
+                $fields = json_decode(urldecode(file_get_contents('php://input')),true);
+                $id = intval($_GET['id']);
+                if (empty($id)) {
+                    echo -1;
+                    exit;
+                }
+                $actual_method = $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'];
+                if (strtoupper($actual_method) == 'DELETE') {
+                    $sql = "update app_bzhwj_appointment set status = 0 where id = $id";
+                    $db =& db();
+                    echo $db->query($sql);
+                } else {
+                    $sql = "update app_bzhwj_appointment set ";
+                    $u_fields = array();
+                    foreach($fields as $k => $v) {
+                        $u_fields[] = "$k = '" . mysql_real_escape_string($v) . "'";
+                    }
+                    $sql .= implode(',',$u_fields);
+                    $sql .= " where id=$id";
+                    $db =& db();
+                    echo $db->query($sql);
+                }
             } else {
-                $data = $this->_get_appointment_list($store_id,$page,20);
+                $store_id = intval($_SESSION['user_info']['store_id']);
+                $this->assign('store_id', $store_id);
+                $page = intval($_GET['page']);
+                $id = intval($_GET['id']);
+                $page = $page < 1 ? 1 : $page;
+                if ($_SESSION['user_info']['user_name'] == 'admin') {
+                    $store_id = $store_id . " or 1=1";
+                }
+                if (!empty($id)) {
+                    $data = $this->_get_appointment_item_by_id($id);
+                } else {
+                    $data = $this->_get_appointment_list($store_id,$page,20);
+                }
+                header('Content-type:application/json;charset=utf-8');
+                echo json_encode($data);
+                exit;
             }
-            header('Content-type:application/json;charset=utf-8');
-            echo json_encode($data);
-            exit;
         } else {
             header('Location:/');
             exit;
@@ -118,13 +144,13 @@ class StoreInterposeApp extends StorebaseApp
 
     function _get_appointment_item_by_id($id) {
         $db =& db();
-        return $db->getrow("select * from app_bzhwj_appointment where id=$id");
+        return $db->getrow("select * from app_bzhwj_appointment where id=$id and status > 0");
     }
 
     function _get_appointment_list($store_id,$page,$limit = 20) {
         $offset = ($page - 1) * $limit;
         $db =& db();
-        $sql = "select * from app_bzhwj_appointment where store_id = $store_id limit $offset,$limit";
+        $sql = "select * from app_bzhwj_appointment where store_id = $store_id and status > 0 limit $offset,$limit";
         return $db->getall($sql);
     }
 

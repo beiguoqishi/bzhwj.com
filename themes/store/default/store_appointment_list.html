@@ -42,10 +42,41 @@
                 width: 90%;
             }
         }
+        a.a-tle,a.view,a.remove {
+            float: left;
+            margin-right: 10px;
+        }
+        a.a-tle em {
+            font-style: normal;
+        }
+        a.a-tle em,a.a-tle span {
+            display: block;
+        }
+        .list-group-item {
+            overflow: hidden;
+        }
+        a.view {
+            margin-left: 100px;
+            margin-right: 40px;
+        }
+        a.view,a.remove {
+            line-height: 3em;
+            color: #f30;
+        }
+        #no_appointment_tip {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
 <div class="main">
+    <ol  class="breadcrumb" id="no_appointment_tip">
+        <li class="active">您还没有被预约的项目！</li>
+    </ol>
+    <ol class="breadcrumb">
+        <li class="active">预约列表</li>
+    </ol>
 <ul class="list-group" id="appointment_list"></ul>
 <div id="item_detail"></div>
 </div>
@@ -69,18 +100,15 @@
             </div>
             <div class="modal-body">
                 <table style="width: 100%" id="info_table">
-                    <input type="hidden" name="data[store_id]" value="<%=store_id%>"/>
-                    <input type="hidden" name="data[goods_id]" value="<%=goods_id%>"/>
-                    <input type="hidden" name="data[user_id]"  value="<%=user_id%>"/>
                     <caption><h2 style="font-size: 18px;padding: 1em">预约信息</h2></caption>
                     <tr>
                         <td class="col1">姓名：</td>
                         <td class="col2">
-                            <input autofocus="" tabindex="1" name="data[name]" value="<%-name%>">
+                            <input autofocus="" tabindex="1" name="name" value="<%-name%>">
                         </td>
                         <td class="col3">性别：</td>
                         <td class="col4">
-                            <select name="data[sex]">
+                            <select name="sex">
                                 <option value="1" <%if (sex == 1) {%>selected=""<%}%>>男</option>
                                 <option value="2" <%if (sex == 2) {%>selected=""<%}%>>女</option>
                             </select>
@@ -89,11 +117,11 @@
                     <tr>
                         <td class="col1">年龄：</td>
                         <td class="col2">
-                            <input name="data[age]" value="<%=age%>">
+                            <input name="age" value="<%=age%>">
                         </td>
                         <td class="col3">婚否：</td>
                         <td class="col4">
-                            <select name="data[marry]">
+                            <select name="marry">
                                 <option value="1" <%if (marry == 1) {%>selected=""<%}%>>是</option>
                                 <option value="2" <%if (marry == 2) {%>selected=""<%}%>>否</option>
                             </select>
@@ -102,54 +130,54 @@
                     <tr>
                         <td class="col1">职业：</td>
                         <td class="col2">
-                            <input name="data[job]" value="<%-job%>">
+                            <input name="job" value="<%-job%>">
                         </td>
                         <td class="col3">是否做过美容：</td>
                         <td class="col4">
-                            <input name="data[beauty_history]" value="<%-beauty_history%>" placeholder="做过在哪里做过">
+                            <input name="beauty_history" value="<%-beauty_history%>" placeholder="做过在哪里做过">
                         </td>
                     </tr>
                     <tr>
                         <td class="col1">联系方式：</td>
                         <td class="colspan3" colspan="3">
-                            <input name="data[contact]" value="<%-contact%>"/>
+                            <input name="contact" value="<%-contact%>"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="col1">家庭住址：</td>
                         <td class="colspan3" colspan="3">
-                            <input name="data[address]" value="<%-address%>"/>
+                            <input name="address" value="<%-address%>"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="col1">体验理由：</td>
                         <td class="colspan3" colspan="3">
-                            <textarea name="data[reason]"><%-reason%></textarea>
+                            <textarea name="reason"><%-reason%></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="col1">做过什么项目：</td>
                         <td class="colspan3" colspan="3">
-                            <textarea name="data[projects]"><%-projects%></textarea>
+                            <textarea name="projects"><%-projects%></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="col1">做了几年：</td>
                         <td class="colspan3" colspan="3">
-                            <input name="data[years]" value="<%=years%>"/>
+                            <input name="years" value="<%=years%>"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="col1">备注：</td>
                         <td class="colspan3" colspan="3">
-                            <textarea name="data[remarks]"><%-remarks%></textarea>
+                            <textarea name="remarks"><%-remarks%></textarea>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-primary save">保存</button>
             </div>
         </div>
     </div>
