@@ -132,6 +132,7 @@
       el: '.main',
       initialize: function() {
         this.listenTo(appoiList, 'add', this.addOne);
+        this.listenTo(appoiList, 'all', this.all);
         this.listenTo(appoiList, 'destroy', this.destroy);
         this.listenTo(appoiList, 'reset', this.reset);
         return appoiList.fetch({
@@ -158,6 +159,9 @@
       },
       reset: function() {
         return this.render();
+      },
+      all: function() {
+        return console.log('all');
       }
     });
     return App = new AppView;
