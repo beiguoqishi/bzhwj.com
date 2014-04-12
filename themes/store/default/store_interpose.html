@@ -13,7 +13,9 @@
         <!--{foreach from=$goods_list item=goods}-->
         <li>
             <a href="/index.php?app=storeinterpose&act=store_goods_edit&id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+            <!--{if $appoint_auth== 1}-->
             <span style="margin: 0 10px;"><b>预约体验</b><input data-id="{$goods.goods_id}" class="experiment" type="checkbox" <!--{if $goods.experiment == 1}-->checked=""<!--{/if}-->></span>
+            <!--{/if}-->
             <a style="margin-left: 20px" href="/index.php?app=storeinterpose&act=store_goods_do_delete&id={$goods.goods_id}">删除</a>
         </li>
         <!--{/foreach}-->

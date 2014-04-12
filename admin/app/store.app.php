@@ -179,6 +179,10 @@ class StoreApp extends BackendApp
                 '1' => Lang::get('yes'),
                 '0' => Lang::get('no'),
             ));
+            $this->assign('yes_no_options', array(
+                '1' => Lang::get('yes'),
+                '0' => Lang::get('no'),
+            ));
 
             $this->assign('scategories', $this->_get_scategory_options());
 
@@ -284,6 +288,10 @@ class StoreApp extends BackendApp
                 '1' => Lang::get('yes'),
                 '0' => Lang::get('no'),
             ));
+            $this->assign('yes_no_options', array(
+                '1' => Lang::get('yes'),
+                '0' => Lang::get('no'),
+            ));
 
             $region_mod =& m('region');
             $this->assign('regions', $region_mod->get_options(0));
@@ -334,6 +342,8 @@ class StoreApp extends BackendApp
                 'state'        => $_POST['state'],
                 'sort_order'   => $_POST['sort_order'],
                 'recommended'  => $_POST['recommended'],
+                'lianbao_auth' => $_POST['lianbao_auth'],
+                'appointment_auth' => $_POST['appointment_auth'],
                 'domain'       => $domain,
             );
             $data['state'] == STORE_CLOSED && $data['close_reason'] = $_POST['close_reason'];

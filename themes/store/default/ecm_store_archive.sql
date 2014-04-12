@@ -65,3 +65,12 @@ create table app_bzhwj_appointment(
 ) ENGINE=InnoDB CHARSET=utf8;
 
 insert app_bzhwj_appointment set store_id = '8',goods_id = '9',user_id = '1',name = '夺在',sex = '1',age = ' 在',marry = '1',job = '',beauty_history = '',contact = '',address = '',reason = '',projects = '',years = '',remarks = '' on duplicate key update store_id = '8',goods_id = '9',user_id = '1',name = '夺在',sex = '1',age = ' 在',marry = '1',job = '',beauty_history = '',contact = '',address = '',reason = '',projects = '',years = '',remarks = '';
+
+alter table ecm_store add column lianbao_auth tinyint not null default 0;
+alter table ecm_store add column appointment_auth tinyint not null default 0;
+
+alter table ecm_goods add column appoint_count int unsigned not null default 0;
+alter table ecm_goods add index `app_c_idx`(`appoint_count`);
+
+alter table ecm_goods add column credit_count int unsigned not null default 0;
+alter table ecm_goods add index `credit_c_idx`(`credit_count`);

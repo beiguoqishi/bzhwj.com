@@ -38,7 +38,6 @@
         height: 100px;
     }
     .nav-bar {
-        border: 1px #ddd solid;
         padding: 10px;
         overflow: hidden;
     }
@@ -75,12 +74,81 @@
     .goods-list .goods-item p span {
         color: #999;
     }
+    .nav-bar {
+        overflow: hidden;
+    }
+    .nav-bar .sort {
+        float: left;
+    }
+    .nav-bar .search {
+        float: right;
+    }
+    .hd {
+        border: 1px #ddd solid;
+    }
+    .ctgs {
+        padding: 12px;
+        overflow: hidden;
+    }
+    .ctgs .ctg {
+        float: left;
+        margin-bottom: 10px;
+        clear: both;
+    }
+    .ctgs .ctg .b-ctg {
+        float: left;
+    }
+    .ctgs .ctg .sub-ctgs {
+        float: left;
+        margin-left: 10px;
+        margin-top: 8px;
+        font-size: 12px;
+    }
+    .ctgs .ctg a {
+        padding: 5px 8px;
+    }
+    .ctgs .ctg a.cur,.ctgs .ctg a:hover {
+        color: #b00000;
+        background-color: #ccc;
+    }
 </style>
 <div style="width: 1200px;margin: 0 auto;overflow: hidden;">
-    <div class="nav-bar">
-        <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'newest'}-->cur<!--{/if}--> default-sort btn-order-click" href="/index.php?app=experiment&sort_type=newest<!--{if $sort_type == 'newest'}-->&sort_order={$sort_order}<!--{/if}-->">最新</a>
-        <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'credit'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=credit<!--{if $sort_type == 'credit'}-->&sort_order={$sort_order}<!--{/if}-->">信用</a>
-        <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'price'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=price<!--{if $sort_type == 'price'}-->&sort_order={$sort_order}<!--{/if}-->">价格</a>
+    <div class="hd">
+        <div class="ctgs">
+            <!--{if $ctgs}-->
+            <!--{foreach from=$ctgs item=ctg}-->
+            <div class="ctg">
+                <a class="b-ctg <!--{if $ctg.cate_id == $b_ctg_id}-->cur<!--{/if}-->" href="/index.php?app=experiment&b_ctg={$ctg.cate_id}" target="_self">{$ctg.cate_name|escape}</a>
+                <!--{if $ctg.sub_ctgs}-->
+                <div class="sub-ctgs">
+                    <!--{foreach from=$ctg.sub_ctgs item=sub_ctg}-->
+                    <a target="_self" class="<!--{if $sub_ctg.cate_id == $s_ctg_id}-->cur<!--{/if}--> " href="/index.php?app=experiment&s_ctg={$sub_ctg.cate_id}">{$sub_ctg.cate_name|escape}</a>
+                    <!--{/foreach}-->
+                </div>
+                <!--{/if}-->
+            </div>
+            <!--{/foreach}-->
+            <!--{/if}-->
+        </div>
+        <div class="nav-bar">
+            <div class="sort">
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'newest'}-->cur<!--{/if}--> default-sort btn-order-click" href="/index.php?app=experiment&sort_type=newest<!--{if $sort_type == 'newest'}-->&sort_order={$sort_order}<!--{/if}-->">最新</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'renqi'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->">人气</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'credit'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=credit<!--{if $sort_type == 'credit'}-->&sort_order={$sort_order}<!--{/if}-->">信用</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'price'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=price<!--{if $sort_type == 'price'}-->&sort_order={$sort_order}<!--{/if}-->">价格</a>
+            </div>
+            <div class="search">
+                <form action="/index.php" method="get" target="_self">
+                    <input type="hidden" name="sort_type" value="{$sort_type}"/>
+                    <input type="hidden" name="sort_order" value="{$exact_sort_order}"/>
+                    <input type="hidden" name="app" value="experiment"/>
+                    <input type="hidden" name="s_ctg" value="{$s_ctg_id}"/>
+                    <input type="hidden" name="b_ctg" value="{$b_ctg_id}"/>
+                    <input type="text" name="q" value="{$keyword|escape}"/>
+                    <button type="submit">搜索</button>
+                </form>
+            </div>
+        </div>
     </div>
     <!--{if $data}-->
     <ul class="goods-list">
@@ -107,6 +175,9 @@
             <input type="hidden" name="app" value="experiment">
             <input type="hidden" name="sort_order" value="{$exact_sort_order}"/>
             <input type="hidden" name="sort_type"  value="{$sort_type}"/>
+            <input type="hidden" name="s_ctg" value="{$s_ctg_id}"/>
+            <input type="hidden" name="b_ctg" value="{$b_ctg_id}"/>
+            <input type="hidden" name="q" value="{$keyword|escape}"/>
             <button type="submit" style="margin: 0 15px;" id="prev_page">上一页</button>
             <span>当前是第<input id="cur_page" style="margin: 0 15px;padding-left: 5px" value="{$page}" name="page">页，共&nbsp;&nbsp;{$total}&nbsp;&nbsp;页</span><button type="submit" style="margin-left: 15px">确定</button>
             <button type="submit" style="margin: 0 15px;" id="next_page">下一页</button>

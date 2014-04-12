@@ -71,7 +71,7 @@
             <span>适用人群：</span>
             <input name="goods[suit_people]" value="{$goods.suit_people|escape}">
         </p>
-        <!--{if $username == 'admin'}-->
+        <!--{if $lianbao_auth == 1}-->
         <p class="item">
             <span>百真联保：</span>
             <input name="goods[lianbao]" id="lianbao" type="checkbox" <!--{if $goods.lianbao > 0}-->checked=""<!--{/if}--> value="{$goods.lianbao|default:0}">

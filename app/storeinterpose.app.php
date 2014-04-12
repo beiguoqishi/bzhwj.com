@@ -71,6 +71,9 @@ class StoreInterposeApp extends StorebaseApp
             $page = $page < 1 ? 1 : $page;
             if ($_SESSION['user_info']['user_name'] == 'admin') {
                 $store_id = $store_id . "' or '1=1";
+                $this->assign('appoint_auth',1);
+            } else {
+                $this->assign('appoint_auth',$this->is_auth_appointment($store_id));
             }
             //TODO:分页功能后续实现
             $goods_list = $this->_get_goods_list($store_id, $page, 500);
@@ -81,6 +84,18 @@ class StoreInterposeApp extends StorebaseApp
             header('Location:/');
             exit;
         }
+    }
+
+    function is_auth_appointment($store_id) {
+        $db =& db();
+        $is_auth = $db->getone("select appointment_auth from ecm_store where store_id = $store_id");
+        return $is_auth;
+    }
+
+    function is_auth_lianbao($store_id) {
+        $db =& db();
+        $is_auth = $db->getone("select lianbao_auth from ecm_store where store_id = $store_id");
+        return $is_auth;
     }
 
     function store_appointment_op() {
@@ -163,6 +178,9 @@ class StoreInterposeApp extends StorebaseApp
             $id = intval($_GET['id']);
             if ($_SESSION['user_info']['user_name'] == 'admin') {
                 $store_id = $store_id . "' or '1=1";
+                $this->assign('lianbao_auth',1);
+            } else {
+                $this->assign('lianbao_auth',$this->is_auth_lianbao($store_id));
             }
             $this->assign('goods', $this->_get_goods_by_id($store_id,$id));
             $this->assign('goods_id',$id);
