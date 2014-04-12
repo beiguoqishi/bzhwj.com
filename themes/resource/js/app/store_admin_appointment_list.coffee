@@ -95,7 +95,6 @@ execute = (Backbone) ->
     el: '.main'
     initialize: ->
       this.listenTo appoiList,'add',this.addOne
-      this.listenTo appoiList,'all',this.all
       this.listenTo appoiList,'destroy',this.destroy
       this.listenTo appoiList,'reset',this.reset
       appoiList.fetch
@@ -111,7 +110,5 @@ execute = (Backbone) ->
       this.render()
     reset: ->
       this.render()
-    all: ->
-      console.log 'all'
 
   App = new AppView

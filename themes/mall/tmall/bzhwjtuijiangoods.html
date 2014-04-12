@@ -9,7 +9,6 @@
     .news .left {
         float: left;
         width: 800px;
-        border-right: 1px solid #333333;
     }
     .news .left .pos-tip {
         padding-left: 20px;
@@ -36,7 +35,6 @@
     .news .left .editor {
         line-height: 24px;
         padding-left: 20px;
-        border-bottom: 1px solid #333333;
     }
     .news .left .relation {
         padding: 20px;
@@ -56,7 +54,6 @@
         font-size: 16px;
         font-weight: bold;
         padding-left: 10px;
-        border-bottom: 1px solid #333333;
     }
     .news .right .newest-list img {
         display: block;
@@ -81,10 +78,16 @@
         margin-bottom: -10000px;
     }
 
+    .news .right .newest-list.other-list li {
+        float: left;
+        width: 120px;
+        margin-right: 6px;
+    }
+
 </style>
-<div class="news" style="border-top: 1px solid #333333;color: #333333;width: 1200px;margin: 0 auto">
+<div class="news" style="color: #333333;width: 1200px;margin: 0 auto">
     <div class="left">
-        <div class="pos-tip" style="height: 40px;line-height: 40px;border-bottom: 1px solid #333">
+        <div class="pos-tip" style="height: 40px;line-height: 40px;">
             <span>当前位置：</span>
             <a href="/" title="百真无假网">百真无假网</a><span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span>
             <span>精品项目</span><span>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</span>
@@ -118,13 +121,13 @@
         </ul>
         <!--{/if}-->
 
-        <h2 class="newest-tle" style="border-top: 1px solid #333;margin-top: 30px">其它品牌</h2>
+        <h2 class="newest-tle" style="margin-top: 30px">其它品牌</h2>
         <!--{if $other_brands}-->
-        <ul class="newest-list">
+        <ul class="newest-list other-list">
             <!--{foreach from=$other_brands item=el}-->
             <li>
                 <a href="{$el.url|escape}" target="_self">
-                    <img style="width: 200px" src="{$el.img|escape}"><span>{$el.title|escape}</span>
+                    <img style="max-width: 100%" src="{$el.img|escape}"><span>{$el.title|escape}</span>
                 </a>
             </li>
             <!--{/foreach}-->

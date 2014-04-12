@@ -161,10 +161,19 @@
                 <span>名称：</span><a class="txt" href="/index.php?app=goods&id={$goods.goods_id}" target="_blank"><em>{$goods.goods_name|escape}</em></a>
             </p>
             <p>
-                <span>价格：</span><em>{$goods.price}</em>
+                <span>价格：</span>
+                <!--{if $goods.off_price && $goods.off_price < $goods.price}-->
+                <em style="text-decoration: line-through">{$goods.price}</em>
+                <em style="margin-left: 5px;color: #f30;">{$goods.off_price}</em>
+                <!--{else}-->
+                <em>{$goods.price}</em>
+                <!--{/if}-->
             </p>
             <p>
                 <span>标签：</span><em>{$goods.tags|escape}</em>
+            </p>
+            <p>
+                <span>地址：</span><em>{$goods.address|escape}</em>
             </p>
         </li>
         <!--{/foreach}-->

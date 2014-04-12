@@ -340,7 +340,7 @@ class StoreApp extends StorebaseApp
         $goods_mod =& bm('goods', array('_store_id' => $store_id));
         $goods_list = $goods_mod->find(array(
             'conditions' => "closed = 0 AND if_show = 1 AND cate_id_1 = $c_id",
-            'fields'     => 'goods_name, default_image, price',
+            'fields'     => 'goods_name, default_image, price,effect',
             'limit'      => $num,
         ));
         foreach ($goods_list as $key => $goods)

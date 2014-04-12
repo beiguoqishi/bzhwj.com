@@ -235,7 +235,7 @@ ul, ol { list-style-type:none; }
 .major .pic img { width: 150px; height: 150px; }
 .major .pic a { display: block; width: 150px; height: 150px; padding: 7px; border: 1px solid #c4c4c4; }
 .major .pic a:hover { border: 1px solid #555; }
-.major h3 { width: 164px; height: 40px; text-align: center; overflow: hidden; margin: 10px auto; line-height: 18px; font-weight: normal; font-size: 12px; }
+.major h3 { width: 164px; text-align: center; overflow: hidden; margin: 10px auto; line-height: 18px; font-weight: normal; font-size: 12px; }
 .major h3 a { color: #666; text-decoration: none; }
 .major h3 a:hover { color: #f60; text-decoration: underline; }
 .major p { /*width: 164px; color: #fe5504; font-weight: bold; font-size: 14px; text-align: center;*/ }

@@ -119,7 +119,7 @@ class StoreInterposeApp extends StorebaseApp
                 }
                 $actual_method = $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'];
                 if (strtoupper($actual_method) == 'DELETE') {
-                    $sql = "update app_bzhwj_appointment set status = 0 where id = $id";
+                    $sql = "delete from app_bzhwj_appointment where id = $id";
                     $db =& db();
                     echo $db->query($sql);
                 } else {
@@ -159,14 +159,23 @@ class StoreInterposeApp extends StorebaseApp
 
     function _get_appointment_item_by_id($id) {
         $db =& db();
-        return $db->getrow("select * from app_bzhwj_appointment where id=$id and status > 0");
+        return $db->getrow("select * from app_bzhwj_appointment where id=$id");
     }
 
     function _get_appointment_list($store_id,$page,$limit = 20) {
         $offset = ($page - 1) * $limit;
         $db =& db();
-        $sql = "select * from app_bzhwj_appointment where store_id = $store_id and status > 0 limit $offset,$limit";
-        return $db->getall($sql);
+        $sql = "select * from app_bzhwj_appointment where store_id = $store_id limit $offset,$limit";
+        $data = $db->getall($sql);
+        foreach($data as $k => $v) {
+            $data[$k]['goods_name'] = $this->_get_goods_name_by_id($v['goods_id']);
+        }
+        return $data;
+    }
+
+    function _get_goods_name_by_id($goods_id) {
+        $db =& db();
+        return $db->getone("select goods_name from ecm_goods where goods_id = $goods_id");
     }
 
     function store_goods_edit()

@@ -30,7 +30,7 @@ class ExperimentApp extends MallbaseApp {
         $sort_order = $sort_order == 'asc' ? 'asc' : 'desc';
 
         $db =& db();
-        $page_limit = 120;
+        $page_limit = 50;
         $offset = ($page - 1) * $page_limit;
         $keyword = trim($_GET['q']);
         $where = "where experiment = 1 ";
@@ -63,6 +63,9 @@ class ExperimentApp extends MallbaseApp {
         }
         $conds .= " " . $sort_order . " limit $offset,$page_limit";
         $data = $db->getall($conds);
+        foreach ($data as $k => $v) {
+            $data[$k]['address'] = $this->_get_store_address_by_id($v['store_id']);
+        }
         $total = $db->getone('select count(*) from ecm_goods where experiment = 1');
         $total = $total % $page_limit == 0 ? $total / $page_limit : floor($total / $page_limit) + 1;
         $ctgs = $this->_get_category();
@@ -84,5 +87,15 @@ class ExperimentApp extends MallbaseApp {
             $ctgs[$k]['sub_ctgs'] = $sub;
         }
         return $ctgs;
+    }
+
+    function _get_store() {
+        $db =& db();
+        $stores = $db->getall("select store_id,store_name,address from ecm_store");
+    }
+
+    function _get_store_address_by_id($store_id) {
+        $db =& db();
+        return $db->getone("select address from ecm_store where store_id = $store_id");
     }
 }

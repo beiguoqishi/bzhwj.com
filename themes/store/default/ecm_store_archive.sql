@@ -74,3 +74,5 @@ alter table ecm_goods add index `app_c_idx`(`appoint_count`);
 
 alter table ecm_goods add column credit_count int unsigned not null default 0;
 alter table ecm_goods add index `credit_c_idx`(`credit_count`);
+
+alter table ecm_goods add column off_price double;
