@@ -55,6 +55,9 @@
         font-weight: bold;
         padding-left: 10px;
     }
+    .news .right .newest-list {
+        overflow: hidden;
+    }
     .news .right .newest-list img {
         display: block;
         margin: 0 auto;
@@ -78,7 +81,7 @@
         margin-bottom: -10000px;
     }
 
-    .news .right .newest-list.other-list li {
+    .news .right .newest-list li {
         float: left;
         width: 120px;
         margin-right: 6px;
@@ -114,7 +117,7 @@
             <!--{foreach from=$same_brands item=el}-->
             <li>
                 <a href="{$el.url|escape}" target="_self">
-                    <img style="width: 200px" src="{$el.img|escape}"><span>{$el.title|escape}</span>
+                    <img style="max-width: 100%" src="{$el.img|escape}"><span>{$el.title|escape}</span>
                 </a>
             </li>
             <!--{/foreach}-->

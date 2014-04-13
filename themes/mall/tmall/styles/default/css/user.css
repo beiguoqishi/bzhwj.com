@@ -11,7 +11,7 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 /* layout */
 .content { width: 1000px; margin: 0 auto; }
 
-#header { width: 1000px; height: 110px; margin: 0 auto; position: relative; z-index: 99; }
+#header {  margin: 0 auto; position: relative; z-index: 99; }
 .content { width: 1000px; margin: 0 auto; }
 #left { width: 180px; float: left; position: relative; background: url(../images/member/left.gif) repeat-y; }
 #right {width: 806px; float: right;padding: 5px 5px 7px; background: #f5f5f5; position: relative; }

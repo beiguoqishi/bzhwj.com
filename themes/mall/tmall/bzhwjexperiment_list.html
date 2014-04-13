@@ -111,6 +111,9 @@
         color: #b00000;
         background-color: #ccc;
     }
+    h1, .h1, h2, .h2, h3, .h3 {
+        margin: 0!important;
+    }
 </style>
 <div style="width: 1200px;margin: 0 auto;overflow: hidden;">
     <div class="hd">
@@ -132,10 +135,10 @@
         </div>
         <div class="nav-bar">
             <div class="sort">
-                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'newest'}-->cur<!--{/if}--> default-sort btn-order-click" href="/index.php?app=experiment&sort_type=newest<!--{if $sort_type == 'newest'}-->&sort_order={$sort_order}<!--{/if}-->">最新</a>
-                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'renqi'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->">人气</a>
-                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'credit'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=credit<!--{if $sort_type == 'credit'}-->&sort_order={$sort_order}<!--{/if}-->">信用</a>
-                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'price'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&sort_type=price<!--{if $sort_type == 'price'}-->&sort_order={$sort_order}<!--{/if}-->">价格</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'newest'}-->cur<!--{/if}--> default-sort btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=newest<!--{if $sort_type == 'newest'}-->&sort_order={$sort_order}<!--{/if}-->">最新</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'renqi'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->">人气</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'credit'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=credit<!--{if $sort_type == 'credit'}-->&sort_order={$sort_order}<!--{/if}-->">信用</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'price'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=price<!--{if $sort_type == 'price'}-->&sort_order={$sort_order}<!--{/if}-->">价格</a>
             </div>
             <div class="search">
                 <form action="/index.php" method="get" target="_self">

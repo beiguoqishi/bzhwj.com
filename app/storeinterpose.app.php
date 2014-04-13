@@ -147,6 +147,9 @@ class StoreInterposeApp extends StorebaseApp
                 } else {
                     $data = $this->_get_appointment_list($store_id,$page,20);
                 }
+                foreach($data as $k => $v) {
+                    $data[$k]['update_at'] = date('Y-m-d',$v['update_at']);
+                }
                 header('Content-type:application/json;charset=utf-8');
                 echo json_encode($data);
                 exit;
