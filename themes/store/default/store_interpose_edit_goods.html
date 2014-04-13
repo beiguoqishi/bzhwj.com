@@ -1,8 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>店家后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="/themes/resource/flatui/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/themes/resource/flatui/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/themes/resource/flatui/images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="/themes/resource/flatui/js/html5shiv.js"></script>
+    <script src="/themes/resource/flatui/js/respond.min.js"></script>
+    <![endif]-->
     <style type="text/css">
         .item input:not([type]) {
             width: 550px;
@@ -11,26 +26,27 @@
 </head>
 <body>
 <div style="margin-top: 20px">
+    <h3><a href="/index.php?app=storeinterpose&act=store_goods_list" target="_self">返回商品列表</a></h3>
     <h1>编辑商品信息</h1>
     <div id="goods_item">
         <input name="goods_id" type="hidden" value="{$goods_id}">
-        <p class="item">
-            <span>商品名称：</span><input name="goods[goods_name]" value="{$goods.goods_name|escape}">
+        <p class="item input-group">
+            <span class="input-group-addon">商品名称：</span><input class="form-control" name="goods[goods_name]" value="{$goods.goods_name|escape}">
         </p>
-        <p class="item">
-            <span>商品描述：</span>
+        <p class="item input-group">
+            <span class="input-group-addon">商品描述：</span>
             <textarea style="width: 300px;height: 400px;" editor="description" name="goods[description]">{$goods.description|escape}</textarea>
         </p>
-        <p class="item">
-            <span>大分类：</span>
+        <p class="item input-group">
+            <span class="input-group-addon">大分类：</span>
             <select name="goods[cate_id_1]" id="cate_id_1">
                 <!--{foreach from=$ctg_list item=ctg}-->
                 <option value="{$ctg.parent.cate_id}" <!--{if $ctg.parent.cate_id == $goods.cate_id_1}-->selected="selected"<!--{/if}-->>{$ctg.parent.cate_name|escape}</option>
                 <!--{/foreach}-->
             </select>
         </p>
-        <p class="item">
-            <span>小分类：</span>
+        <p class="item input-group">
+            <span class="input-group-addon">小分类：</span>
             <script>
                 var sub_ctgs = {},cate_id_2 = {$goods.cate_id_2|default:0};
             </script>
@@ -42,43 +58,43 @@
             </script>
             <!--{/foreach}-->
         </p>
-        <div class="item">
-            <span>图片：</span>
-            <input name="goods[default_image]" value="{$goods.default_image|escape}">
+        <div class="item input-group">
+            <span class="input-group-addon">图片：</span>
+            <input class="" name="goods[default_image]" value="{$goods.default_image|escape}">
             <form class="upload-file-form" enctype="multipart/form-data" method="post" target="bridge_win" action="http://admin.bzhwj.com/generaldata/upload">
                 <input type="file" name="fileinfo">
                 <input type="submit" value="上传">
                 <iframe name="bridge_win" src="http://admin.bzhwj.com/generaldata/bridge" style="display: none"></iframe>
            </form>
         </div>
-        <p class="item">
-            <span>价格：</span>
-            <input name="goods[price]" value="{$goods.price}">
+        <p class="item input-group">
+            <span class="input-group-addon">价格：</span>
+            <input class="form-control" name="goods[price]" value="{$goods.price}">
         </p>
-        <p class="item">
-            <span>打折价：</span>
-            <input type="text" name="goods[off_price]" value="{$goods.off_price}"/>
+        <p class="item input-group">
+            <span class="input-group-addon">打折价：</span>
+            <input class="form-control" name="goods[off_price]" value="{$goods.off_price}"/>
         </p>
-        <p class="item">
-            <span>品牌：</span>
-            <input name="goods[brand]" value="{$goods.brand|escape}">
+        <p class="item input-group">
+            <span class="input-group-addon">品牌：</span>
+            <input class="form-control" name="goods[brand]" value="{$goods.brand|escape}">
         </p>
-        <p class="item">
-            <span>标签：</span>
-            <input name="goods[tags]" value="{$goods.tags|escape}">
+        <p class="item input-group">
+            <span class="input-group-addon">标签：</span>
+            <input class="form-control" name="goods[tags]" value="{$goods.tags|escape}">
         </p>
-        <p class="item">
-            <span>功效：</span>
-            <input name="goods[effect]" value="{$goods.effect|escape}">
+        <p class="item input-group">
+            <span class="input-group-addon">功效：</span>
+            <input class="form-control" name="goods[effect]" value="{$goods.effect|escape}">
         </p>
-        <p class="item">
-            <span>适用人群：</span>
-            <input name="goods[suit_people]" value="{$goods.suit_people|escape}">
+        <p class="item input-group">
+            <span class="input-group-addon">适用人群：</span>
+            <input class="form-control" name="goods[suit_people]" value="{$goods.suit_people|escape}">
         </p>
         <!--{if $lianbao_auth == 1}-->
-        <p class="item">
-            <span>百真联保：</span>
-            <input name="goods[lianbao]" id="lianbao" type="checkbox" <!--{if $goods.lianbao > 0}-->checked=""<!--{/if}--> value="{$goods.lianbao|default:0}">
+        <p class="item ">
+            <span class="">百真联保：</span>
+            <input class="" name="goods[lianbao]" id="lianbao" type="checkbox" <!--{if $goods.lianbao > 0}-->checked=""<!--{/if}--> value="{$goods.lianbao|default:0}">
         </p>
         <!--{/if}-->
         <div id="pic_area" class="item" style="margin-top: 30px">
@@ -165,18 +181,23 @@
     var global = window;
     global.callback = function (data) {
         var attachmentInput = global.attachmentInput,preImg;
-        attachmentInput.val(htmlEscape(data.imgurl));
-        if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
-            preImg.attr('src',data.imgurl);
+        if (attachmentInput) {
+            attachmentInput.val(htmlEscape(data.imgurl));
+            if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
+                preImg.attr('src',data.imgurl);
+            }
         }
+
     };
     global.addEventListener('message',function(e) {
-        console.log(e);
         var data = e.data,attachmentInput = global.attachmentInput,preImg;
-        attachmentInput.val(htmlEscape(data.imgurl));
-        if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
-            preImg.attr('src',data.imgurl);
+        if (attachmentInput) {
+            attachmentInput.val(htmlEscape(data.imgurl));
+            if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
+                preImg.attr('src',data.imgurl);
+            }
         }
+
     },false);
     $('body').on('mousedown', '.upload-file-form input[type="submit"]', function (e) {
         global.attachmentInput = $(this).parents('.upload-file-form:eq(0)').prev();
@@ -256,5 +277,7 @@
         el.data('editor',editor);
     });
 </script>
+<script src="http://www.hao123.com/resource/erji/public/js/autoheight-client.js"></script>
+<script>autoheight.config = { "id":"main_frame",  "interval":"50",  "url":"http://lady.hao123.com/resource/erji/public/js/delegate.html", "origin":"*", "query":function(){} };</script>
 </body>
 </html>

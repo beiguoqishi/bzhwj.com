@@ -1,8 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>店家后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="/themes/resource/flatui/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/themes/resource/flatui/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/themes/resource/flatui/images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="/themes/resource/flatui/js/html5shiv.js"></script>
+    <script src="/themes/resource/flatui/js/respond.min.js"></script>
+    <![endif]-->
     <style type="text/css">
         input:not([type]) {
             width: 550px;
@@ -28,12 +43,12 @@
     <div id="info_list">
         <input type="hidden" name="act" id="act" value="{$act}">
 
-        <div class="item">
-            <span class="tle">美容院概况</span>
+        <div class="item input-group">
+            <span class="input-group-addon">美容院概况</span>
             <textarea editor="intro" id="entity_intro" name="entity[intro]">{$archive.intro|escape}</textarea>
         </div>
-        <div class="item">
-            <span class="tle">工商注册信息</span>
+        <div class="item input-group">
+            <span class="input-group-addon">工商注册信息</span>
             <textarea editor="business_info" id="entity_business_info" name="entity[business_info]">{$archive.business_info|escape}</textarea>
         </div>
         <div id="pic_area" class="item" style="margin-top: 30px">
@@ -118,17 +133,20 @@
     var global = window;
     global.callback = function (data) {
         var attachmentInput = global.attachmentInput,preImg;
-        attachmentInput.val(htmlEscape(data.imgurl));
-        if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
-            preImg.attr('src',data.imgurl);
+        if (attachmentInput) {
+            attachmentInput.val(htmlEscape(data.imgurl));
+            if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
+                preImg.attr('src',data.imgurl);
+            }
         }
     };
     global.addEventListener('message',function(e) {
-        console.log(e);
         var data = e.data,attachmentInput = global.attachmentInput,preImg;
-        attachmentInput.val(htmlEscape(data.imgurl));
-        if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
-            preImg.attr('src',data.imgurl);
+        if (attachmentInput) {
+            attachmentInput.val(htmlEscape(data.imgurl));
+            if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
+                preImg.attr('src',data.imgurl);
+            }
         }
     },false);
     $('body').on('mousedown', '.upload-file-form input[type="submit"]', function (e) {
@@ -185,5 +203,7 @@
         });
     });
 </script>
+<script src="http://www.hao123.com/resource/erji/public/js/autoheight-client.js"></script>
+<script>autoheight.config = { "id":"main_frame",  "interval":"50",  "url":"http://lady.hao123.com/resource/erji/public/js/delegate.html", "origin":"*", "query":function(){} };</script>
 </body>
 </html>

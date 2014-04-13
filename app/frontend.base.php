@@ -23,6 +23,14 @@ class FrontendApp extends ECBaseApp
             $this->show_warning(Conf::get('closed_reason'));
             exit;
         }
+        $cms = &m('tmall_cms');
+        $this->assign('recommend_search',$cms->get_manual_data('bzhwj',0,'search_recommend'));
+
+        import('init.lib');
+        $position = array();
+        $init = new Init_FrontendApp();
+        $categories= $init->_get_header_gcategories(0,$position);// 参数说明（二级分类显示数量,弹出层位置）
+        $this->assign('g_categories',$categories);
         # 在运行action之前，无法访问到visitor对象
     }
     function _config_view()
@@ -427,6 +435,8 @@ class MallbaseApp extends FrontendApp
 
             return;
         }
+        $cms = &m('tmall_cms');
+        $this->assign('recommend_search',$cms->get_manual_data('bzhwj',0,'search_recommend'));
 
         parent::_run_action();
     }

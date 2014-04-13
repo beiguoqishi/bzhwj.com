@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
     <meta charset="utf-8">
+    <title>店家后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="/themes/resource/flatui/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/themes/resource/flatui/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/themes/resource/flatui/images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="/themes/resource/flatui/js/html5shiv.js"></script>
+    <script src="/themes/resource/flatui/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-<a href="/index.php?app=storeinterpose&act=store_goods_edit" target="_blank">增加商品</a>
+<h3><a href="/index.php?app=storeinterpose&act=store_goods_edit" target="_self">增加商品</a></h3>
 <div style="margin-top: 20px">
     <h1>商品列表<i style="color: #f30;font-size: 14px">(预约体验最多只能选择5个商品)</i></h1>
     <!--{if $goods_list}-->
-    <ul>
+    <ul class="list-group">
         <!--{foreach from=$goods_list item=goods}-->
-        <li>
-            <a href="/index.php?app=storeinterpose&act=store_goods_edit&id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+        <li class="list-group-item">
+            <a href="/index.php?app=storeinterpose&act=store_goods_edit&id={$goods.goods_id}" target="_self">{$goods.goods_name|escape}</a>
             <!--{if $appoint_auth== 1}-->
             <span style="margin: 0 10px;"><b>预约体验</b><input data-id="{$goods.goods_id}" class="experiment" type="checkbox" <!--{if $goods.experiment == 1}-->checked=""<!--{/if}-->></span>
             <!--{/if}-->
@@ -56,5 +71,7 @@ $('body').on('change','input.experiment',function(e) {
 
 });
 </script>
+<script src="http://www.hao123.com/resource/erji/public/js/autoheight-client.js"></script>
+<script>autoheight.config = { "id":"main_frame",  "interval":"50",  "url":"http://lady.hao123.com/resource/erji/public/js/delegate.html", "origin":"*", "query":function(){} };</script>
 </body>
 </html>

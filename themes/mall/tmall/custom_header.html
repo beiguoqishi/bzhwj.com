@@ -159,5 +159,46 @@
             </div>
         </div>
     </div>
-    <div style="background-color: #8E0000;height: 30px"></div>
+    <div style="background-color: #8E0000;height: 30px" class="w-full mall-nav">
+        <ul class="w clearfix">
+            <li style="width:240px;height:30px;display:block;" class="float-left"></li>
+            <li class="each float-left inline-block"><a class="" href="/">首页</a></li>
+            <li class="each float-left inline-block"><a class="" href="http://www.bzhwj.com/index.php?app=experiment">体验店</a></li>
+        </ul>
+    </div>
+    <!--{if !$index}-->
+    <div class="w"  style="height:0px;">
+        <div class="category" id="category" style="position: relative; top:-30px;">
+            <h2 class="title">
+                <a href="index.php?app=category">所有商品分类</a>
+            </h2>
+            <div  style="background:#fff;display:none;" class="menu header_menu">
+                <ul>
+                    <!--{foreach from=$g_categories.gcategories item=category name=fe_cate}-->
+                    <li style="border-right: 1px solid #e6e6e6;" class="each each{$smarty.foreach.fe_cate.iteration} {if $smarty.foreach.fe_cate.iteration % 2 == 0}background{/if}" id="cat_{$smarty.foreach.fe_cate.iteration}">
+                        <h3 class="each-hd each-hd{$smarty.foreach.fe_cate.iteration}"><s></s><a class="first_cate" href="{url app=search&cate_id=$category.id}">{$category.value}</a></h3>
+                        <p class="each-col eachCol1">
+                            <!--{foreach from=$category.children item=child name=fe_child}-->
+                            <!--{if $smarty.foreach.fe_child.iteration le 5}-->
+                            <a href="index.php?app=search&cate_id={$child.id}" title="{$child.value}" >{$child.value}</a>
+                            <!--{/if}-->
+                            <!--{/foreach}-->
+                            <b class="overlay odd" style="opacity: 0; visibility: hidden; box-shadow: 0px 2px 2px rgb(170, 170, 170);"></b>
+                        </p>
+                        <p class="each-col">
+                            <!--{foreach from=$category.children item=child name=fe_child}-->
+                            <!--{if $smarty.foreach.fe_child.iteration gt 5 && $smarty.foreach.fe_child.iteration le 10}-->
+                            <a href="index.php?app=search&cate_id={$child.id}" title="{$child.value}" >{$child.value}</a>
+                            <!--{/if}-->
+                            <!--{/foreach}-->
+                            <b class="overlay even" style="opacity: 0; visibility: hidden; box-shadow: 0px -2px 2px rgb(170, 170, 170);"></b>
+                        </p>
+                        <s class="menuIcon"></s>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
 </div>

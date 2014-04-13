@@ -1,40 +1,58 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <base href="{$site_url}/" target="_blank"/>
-    <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
-    {$page_seo}
+    <base href="/" />
 
-    <meta name="author" content="Cengnlaeng" />
-    <meta name="generator" content="Bluefish 2.2.2" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>3D基因 - 百真无假官方店-美业美容信息平台</title>
+    <meta name="description" content="生物活..." />
+    <meta name="keywords" content="生化美容,3D基因,,抗衰功能" />
+
+    <meta name="author" content="ecmall.shopex.cn" />
     <meta name="copyright" content="ShopEx Inc. All Rights Reserved" />
-
-    <link type="text/css" href="{res file=css/header.css}" rel="stylesheet" />
-    <link type="text/css" href="{res file=css/footer.css}" rel="stylesheet" />
-    <link type="text/css" href="{res file=css/main.css}" rel="stylesheet" />
-    <link type="text/css" href="{res file=css/tmall.css}" rel="stylesheet" />
-
+    <link href="/themes/store/default/styles/default/shop.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/themes/store/default/styles/default/jqzoom.css"  />
+    <link type="text/css" href="/themes/mall/tmall/styles/default/css/header.css" rel="stylesheet" />
+    <link type="text/css" href="/themes/mall/tmall/styles/default/css/footer.css" rel="stylesheet" />
+    <link type="text/css" href="/themes/mall/tmall/styles/default/css/main.css" rel="stylesheet" />
+    <link type="text/css" href="/themes/mall/tmall/styles/default/css/tmall.css" rel="stylesheet" />
     <script type="text/javascript" src="index.php?act=jslang"></script>
-    <script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
-    <script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
-    <script type="text/javascript" src="{lib file=cart.js}" charset="utf-8"></script>
-    <script type="text/javascript" src="{res file=js/main.js}" charset="utf-8"></script>
-    <script type="text/javascript" src="{lib file=kissy/build/kissy.js}"></script>
-    <script type="text/javascript" src="{lib file=kissy/build/switchable/switchable-pkg.js}"></script>
+    <script type="text/javascript" src="http://www.bzhwj.com/includes/libraries/javascript/jquery.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://www.bzhwj.com/includes/libraries/javascript/ecmall.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://www.bzhwj.com/includes/libraries/javascript/cart.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/themes/mall/tmall/styles/default/js/main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://www.bzhwj.com/includes/libraries/javascript/kissy/build/kissy.js"></script>
+    <script type="text/javascript" src="http://www.bzhwj.com/includes/libraries/javascript/kissy/build/switchable/switchable-pkg.js"></script>
     <!--[if lte IE 6]>
-    <script type="text/javascript" language="Javascript" src="{res file=js/hoverForIE6.js}"></script>
+    <script type="text/javascript" language="Javascript" src="/themes/mall/tmall/styles/default/js/hoverForIE6.js"></script>
     <![endif]-->
 
     <script type="text/javascript">
         //<!CDATA[
-        var SITE_URL = "{$site_url}";
-        var REAL_SITE_URL = "{$real_site_url}";
-        var PRICE_FORMAT = '{$price_format}';
+        var SITE_URL = "";
+        var REAL_SITE_URL = "http://www.bzhwj.com";
+        var PRICE_FORMAT = '&yen;%s';
         //]]>
     </script>
 
-    {$_head_tags}
-    <!--<editmode></editmode>-->
+    <script type="text/javascript">
+        //<!CDATA[
+        var SITE_URL = "";
+        var REAL_SITE_URL = "http://www.bzhwj.com";
+        var PRICE_FORMAT = '&yen;%s';
+
+        $(function(){
+            var span = $("#child_nav");
+            span.hover(function(){
+                $("#float_layer:not(:animated)").show();
+            }, function(){
+                $("#float_layer").hide();
+            });
+        });
+        //]]>
+    </script>
+    <script charset="utf-8" type="text/javascript" src="http://www.bzhwj.com/includes/libraries/javascript/jquery.jqzoom.js" ></script>
 </head>
 <body>
 <div id="site-nav" class="w-full">
@@ -78,4 +96,225 @@
             </li>
         </ul>
     </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        //首页左侧分类菜单
+        var arr=$('li.each');
+        $(".menu ul").find("li.each").each(
+                function() {
+                    $(this).hover(
+                            function() {
+                                menu = $("#" + this.id + "_menu");
+                                li_top = $(this).position().top;
+                                var i = li_top/2;
+                                menu.css("top", -i);
+
+                                menu.children('div.subView').removeClass('hidden');
+                                $(this).addClass("selected");
+                                menu.css('width','755px').css('display','block');
+                            },
+                            function() {
+                                $("#" + this.id + "_menu").css('width', '0');
+                                $("#" + this.id + "_menu").children('div.subView').addClass('hidden');
+                                $(this).removeClass("selected");
+                            }
+                    );
+                }
+        );
+        $('.category').hover(
+                function(){
+                    $(this).children('.header_menu').show();
+                },
+                function(){
+                    $(this).children('.header_menu').hide();
+                }
+        );
+    });
+    <!--{if $index}-->
+    $(function(){
+        $('.mallLeft .category h2.title b').click(function (){
+            $(this).addClass('selected').siblings('b').removeClass('selected');
+            if($(this).hasClass('expandCat')){
+                $('.menu ul li.each p.each-col').css({'height':'21px','line-height':'21px'});
+                $('.menu ul li.each p.eachCol1').css('padding-top','6px');
+            }
+            else{
+                $('.menu ul li.each p.each-col').css({'height':'0','line-height':'0'});
+                $('.menu ul li.each p.eachCol1').css('padding-top','0');
+            }
+        })
+    });
+    //左侧仿天猫分类
+    window.onscroll=function cate()
+    {
+        var a=$(document).scrollTop();
+        if(a>93){
+            $('.category').css('position','fixed');
+        }
+        else{
+            $('#category').css('position','relative');
+        }
+        if($('.mallLeft .category h2.title b.simpleCat').hasClass('selected'))
+        {
+            $('.menu ul li.each p.each-col').css({'height':'0','line-height':'0'});
+            $('.menu ul li.each p.eachCol1').css('padding-top','0');
+        }
+        else {
+            var arr=$('.menu li.each').length;
+            for(var i=1;i<=arr;i++){
+                if(a>(70+i*80)){
+                    $('.menu ul li.each'+i+' p.each-col').css({'height':'0','line-height':'0'});
+                    $('.menu ul li.each'+i+' p.eachCol1').css('padding-top','0');
+                }
+                else{
+                    $('.menu ul li.each'+i+' p.each-col').css({'height':'21px','line-height':'21px'});
+                    $('.menu ul li.each'+i+' p.eachCol1').css('padding-top','6px');
+                }
+                if(a>(70+arr*80))
+                {
+                    $('.mallLeft .category h2.title b').hide();
+                }
+                else{
+                    $('.mallLeft .category h2.title b').show();
+                }
+            }
+            $('#J_BrandAd .brandRight').prev('.brandAd').addClass('none1');
+
+        }
+
+    }
+    <!--{/if}-->
+    $('body').click(mouseLocation);
+    function mouseLocation(e)
+    {
+        var l=(document.body.clientWidth-1200)/2+575;
+        if (e.pageX < l ||
+                e.pageX > (l + $('.form-fields').outerWidth()-75) ||
+                e.pageY < 53 ||
+                e.pageY > (53+93 + $('.form-fields').outerHeight()))
+        {
+            $('.type_of_search').hide();
+        }
+    }
+    $(function(){
+        $('.type_of_search li').click(function(){
+            var act=$(this).attr('entype');
+            var v=$('[name=keyword]').val();
+            window.location.href=REAL_SITE_URL+"/index.php?app=search&act="+act+"&keyword="+v
+        });
+        $('.heyword').focus(function(){
+            $('.type_of_search').show();
+        });
+    })
+    //针对中文输入法用鼠标选择时无法获取中文的情况
+    function getInputValue(val){
+        $(function(){
+            $('.type_of_search li b').html(val);
+            if(val == '' || val == '搜索其实很容易')
+            {
+                $('.type_of_search').hide();
+            }else{
+                $('.type_of_search').show();
+            }
+        })
+    }
+</script>
+<div id="header" class="w-full">
+    <div class="shop-t w clearfix pb10 mb5 pt5">
+        <div class="logo mt10">
+            <a href="{$site_url}" title="{$site_title}"><img alt="{$site_title}" src="{$site_logo}" /></a>
+        </div>
+        <div class="top-search">
+            <div class="top-search-box clearfix">
+                <div class="top-hot-re search-hot-re">
+                    <!--{if $recommend_search}-->
+                    <!--{foreach from=$recommend_search[0] item=re}-->
+                    <a href="{$re.link|escape}">{$re.title|escape}</a>
+                    <!--{/foreach}-->
+                    <!--{/if}-->
+                </div>
+                <div class="form-fields float-right search-hot-re">
+                    <form method="GET" action="{url app=search}">
+                        <input type="hidden" name="app" value="search" />
+                        <input type="hidden" name="act" value="index" />
+                        <input type="text"  autocomplete="off" name="keyword" value="{if $smarty.get.keyword}{$smarty.get.keyword}{else}搜索其实很容易{/if}" onfocus="if (this.value=='搜索其实很容易') this.value = '';"  class="keyword" style="color:#999;" oninput="getInputValue($(this).val());" onpropertychange="getInputValue($(this).val());"/>
+                        <input type="submit" value="搜索" class="submit" hidefocus="true" />
+                    </form>
+                    <ul class="type_of_search">
+                        <li entype="index"><span>搜索“<b></b>”<strong>商品</strong></span></li>
+                        <li entype="store"><span>搜索“<b></b>”<strong>店铺</strong></span></li>
+                        <!--<li entype="groupbuy"><span>搜索“<b></b>”<strong>团购</strong></span></li>   -->
+                    </ul>
+                </div>
+                <div class="btm-hot-re search-hot-re">
+                    <!--{if $recommend_search}-->
+                    <!--{foreach from=$recommend_search[1] item=re}-->
+                    <a href="{$re.link|escape}">{$re.title|escape}</a>
+                    <!--{/foreach}-->
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color: #8E0000;height: 30px" class="w-full mall-nav">
+        <ul class="w clearfix">
+            <li style="width:240px;height:30px;display:block;" class="float-left"></li>
+            <li class="each float-left inline-block"><a class="" href="/">首页</a></li>
+            <li class="each float-left inline-block"><a class="" href="http://www.bzhwj.com/index.php?app=experiment">体验店</a></li>
+        </ul>
+    </div>
+    <!--{if !$index}-->
+    <div class="w"  style="height:0px;">
+        <div class="category" id="category" style="position: relative; top:-30px;">
+            <h2 class="title">
+                <a href="index.php?app=category">所有商品分类</a>
+            </h2>
+            <div  style="background:#fff;display:none;" class="menu header_menu">
+                <ul>
+                    <!--{foreach from=$g_categories.gcategories item=category name=fe_cate}-->
+                    <li style="border-right: 1px solid #e6e6e6;" class="each each{$smarty.foreach.fe_cate.iteration} {if $smarty.foreach.fe_cate.iteration % 2 == 0}background{/if}" id="cat_{$smarty.foreach.fe_cate.iteration}">
+                        <h3 class="each-hd each-hd{$smarty.foreach.fe_cate.iteration}"><s></s><a class="first_cate" href="{url app=search&cate_id=$category.id}">{$category.value}</a></h3>
+                        <p class="each-col eachCol1">
+                            <!--{foreach from=$category.children item=child name=fe_child}-->
+                            <!--{if $smarty.foreach.fe_child.iteration le 5}-->
+                            <a href="index.php?app=search&cate_id={$child.id}" title="{$child.value}" >{$child.value}</a>
+                            <!--{/if}-->
+                            <!--{/foreach}-->
+                            <b class="overlay odd" style="opacity: 0; visibility: hidden; box-shadow: 0px 2px 2px rgb(170, 170, 170);"></b>
+                        </p>
+                        <p class="each-col">
+                            <!--{foreach from=$category.children item=child name=fe_child}-->
+                            <!--{if $smarty.foreach.fe_child.iteration gt 5 && $smarty.foreach.fe_child.iteration le 10}-->
+                            <a href="index.php?app=search&cate_id={$child.id}" title="{$child.value}" >{$child.value}</a>
+                            <!--{/if}-->
+                            <!--{/foreach}-->
+                            <b class="overlay even" style="opacity: 0; visibility: hidden; box-shadow: 0px -2px 2px rgb(170, 170, 170);"></b>
+                        </p>
+                        <s class="menuIcon"></s>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+</div>
+<div id="nav">
+    <div class="banner"><a href="{url app=store&id=$store.store_id}">
+        <img src="{$store.store_banner}" width="1000" height="120" />
+    </a></div>
+
+    <ul>
+        <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'index'}active{else}normal{/if}" href="{url app=store&id=$store.store_id}"><span>{$lang.store_index}</span></a></li>
+        {if $store.functions.groupbuy and $store.enable_groupbuy}
+        <li><a class="{if $smarty.get.app eq 'groupbuy' or $smarty.get.act eq 'groupbuy'}active{else}normal{/if}" href="{url app=store&act=groupbuy&id=$store.store_id}"><span>{$lang.nav_groupbuy}</span></a></li>
+        {/if}
+        <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'article'}active{else}normal{/if}" href="{url app=store&act=article&id=6&store_id=$store.store_id}"><span>美容院档案</span></a></li>
+        <!--<li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'credit'}active{else}normal{/if}" href="{url app=store&act=credit&id=$store.store_id}"><span>会员社区</span></a></li>-->
+        <a class="collection" href="javascript:collect_store({$store.store_id})">{$lang.collect_the_store}</a>
+    </ul>
+
+    <div class="nav_bg"></div>
 </div>

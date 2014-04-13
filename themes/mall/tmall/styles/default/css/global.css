@@ -140,10 +140,10 @@ a:hover{color:#B00000; text-decoration:none}
 #site-nav .quick-menu li {float:left; margin-left:-1px;padding-top:1px;padding-bottom:0px;position:relative;}
 #site-nav .quick-menu li.home,
 #site-nav .quick-menu li.login_area{line-height:36px!important;padding-left:10px;padding-right:10px;background:none;color:#6c6c6c}
-#site-nav .quick-menu li.login_area a{line-height:24px;}
+#site-nav .quick-menu li.login_area a{}
 #site-nav .quick-menu li.login_area a:hover{color:#f30;text-decoration:underline}
 #site-nav .quick-menu li.service{padding-left:10px;padding-right:10px;}
-#site-nav .quick-menu li.service a{line-height:24px;}
+#site-nav .quick-menu li.service a{}
 
 #site-nav .menu-hd { position:relative; display:block;_display:inline-block;padding-bottom:0px;padding-left:10px;padding-right:22px;padding-top:1px; height:20px;line-height:17px; margin:3px 1px 0px; cursor:pointer; z-index:901;margin-top:8px!important;}
 #site-nav .sites .menu-hd{width:48px;}

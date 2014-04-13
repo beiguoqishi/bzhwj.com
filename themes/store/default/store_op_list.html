@@ -1,42 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>店家后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="/themes/resource/flatui/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/themes/resource/flatui/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/themes/resource/flatui/images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="/themes/resource/flatui/js/html5shiv.js"></script>
+    <script src="/themes/resource/flatui/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-<h1>店家操作列表</h1>
-<ul>
-    <li>
-        <h2>
-            <a href="/index.php?app=storeinterpose&act=store_goods_list" target="_blank">商品管理</a>
-        </h2>
-    </li>
-    <li>
-        <h2>
-            <a href="/index.php?app=storeinterpose&act=store_archive_edit" target="_blank">美容院档案管理</a>
-        </h2>
-    </li>
-    <li>
-        <h2>
-            <a href="/index.php?app=my_store" target="_blank">修改店铺信息</a>
-        </h2>
-    </li>
-    <li>
-        <h2>
-            <a href="/index.php?app=storeinterpose&act=store_appointment_op">预约体验单列表</a>
-        </h2>
-    </li>
-    <!--<li>-->
-        <!--<h2>-->
-            <!--<a href="/index.php?app=storeinterpose&act=store_fengyun_people" target="_blank">风云人物</a>-->
-        <!--</h2>-->
-    <!--</li>-->
-    <!--<li>-->
-        <!--<h2>-->
-            <!--<a href="/index.php?app=storeinterpose&act=store_tuijian_goods" target="_blank">精品项目推荐</a>-->
-        <!--</h2>-->
-    <!--</li>-->
-</ul>
+<div class="container">
+    <h3>百真无假店家管理后台</h3>
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left" id="channels">
+                <li>
+                    <a href="javascript:void(0)" url="/index.php?app=storeinterpose&act=store_goods_list" target="_blank">商品管理</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" url="/index.php?app=storeinterpose&act=store_archive_edit" target="_blank">美容院档案管理</a>
+                </li>
+                <li class="default-link">
+                    <a href="/index.php?app=my_store" target="_blank">修改店铺信息</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" url="/index.php?app=storeinterpose&act=store_appointment_op">预约体验单列表</a>
+                </li>
+                <!--<li>-->
+                <!--<h2>-->
+                <!--<a href="/index.php?app=storeinterpose&act=store_fengyun_people" target="_blank">风云人物</a>-->
+                <!--</h2>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<h2>-->
+                <!--<a href="/index.php?app=storeinterpose&act=store_tuijian_goods" target="_blank">精品项目推荐</a>-->
+                <!--</h2>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </nav>
+    <div class="tabs" id="tabs">
+        <iframe src="" frameborder="0" style="width: 100%;border: none;margin: 0;padding: 0;overflow: hidden;" id="main_frame" scrolling="no"></iframe>
+    </div>
+</div>
+<script src="/themes/resource/flatui/js/jquery-1.8.3.min.js"></script>
+<script src="/themes/resource/flatui/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/themes/resource/flatui/js/jquery.ui.touch-punch.min.js"></script>
+<script src="/themes/resource/flatui/js/bootstrap.min.js"></script>
+<script src="/themes/resource/flatui/js/bootstrap-select.js"></script>
+<script src="/themes/resource/flatui/js/bootstrap-switch.js"></script>
+<script src="/themes/resource/flatui/js/flatui-checkbox.js"></script>
+<script src="/themes/resource/flatui/js/flatui-radio.js"></script>
+<script src="/themes/resource/flatui/js/jquery.tagsinput.js"></script>
+<script src="/themes/resource/flatui/js/jquery.placeholder.js"></script>
+<script src="/themes/resource/flatui/js/application.js"></script>
+<script>
+    $('#channels').on('click','li',function(e) {
+        if (!$(this).hasClass('default-link')) {
+            $('#channels').find('li').removeClass('active');
+            var $this = $(this);
+            $this.addClass('active');
+            $('#main_frame').attr('src',$this.find('a').attr('url'));
+            autoheight.listen("main_frame");
+            e.preventDefault();
+        }
+    });
+</script>
+<script src="http://lady.hao123.com/resource/lady/pkg/aio_7144f5c.js"></script>
+<script>
+    autoheight.listen("main_frame");
+    $('#channels').find('li').first().trigger('click');
+</script>
 </body>
 </html>
