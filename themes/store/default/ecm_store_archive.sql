@@ -76,8 +76,3 @@ alter table ecm_goods add column credit_count int unsigned not null default 0;
 alter table ecm_goods add index `credit_c_idx`(`credit_count`);
 
 alter table ecm_goods add column off_price double;
-
-create table app_bzhwj_comment(
-  `id` int unsigned not null auto_increment ,
-
-) ENGINE=InnoDB CHARSET = utf8;
