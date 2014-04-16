@@ -79,6 +79,13 @@ class FrontendApp extends ECBaseApp
         $keywords = explode(',', conf::get('hot_search'));
         return $keywords;
     }
+
+    function get_user_id() {
+        if ($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_id']) > 0) {
+            return intval($_SESSION['user_info']['user_id']);
+        }
+        return 0;
+    }
 	
     function login()
     {

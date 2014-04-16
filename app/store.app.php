@@ -196,6 +196,91 @@ class StoreApp extends StorebaseApp
         $this->display('store.article.html');
     }
 
+    function _get_user_name_by_id($user_id) {
+        $db =& db();
+        return $db->getone("select user_name from ecm_member where user_id=$user_id");
+    }
+
+    function _format_comments($comments) {
+        foreach($comments as $k => $v) {
+            $comments[$k]['user_name'] = $this->_get_user_name_by_id($v['user_id']);
+        }
+        return $comments;
+    }
+
+    function member() {
+        $store_id = intval($_GET['store_id']);
+        if (!$store_id) {
+            header("Location:/");
+            exit;
+        }
+        $page = intval($_GET['page']);
+        $page = $page < 1 ? 1 : $page;
+        $page_size = 20;
+        $comments = $this->_get_store_comment($store_id,$page,$page_size);
+        $this->assign('comments',$comments);
+        $total = $this->_get_total_page($store_id,$page_size);
+        $this->assign('total',$total);
+        $this->assign('page',$page);
+        $prev_page = ($page - 1) < 1 ? 1 : $page - 1;
+        $next_page = ($page + 1) > $total ? $total : $page + 1;
+        $this->assign('prev_page',$prev_page);
+        $this->assign('next_page',$next_page);
+        $total_array = array();
+        for ($i = 1;$i <= $total;$i++) {
+            $total_array[] = $i;
+        }
+
+        $this->assign('total_array',$total_array);
+        $this->set_store($store_id);
+        $store = $this->get_store_data();
+        $this->assign('store', $store);
+
+        /* 当前位置 */
+        $this->_curlocal(LANG::get('all_stores'), 'index.php?app=search&amp;act=store',
+            $store['store_name'], 'index.php?app=store&amp;id=' . $store['store_id'],
+            $store['store_name']
+        );
+
+        $this->_config_seo('title', $store['store_name'] . ' - ' . $store['store_name']);
+        $this->display('store.member.html');
+    }
+
+    function _get_total_page($store_id,$page_size = 20) {
+        $db =& db();
+        $count = $db->getone("select count(*) from app_bzhwj_comment where store_id=$store_id and status > 0");
+        $total = $count % $page_size == 0 ? $count / $page_size : ceil($count / $page_size);
+        return min(10,$total);
+    }
+
+    function member_publish_comment() {
+        $store_id = $_POST['store_id'];
+        $cnt = $_POST['cnt'];
+        $user_id = $this->get_user_id();
+        if (!$user_id) {
+            echo -1;
+            exit;
+        }
+        $db =& db();
+        $sql = "insert into app_bzhwj_comment set user_id = $user_id,store_id = $store_id,cnt='" . mysql_real_escape_string($cnt) . "',create_at=" . time() . ",update_at=" . time();
+        echo $db->query($sql);
+    }
+
+    function _get_store_comment($store_id,$page = 1,$page_size = 20) {
+        $offset = ($page - 1) * $page_size;
+        $db =& db();
+        $sql = "select * from app_bzhwj_comment where store_id = $store_id  and follower_id = 0 and status > 0 order by id desc limit $offset,$page_size";
+        $comment = $db->getall($sql);
+        $comment = $this->_format_comments($comment);
+        foreach($comment as $k => $v) {
+            $sql = "select * from app_bzhwj_comment where store_id = $store_id and follower_id = " . $v['id'] . " and status > 0 order by id";
+            $sub_comment = $db->getall($sql);
+            $sub_comment = $this->_format_comments($sub_comment);
+            $comment[$k]['sub_comments'] = $sub_comment;
+        }
+        return $comment;
+    }
+
     function recommend_goods() {
         $id = empty($_GET['goods_id']) ? 0 : intval($_GET['goods_id']);
         $store_id = empty($_GET['store_id']) ? 0 : intval($_GET['store_id']);

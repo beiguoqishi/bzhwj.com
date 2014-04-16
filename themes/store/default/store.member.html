@@ -1,0 +1,167 @@
+{include file=bzhwj_top.html}
+<style type="text/css">
+    #right {
+        border: 1px solid #ffe3a4;
+    }
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.428571429;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    .btn-warning {
+        color: #fff;
+        background-color: #f0ad4e;
+        border-color: #eea236;
+    }
+    #comment_cnt {
+        display: block;
+        width: 700px;
+        margin: 0 auto;
+        height: 100px;
+        padding: 1em;
+    }
+    .comment_area {
+        text-align: center;
+        border-top: 1px solid #ffe3a4;
+        padding-top: 15px;
+    }
+    #publish_comment {
+        margin: 20px 0;
+    }
+    .comment-list {
+        padding: 10px;
+        color: #333;
+        font-size: 14px;
+    }
+    .comment-list .l1-list .seg {
+        overflow: hidden;
+        margin-top: 5px;
+    }
+    .comment-list .l1-list .l1-seg * {
+        font-size: 14px;
+    }
+    .comment-list .l1-list .l1-item {
+        margin: 10px 0;
+    }
+    .comment-list .l2-list .l2-item {
+        margin: 8px 0;
+    }
+    .comment-list .l1-list .user-name {
+        color: #5d7895;
+        float: left;
+        margin-right: 8px;
+    }
+    .comment-list .l2-list {
+        font-size: 12px;
+        overflow: hidden;
+        padding-left: 32px;
+        background-color: #fafafa;
+        margin-top: 5px;
+    }
+    .pager {
+        margin: 15px auto;
+        text-align: center;
+    }
+
+    .pager a {
+        padding: 5px 8px;
+        margin: 0 3px;
+    }
+    .pager a.slibing {
+        border: 1px solid #ffe34a;
+        background-color: #ff8e00;
+        color: white;
+    }
+    .pager a.page-item.cur {
+        border: 1px solid #ffe34a;
+        background-color: #f1c40f;
+    }
+</style>
+<div id="content">
+    <div id="left">
+        {include file=left.html}
+    </div>
+
+    <div id="right">
+        <div class="comment-list">
+            <!--{if $comments}-->
+            <ul class="l1-list">
+            <!--{foreach from=$comments item=comment}-->
+            <li class="l1-item">
+                <div class="l1-seg seg">
+                    <em class="member-name user-name">{$comment.user_name|escape}:</em>
+                    <p class="c-cnt">{$comment.cnt|escape}</p>
+                </div>
+                <!--{if $comment.sub_comments}-->
+                <ul class="l2-list">
+                    <!--{foreach from=$comment.sub_comments item=sub}-->
+                    <li class="l2-item">
+                       <div class="l2-seg seg">
+                           <em class="store-name user-name">院长回复:</em>
+                           <p class="c-cnt">{$sub.cnt|escape}</p>
+                       </div>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+                <!--{/if}-->
+            </li>
+            <!--{/foreach}-->
+            </ul>
+            <!--{/if}-->
+            <!--{if $total}-->
+            <div class="pager">
+                <a href="/index.php?app=store&act=member&store_id=14&page={$prev_page}" class="prev slibing" target="_self">上一页</a>
+                <!--{foreach from=$total_array item=i}-->
+                <a href="/index.php?app=store&act=member&store_id=14&page={$i}" target="_self" class="page-item <!--{if $i==$page}-->cur<!--{/if}-->">{$i}</a>
+                <!--{/foreach}-->
+                <a href="/index.php?app=store&act=member&store_id=14&page={$next_page}" class="next slibing" target="_self">下一页</a>
+            </div>
+            <!--{/if}-->
+        </div>
+        <div class="comment_area">
+            <textarea id="comment_cnt" placeholder="输入内容..."></textarea>
+            <button type="button" class="btn btn-warning" id="publish_comment">发表</button>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<script>
+    var store_id = {$store.store_id};
+    $('#publish_comment').on('click',function(e) {
+        var cnt = $.trim($('#comment_cnt').val());
+        if (cnt) {
+            $.post('/index.php',{
+                app:'store',
+                act:'member_publish_comment',
+                store_id:store_id,
+                cnt:cnt
+            },function(d) {
+                if (d >= 0) {
+                    alert('发表成功！');
+                    location.reload();
+                } else {
+                    alert('发表失败，请联系网站管理员！');
+                }
+            });
+        } else {
+            alert('请输入评论内容！');
+        }
+    });
+</script>
+{include file=footer.html}

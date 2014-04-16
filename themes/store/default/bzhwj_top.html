@@ -312,7 +312,7 @@
         <li><a class="{if $smarty.get.app eq 'groupbuy' or $smarty.get.act eq 'groupbuy'}active{else}normal{/if}" href="{url app=store&act=groupbuy&id=$store.store_id}"><span>{$lang.nav_groupbuy}</span></a></li>
         {/if}
         <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'article'}active{else}normal{/if}" href="{url app=store&act=article&id=6&store_id=$store.store_id}"><span>美容院档案</span></a></li>
-        <!--<li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'credit'}active{else}normal{/if}" href="{url app=store&act=credit&id=$store.store_id}"><span>会员社区</span></a></li>-->
+        <li><a class="{if $smarty.get.app eq 'store' and $smarty.get.act eq 'member'}active{else}normal{/if}" href="{url app=store&act=member&store_id=$store.store_id}"><span>会员社区</span></a></li>
         <a class="collection" href="javascript:collect_store({$store.store_id})">{$lang.collect_the_store}</a>
     </ul>
 
