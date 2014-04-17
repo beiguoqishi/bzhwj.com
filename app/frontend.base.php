@@ -33,6 +33,35 @@ class FrontendApp extends ECBaseApp
         $this->assign('g_categories',$categories);
         # 在运行action之前，无法访问到visitor对象
     }
+
+    function get_cur_location() {
+        $opt=array('http'=>array('header'=>"Referer: http://www.hao123.com/"));
+        $context=stream_context_create($opt);
+        $file_contents = file_get_contents("http://www.hao123.com/api/newforecast?t=1&_=" . time(),false, $context);
+        return $file_contents;
+    }
+
+    function get_provinces() {
+        $opt=array('http'=>array('header'=>"Referer: http://www.hao123.com/"));
+        $context=stream_context_create($opt);
+        $file_contents = file_get_contents("http://www.hao123.com/api/citymenu?_=" . time(),false, $context);
+        return $file_contents;
+    }
+
+    function get_cities_by_pid($pid) {
+        $opt=array('http'=>array('header'=>"Referer: http://www.hao123.com/"));
+        $context=stream_context_create($opt);
+        $file_contents = file_get_contents("http://www.hao123.com/api/citymenu?pid=".$pid."&_=" . time(),false, $context);
+        return $file_contents;
+    }
+
+    function get_dist_by_pid_cid($pid,$cid) {
+        $opt=array('http'=>array('header'=>"Referer: http://www.hao123.com/"));
+        $context=stream_context_create($opt);
+        $file_contents = file_get_contents("http://www.hao123.com/api/citymenu?pid=".$pid."&cid=".$cid."&_=" . time(),false, $context);
+        return $file_contents;
+    }
+
     function _config_view()
     {
         parent::_config_view();
