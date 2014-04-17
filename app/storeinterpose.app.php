@@ -62,6 +62,74 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
+    function member_community() {
+        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
+            $store_id = intval($_SESSION['user_info']['store_id']);
+            $this->assign('store_id', $store_id);
+
+            $this->display('cms_store_member_community.html');
+        } else {
+            header('Location:/');
+            exit;
+        }
+    }
+
+    function _get_user_by_id($user_id) {
+        $db =& db();
+        return $db->getrow("select * from ecm_member where user_id = $user_id");
+    }
+
+    function _get_user_id_by_user_name($user_name) {
+        $db =& db();
+        return $db->getone("select user_id from ecm_member where user_name = '" . mysql_real_escape_string($user_name) . "'");
+    }
+
+    function member_community_list() {
+        header('Content-Type: application/json; charset=utf-8');
+        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
+            $store_id = intval($_SESSION['user_info']['store_id']);
+            $this->assign('store_id', $store_id);
+            if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
+                $fields = json_decode(urldecode(file_get_contents('php://input')),true);
+                $id = intval($_GET['id']);
+                if (empty($id)) {
+                    echo -1;
+                    exit;
+                }
+                $actual_method = $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'];
+                if (strtoupper($actual_method) == 'DELETE') {
+                    $sql = "update app_bzhwj_store_member set status = 0 where id = $id";
+                    $db =& db();
+                    echo $db->query($sql);
+                    exit;
+                } else if (strtoupper($actual_method) == 'POST') {
+                    $user_name = $fields['user_name'];
+                    $user_id = $this->_get_user_id_by_user_name($user_name);
+                    $db =& db();
+                    $sql = "insert app_bzhwj_store_member set store_id=$store_id,user_id=$user_id,create_at=" . time() . ",update_at=" . time();
+                    echo $db->query($sql);
+                    exit;
+                }
+            } else {
+                $db =& db();
+                $sql = "select id,user_id,create_at as member_create_at from app_bzhwj_store_member where status > 0 order by id desc";
+                $user_ids = $db->getall($sql);
+                $ret = array();
+                foreach($user_ids as $v) {
+                    $user = $this->_get_user_by_id($v['user_id']);
+                    $user = array_merge($user,$v);
+                    $ret[] = $user;
+                }
+
+                echo json_encode($ret);
+                exit;
+            }
+        } else {
+            header('Location:/');
+            exit;
+        }
+    }
+
     function store_goods_list()
     {
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {

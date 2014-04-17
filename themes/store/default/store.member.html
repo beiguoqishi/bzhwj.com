@@ -155,6 +155,8 @@
                 if (d >= 0) {
                     alert('发表成功！');
                     location.reload();
+                } else if (d == -1) {
+                    alert('您还未登录，不能发表评论，请登录！');
                 } else {
                     alert('发表失败，请联系网站管理员！');
                 }

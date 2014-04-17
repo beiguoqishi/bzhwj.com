@@ -258,7 +258,7 @@ class StoreApp extends StorebaseApp
         $cnt = $_POST['cnt'];
         $user_id = $this->get_user_id();
         if (!$user_id) {
-            echo -1;
+            echo -1;//未登录
             exit;
         }
         $db =& db();
