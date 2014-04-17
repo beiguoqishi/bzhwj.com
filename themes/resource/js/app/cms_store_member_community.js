@@ -46,15 +46,35 @@
     });
     MemberList = Backbone.Collection.extend({
       url: '/index.php?app=storeinterpose&act=member_community_list',
-      model: MemberModel
+      model: MemberModel,
+      comparator: function(m1, m2) {
+        var c, _ref;
+        c = m1.get('id') - m2.get('id');
+        return (_ref = c < 0) != null ? _ref : {
+          1: -1
+        };
+      }
     });
     MemberListView = Backbone.View.extend({
-      el: $('#member_table'),
+      el: $('.member-list'),
       initialize: function() {
-        var member_list;
-        member_list = new MemberList;
-        this.listenTo(member_list, 'add', this.addOne);
-        return member_list.fetch();
+        this.member_list = new MemberList;
+        this.listenTo(this.member_list, 'add', this.addOne);
+        return this.member_list.fetch();
+      },
+      events: {
+        'click #auth_member': 'auth_member'
+      },
+      auth_member: function() {
+        var val;
+        val = $.trim($('#member_username').val());
+        if (!val) {
+          alert('请您输入用户名！');
+          return;
+        }
+        return this.member_list.create({
+          user_name: val
+        });
       },
       addOne: function(item) {
         var member;
