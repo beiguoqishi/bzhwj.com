@@ -22,6 +22,49 @@
     return execute(Backbone);
   });
 
-  execute = function(Backbone) {};
+  execute = function(Backbone) {
+    var MemberItemView, MemberList, MemberListView, MemberModel;
+    Backbone.emulateHTTP = true;
+    MemberModel = Backbone.Model.extend({
+      url: function() {
+        var base;
+        base = _.result(this, 'urlRoot') || _.result(this.collection, 'url');
+        if (this.isNew()) {
+          return base;
+        }
+        return base.replace(/([^\/])$/, '$1&') + ('id=' + encodeURIComponent(this.id));
+      }
+    });
+    MemberItemView = Backbone.View.extend({
+      template: _.template($('#member_item_tpl').html()),
+      tagName: 'tr',
+      initialize: this.render(),
+      render: function() {
+        this.$el.html(this.template(this.model.toJSON()));
+        return this;
+      }
+    });
+    MemberList = Backbone.Collection.extend({
+      url: '/index.php?app=storeinterpose&act=member_community_list',
+      model: MemberModel
+    });
+    MemberListView = Backbone.View.extend({
+      el: $('#member_table'),
+      initialize: function() {
+        var member_list;
+        member_list = new MemberList;
+        this.listenTo(member_list, 'add', this.addOne);
+        return member_list.fetch();
+      },
+      addOne: function(item) {
+        var member;
+        member = new MemberItemView({
+          model: item
+        });
+        return this.$el.find('tbody').append(member.el);
+      }
+    });
+    return new MemberListView;
+  };
 
 }).call(this);

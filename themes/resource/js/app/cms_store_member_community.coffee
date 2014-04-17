@@ -29,20 +29,33 @@ execute = (Backbone) ->
     tagName: 'tr'
     initialize:
       this.render()
-    render:
-      this.$el.html this.template this.model.toJSON()
+    render: ->
+      this.$el.html this.template(this.model.toJSON())
       this
 
   MemberList = Backbone.Collection.extend
     url: '/index.php?app=storeinterpose&act=member_community_list'
     model: MemberModel
+    comparator:(m1,m2) ->
+      c = m1.get('id') - m2.get('id')
+      c < 0 ? 1 : -1
 
   MemberListView = Backbone.View.extend
-    el: $('#member_table')
-    initialize:
-      member_list = new MemberList
-      this.listenTo member_list,'add',this.addOne
-      member_list.fetch()
+    el: $('.member-list')
+    initialize:->
+      this.member_list = new MemberList
+      this.listenTo this.member_list,'add',this.addOne
+      this.member_list.fetch()
+    events:
+      'click #auth_member': 'auth_member'
+    auth_member:->
+      val = $.trim($('#member_username').val())
+      if (!val)
+        alert('请您输入用户名！')
+        return
+
+      this.member_list.create
+        user_name:val
     addOne: (item)->
       member = new MemberItemView model:item
       this.$el.find('tbody').append member.el
