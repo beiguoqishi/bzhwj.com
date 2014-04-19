@@ -54,8 +54,17 @@ execute = (Backbone) ->
         alert('请您输入用户名！')
         return
 
-      this.member_list.create
-        user_name:val
+      self = this
+      member = new MemberModel
+      member.save
+        user_name: val,
+        success:(m,res,opts) ->
+          if !res or res and res.status < 0
+            alert '保存失败，请联系网站管理员！'
+          if res.status >=0
+            alert('保存成功')
+            self.member_list.add m
+
     addOne: (item)->
       member = new MemberItemView model:item
       this.$el.find('tbody').append member.el
