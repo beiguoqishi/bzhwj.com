@@ -23,54 +23,58 @@
     </style>
 </head>
 <body style="height: 1200px">
-<div class="main">
-    <ul class="nav nav-tabs">
-        <li class="active">
-            <a href="javascript:void(0)">我的会员</a>
-        </li>
-        <li>
-            <a href="javascript:void(0)">评论列表</a>
-        </li>
-    </ul>
-    <div id="member"></div>
-    <div id="comment"></div>
-</div>
-<div class="member-list">
-    <div class="add-member">
-        <p class="input-group">
-            <span class="input-group-addon">输入您要授权为本店会员的用户名：</span><input class="form-control" id="member_username">
-            <button type="button" class="btn btn-success" id="auth_member">授权</button>
-        </p>
+<div class="container">
+    <div class="main">
+        <ul class="nav nav-tabs" id="nav_cols">
+            <li class="active" for=".member-list">
+                <a href="javascript:void(0)">我的会员</a>
+            </li>
+            <li for="comment-list">
+                <a href="javascript:void(0)">评论列表</a>
+            </li>
+        </ul>
+        <div id="member"></div>
+        <div id="comment"></div>
     </div>
-    <table id="member_table" class="table">
-        <caption>已授权的会员</caption>
-        <thead>
-        <tr>
-            <td>用户id</td>
-            <td>用户名</td>
-            <td>email</td>
-            <td>真实名</td>
-            <td>性别</td>
-            <td>移动电话</td>
-            <td>QQ</td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</div>
-<div class="comment-list">
+    <div class="member-list">
+        <div class="add-member">
+            <p style="margin-top: 20px;text-align: center">
+                <span>输入您要授权为本店会员的用户名：</span><input id="member_username">
+                <button type="button" class="btn btn-success" id="auth_member">授权</button>
+            </p>
+        </div>
+        <table id="member_table" class="table">
+            <caption>已授权的会员</caption>
+            <thead>
+            <tr>
+                <td>用户id</td>
+                <td>用户名</td>
+                <td>email</td>
+                <td>真实名</td>
+                <td>性别</td>
+                <td>移动电话</td>
+                <td>QQ</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="comment-list">
 
-</div>
-<script type="text/tpl" id="member_item_tpl">
+    </div>
+    <script type="text/tpl" id="member_item_tpl">
     <td><%=user_id%></td>
-    <td><%-user_name%></td>
+    <td class="user_name"><%-user_name%></td>
     <td><%-email%></td>
     <td><%-real_name%></td>
-    <td><%-gender%></td>
+    <td><% if (gender == 0){%>男<%} else {%>女<%}%></td>
     <td><%-phone_mob%></td>
     <td><%-im_qq%></td>
+    <td><a href="javascript:void(0)" data-id="<%=id%>" class="fui-cross remove-member" style="color:#f30"></a></td>
 </script>
+</div>
 <script src="/themes/resource/js/require.js"></script>
 <script src="/themes/resource/js/app/cms_store_member_community.js"></script>
 <script src="http://www.hao123.com/resource/erji/public/js/autoheight-client.js"></script>

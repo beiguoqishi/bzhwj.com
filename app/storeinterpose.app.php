@@ -30,11 +30,12 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function store_grade() {
+    function store_grade()
+    {
         if ($_SESSION['user_info']['user_name'] == 'admin') {
             $db =& db();
             $ret = $db->getall("select * from ecm_store");
-            $this->assign('stores',json_encode($ret));
+            $this->assign('stores', json_encode($ret));
             $this->display('store_grade.html');
         } else {
             header('Location:/');
@@ -42,9 +43,10 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function store_op_list() {
+    function store_op_list()
+    {
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
-            $this->assign('store_id',intval($_SESSION['user_info']['store_id']));
+            $this->assign('store_id', intval($_SESSION['user_info']['store_id']));
             $this->display('store_op_list.html');
         } else {
             header('Location:/');
@@ -52,9 +54,10 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function company_op_list() {
+    function company_op_list()
+    {
         if ($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_id']) > 0) {
-            $this->assign('store_id',intval($_SESSION['user_info']['user_id']));
+            $this->assign('store_id', intval($_SESSION['user_info']['user_id']));
             $this->display('company_op_list.html');
         } else {
             header('Location:/');
@@ -62,7 +65,8 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function member_community() {
+    function member_community()
+    {
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $store_id = intval($_SESSION['user_info']['store_id']);
             $this->assign('store_id', $store_id);
@@ -74,41 +78,48 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function _get_user_by_id($user_id) {
+    function _get_user_by_id($user_id)
+    {
         $db =& db();
         return $db->getrow("select * from ecm_member where user_id = $user_id");
     }
 
-    function _get_user_id_by_user_name($user_name) {
+    function _get_user_id_by_user_name($user_name)
+    {
         $db =& db();
-        return $db->getone("select user_id from ecm_member where user_name = '" . mysql_real_escape_string($user_name) . "'");
+        $sql = "select user_id from ecm_member where user_name = '" . mysql_real_escape_string($user_name) . "'";
+        return $db->getone($sql);
     }
 
-    function _get_user_name_by_id($user_id) {
+    function _get_user_name_by_id($user_id)
+    {
         $db =& db();
         return $db->getone("select user_name from ecm_member where user_id=$user_id");
     }
 
-    function _format_comments($comments) {
-        foreach($comments as $k => $v) {
+    function _format_comments($comments)
+    {
+        foreach ($comments as $k => $v) {
             $comments[$k]['user_name'] = $this->_get_user_name_by_id($v['user_id']);
         }
         return $comments;
     }
 
-    function _get_total_page($store_id,$page_size = 20) {
+    function _get_total_page($store_id, $page_size = 20)
+    {
         $db =& db();
         $count = $db->getone("select count(*) from app_bzhwj_comment where store_id=$store_id and status > 0");
         $total = $count % $page_size == 0 ? $count / $page_size : ceil($count / $page_size);
-        return min(10,$total);
+        return min(10, $total);
     }
 
-    function member_publish_comment() {
+    function member_publish_comment()
+    {
         $store_id = $_POST['store_id'];
         $cnt = $_POST['cnt'];
         $user_id = $this->get_user_id();
         if (!$user_id) {
-            echo -1;//未登录
+            echo -1; //未登录
             exit;
         }
         $db =& db();
@@ -116,13 +127,14 @@ class StoreInterposeApp extends StorebaseApp
         echo $db->query($sql);
     }
 
-    function _get_store_comment($store_id,$page = 1,$page_size = 20) {
+    function _get_store_comment($store_id, $page = 1, $page_size = 20)
+    {
         $offset = ($page - 1) * $page_size;
         $db =& db();
         $sql = "select * from app_bzhwj_comment where store_id = $store_id  and follower_id = 0 and status > 0 order by id desc";
         $comment = $db->getall($sql);
         $comment = $this->_format_comments($comment);
-        foreach($comment as $k => $v) {
+        foreach ($comment as $k => $v) {
             $sql = "select * from app_bzhwj_comment where store_id = $store_id and follower_id = " . $v['id'] . " and status > 0 order by id";
             $sub_comment = $db->getall($sql);
             $sub_comment = $this->_format_comments($sub_comment);
@@ -131,7 +143,8 @@ class StoreInterposeApp extends StorebaseApp
         return $comment;
     }
 
-    function member_community_comments() {
+    function member_community_comments()
+    {
         header('Content-Type: application/json; charset=utf-8');
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $store_id = intval($_SESSION['user_info']['store_id']);
@@ -148,41 +161,57 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function member_community_list() {
+    function member_community_list()
+    {
         header('Content-Type: application/json; charset=utf-8');
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $store_id = intval($_SESSION['user_info']['store_id']);
             $this->assign('store_id', $store_id);
             if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
-                $fields = json_decode(urldecode(file_get_contents('php://input')),true);
-                $id = intval($_GET['id']);
-                if (empty($id)) {
-                    echo -1;
-                    exit;
-                }
+                $fields = json_decode(urldecode(file_get_contents('php://input')), true);
+
                 $actual_method = $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'];
                 if (strtoupper($actual_method) == 'DELETE') {
-                    $sql = "update app_bzhwj_store_member set status = 0 where id = $id";
+                    $id = intval($_GET['id']);
+                    if (empty($id)) {
+                        echo -1;
+                        exit;
+                    }
+                    $sql = "delete from app_bzhwj_store_member where id = $id";
                     $db =& db();
                     echo $db->query($sql);
                     exit;
-                } else if (strtoupper($actual_method) == 'POST') {
+                } else {
                     $user_name = $fields['user_name'];
                     $user_id = $this->_get_user_id_by_user_name($user_name);
+                    if (empty($user_id)) {
+                        echo json_encode(array(
+                            'status' => -2//not exist
+                        ));
+                        exit;
+                    }
                     $db =& db();
                     $sql = "insert app_bzhwj_store_member set store_id=$store_id,user_id=$user_id,create_at=" . time() . ",update_at=" . time();
-                    echo $db->query($sql);
+                    $ret = array();
+                    $ret['status'] = $d = intval($db->query($sql));
+                    if ($d >= 0) {
+                        $ret['data'] = $this->_get_store_member_by_id($db->insert_id());
+                    }
+                    echo json_encode($ret);
                     exit;
                 }
             } else {
                 $db =& db();
-                $sql = "select id,user_id,create_at as member_create_at from app_bzhwj_store_member where status > 0 order by id desc";
+                $sql = "select id,user_id,create_at as member_create_at from app_bzhwj_store_member where store_id = $store_id and status >= 0 order by id desc";
                 $user_ids = $db->getall($sql);
                 $ret = array();
-                foreach($user_ids as $v) {
+                foreach ($user_ids as $v) {
                     $user = $this->_get_user_by_id($v['user_id']);
-                    $user = array_merge($user,$v);
-                    $ret[] = $user;
+                    $user = array_merge($user, $v);
+                    $ret[] = array(
+                        'status' => 1,
+                        'data'   => $user
+                    );
                 }
 
                 echo json_encode($ret);
@@ -194,6 +223,16 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
+    function _get_store_member_by_id($id)
+    {
+        $db =& db();
+        $sql = "select id,user_id,create_at as member_create_at from app_bzhwj_store_member where id = $id and status >= 0";
+        $member = $db->getrow($sql);
+        $user = $this->_get_user_by_id($member['user_id']);
+        $user = array_merge($user, $member);
+        return $user;
+    }
+
     function store_goods_list()
     {
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
@@ -203,9 +242,9 @@ class StoreInterposeApp extends StorebaseApp
             $page = $page < 1 ? 1 : $page;
             if ($_SESSION['user_info']['user_name'] == 'admin') {
                 $store_id = $store_id . "' or '1=1";
-                $this->assign('appoint_auth',1);
+                $this->assign('appoint_auth', 1);
             } else {
-                $this->assign('appoint_auth',$this->is_auth_appointment($store_id));
+                $this->assign('appoint_auth', $this->is_auth_appointment($store_id));
             }
             //TODO:分页功能后续实现
             $goods_list = $this->_get_goods_list($store_id, $page, 500);
@@ -218,19 +257,22 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function is_auth_appointment($store_id) {
+    function is_auth_appointment($store_id)
+    {
         $db =& db();
         $is_auth = $db->getone("select appointment_auth from ecm_store where store_id = $store_id");
         return $is_auth;
     }
 
-    function is_auth_lianbao($store_id) {
+    function is_auth_lianbao($store_id)
+    {
         $db =& db();
         $is_auth = $db->getone("select lianbao_auth from ecm_store where store_id = $store_id");
         return $is_auth;
     }
 
-    function store_appointment_op() {
+    function store_appointment_op()
+    {
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $this->display('store_appointment_list.html');
         } else {
@@ -239,11 +281,12 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function appointment_list() {
+    function appointment_list()
+    {
         header('Content-Type: application/json; charset=utf-8');
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
-                $fields = json_decode(urldecode(file_get_contents('php://input')),true);
+                $fields = json_decode(urldecode(file_get_contents('php://input')), true);
                 $id = intval($_GET['id']);
                 if (empty($id)) {
                     echo -1;
@@ -257,10 +300,10 @@ class StoreInterposeApp extends StorebaseApp
                 } else {
                     $sql = "update app_bzhwj_appointment set ";
                     $u_fields = array();
-                    foreach($fields as $k => $v) {
+                    foreach ($fields as $k => $v) {
                         $u_fields[] = "$k = '" . mysql_real_escape_string($v) . "'";
                     }
-                    $sql .= implode(',',$u_fields);
+                    $sql .= implode(',', $u_fields);
                     $sql .= " where id=$id";
                     $db =& db();
                     echo $db->query($sql);
@@ -277,10 +320,10 @@ class StoreInterposeApp extends StorebaseApp
                 if (!empty($id)) {
                     $data = $this->_get_appointment_item_by_id($id);
                 } else {
-                    $data = $this->_get_appointment_list($store_id,$page,20);
+                    $data = $this->_get_appointment_list($store_id, $page, 20);
                 }
-                foreach($data as $k => $v) {
-                    $data[$k]['update_at'] = date('Y-m-d',$v['update_at']);
+                foreach ($data as $k => $v) {
+                    $data[$k]['update_at'] = date('Y-m-d', $v['update_at']);
                 }
                 header('Content-type:application/json;charset=utf-8');
                 echo json_encode($data);
@@ -292,23 +335,26 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function _get_appointment_item_by_id($id) {
+    function _get_appointment_item_by_id($id)
+    {
         $db =& db();
         return $db->getrow("select * from app_bzhwj_appointment where id=$id");
     }
 
-    function _get_appointment_list($store_id,$page,$limit = 20) {
+    function _get_appointment_list($store_id, $page, $limit = 20)
+    {
         $offset = ($page - 1) * $limit;
         $db =& db();
         $sql = "select * from app_bzhwj_appointment where store_id = $store_id limit $offset,$limit";
         $data = $db->getall($sql);
-        foreach($data as $k => $v) {
+        foreach ($data as $k => $v) {
             $data[$k]['goods_name'] = $this->_get_goods_name_by_id($v['goods_id']);
         }
         return $data;
     }
 
-    function _get_goods_name_by_id($goods_id) {
+    function _get_goods_name_by_id($goods_id)
+    {
         $db =& db();
         return $db->getone("select goods_name from ecm_goods where goods_id = $goods_id");
     }
@@ -318,17 +364,17 @@ class StoreInterposeApp extends StorebaseApp
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $store_id = intval($_SESSION['user_info']['store_id']);
             $this->assign('store_id', $store_id);
-            $this->assign('username',$_SESSION['user_info']['user_name']);
+            $this->assign('username', $_SESSION['user_info']['user_name']);
             $id = intval($_GET['id']);
             if ($_SESSION['user_info']['user_name'] == 'admin') {
                 $store_id = $store_id . "' or '1=1";
-                $this->assign('lianbao_auth',1);
+                $this->assign('lianbao_auth', 1);
             } else {
-                $this->assign('lianbao_auth',$this->is_auth_lianbao($store_id));
+                $this->assign('lianbao_auth', $this->is_auth_lianbao($store_id));
             }
-            $this->assign('goods', $this->_get_goods_by_id($store_id,$id));
-            $this->assign('goods_id',$id);
-            $this->assign('ctg_list',$this->_get_goods_ctgs());
+            $this->assign('goods', $this->_get_goods_by_id($store_id, $id));
+            $this->assign('goods_id', $id);
+            $this->assign('ctg_list', $this->_get_goods_ctgs());
             $this->display('store_interpose_edit_goods.html');
         } else {
             header('Location:/');
@@ -345,8 +391,8 @@ class StoreInterposeApp extends StorebaseApp
                 $store_id = $store_id . "' or '1=1";
             }
             $this->assign('goods', array());
-            $this->assign('goods_id',0);
-            $this->assign('ctg_list',$this->_get_goods_ctgs());
+            $this->assign('goods_id', 0);
+            $this->assign('ctg_list', $this->_get_goods_ctgs());
             $this->display('store_interpose_edit_goods.html');
         } else {
             header('Location:/');
@@ -365,28 +411,29 @@ class StoreInterposeApp extends StorebaseApp
             if ($_SESSION['user_info']['user_name'] == 'admin') {
                 $store_id = $store_id . "' or '1=1";
             }
-            $goods_mod =& bm('goods',array('_store_id' => $store_id));
-            echo $goods_mod->edit(array('goods_id' => $goods_id),$goods);
+            $goods_mod =& bm('goods', array('_store_id' => $store_id));
+            echo $goods_mod->edit(array('goods_id' => $goods_id), $goods);
         } else {
             header('Location:/');
             exit;
         }
     }
 
-    function store_archive_edit() {
+    function store_archive_edit()
+    {
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $goods = $_POST['goods'];
             $store_id = intval($_SESSION['user_info']['store_id']);
             $this->assign('store_id', $store_id);
-            $this->assign('act','edit');
+            $this->assign('act', 'edit');
             $db =& db();
             $ret = $db->getrow("select * from ecm_store_archive where store_id = $store_id");
             if (empty($ret)) {
                 $ret = array();
-                $this->assign('act','add');
+                $this->assign('act', 'add');
             }
-            $ret['pics'] = json_decode($ret['pics'],true);
-            $this->assign('archive',$ret);
+            $ret['pics'] = json_decode($ret['pics'], true);
+            $this->assign('archive', $ret);
             $this->display('store_archive.html');
         } else {
             header('Location:/');
@@ -394,7 +441,8 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function store_archive_do_edit() {
+    function store_archive_do_edit()
+    {
         header('Content-type:application/json;charset=UTF-8');
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $entity = $_POST['entity'];
@@ -405,7 +453,7 @@ class StoreInterposeApp extends StorebaseApp
                 $entity['store_id'] = $store_id;
                 $ret = $store_archive->add($entity);
             } else {
-                $ret = $store_archive->edit(array('store_id' => $store_id),$entity);
+                $ret = $store_archive->edit(array('store_id' => $store_id), $entity);
             }
             echo json_encode($ret);
         } else {
@@ -422,7 +470,7 @@ class StoreInterposeApp extends StorebaseApp
             $this->assign('store_id', $store_id);
             $goods_id = intval($_POST['goods_id']);
             unset($goods['goods_id']);
-            $goods_mod =& bm('goods',array('_store_id' => $store_id));
+            $goods_mod =& bm('goods', array('_store_id' => $store_id));
             echo $goods_mod->add($goods);
         } else {
             header('Location:/');
@@ -430,7 +478,8 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function store_goods_do_delete() {
+    function store_goods_do_delete()
+    {
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $store_id = intval($_SESSION['user_info']['store_id']);
             $this->assign('store_id', $store_id);
@@ -438,8 +487,8 @@ class StoreInterposeApp extends StorebaseApp
                 $store_id = $store_id . "' or '1=1";
             }
             $goods_id = intval($_GET['id']);
-            $goods_mod =& bm('goods',array('_store_id' => $store_id));
-            $goods_mod->edit(array('goods_id' => $goods_id),array('if_show' => 0));
+            $goods_mod =& bm('goods', array('_store_id' => $store_id));
+            $goods_mod->edit(array('goods_id' => $goods_id), array('if_show' => 0));
             header('Location:/index.php?app=storeinterpose&act=store_goods_list');
         } else {
             header('Location:/');
@@ -447,13 +496,14 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function store_fengyun_people() {
+    function store_fengyun_people()
+    {
         if ($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_id']) > 0) {
             $store_id = intval($_SESSION['user_info']['user_id']);
             $this->assign('store_id', $store_id);
-            $cms = &m('tmall_cms');
+            $cms = & m('tmall_cms');
             $people = $cms->get_bzhwj_people($store_id);
-            $this->assign('people',$people);
+            $this->assign('people', $people);
             $this->display('store_people.html');
         } else {
             header('Location:/');
@@ -461,21 +511,23 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function store_fengyun_people_all() {
-        $cms = &m('tmall_cms');
+    function store_fengyun_people_all()
+    {
+        $cms = & m('tmall_cms');
         $people = $cms->get_bzhwj_people(0);
-        $this->assign('people',$people);
-        $this->assign('store_id',0);
+        $this->assign('people', $people);
+        $this->assign('store_id', 0);
         $this->display('store_people.html');
     }
 
-    function store_tuijian_goods() {
-if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_id']) > 0)) {
+    function store_tuijian_goods()
+    {
+        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_id']) > 0)) {
             $store_id = intval($_SESSION['user_info']['user_id']);
             $this->assign('store_id', $store_id);
-            $cms = &m('tmall_cms');
+            $cms = & m('tmall_cms');
             $goods = $cms->get_bzhwj_tuijian_goods($store_id);
-            $this->assign('goods_list',$goods);
+            $this->assign('goods_list', $goods);
             $this->display('store_tuijian_goods.html');
         } else {
             header('Location:/');
@@ -483,15 +535,17 @@ if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_
         }
     }
 
-    function store_tuijian_goods_all() {
-        $cms = &m('tmall_cms');
+    function store_tuijian_goods_all()
+    {
+        $cms = & m('tmall_cms');
         $people = $cms->get_bzhwj_tuijian_goods(0);
-        $this->assign('goods_list',$people);
-        $this->assign('store_id',0);
+        $this->assign('goods_list', $people);
+        $this->assign('store_id', 0);
         $this->display('store_tuijian_goods.html');
     }
 
-    function store_goods_experiment() {
+    function store_goods_experiment()
+    {
         header('Content-type:application/json;charset=UTF-8');
         $id = $_POST['id'];
         $experiment = $_POST['experiment'];
@@ -499,46 +553,48 @@ if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_
         echo $db->query("update ecm_goods set experiment = $experiment,experiment_update_date=" . time() . " where goods_id=$id");
     }
 
-    function store_fengyun_people_do_delete() {
+    function store_fengyun_people_do_delete()
+    {
 //        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
-            $store_id = intval($_SESSION['user_info']['store_id']);
-            $this->assign('store_id', $store_id);
-            $id = $_GET['id'];
-            if (intval($id) > 0) {
-                $id = intval($id);
-                $db =& db();
-                $db->select_database('ecmall');
-                $db->query("delete from app_bzhwj_people where id = $id");
-                $db->select_database('ecmall');
-                $cms = &m('tmall_cms');
-                $people = $cms->get_bzhwj_people(0);
-                $this->assign('people',$people);
-                $this->assign('store_id',0);
-                $this->display('store_people.html');
-            }
+        $store_id = intval($_SESSION['user_info']['store_id']);
+        $this->assign('store_id', $store_id);
+        $id = $_GET['id'];
+        if (intval($id) > 0) {
+            $id = intval($id);
+            $db =& db();
+            $db->select_database('ecmall');
+            $db->query("delete from app_bzhwj_people where id = $id");
+            $db->select_database('ecmall');
+            $cms = & m('tmall_cms');
+            $people = $cms->get_bzhwj_people(0);
+            $this->assign('people', $people);
+            $this->assign('store_id', 0);
+            $this->display('store_people.html');
+        }
 //        } else {
 //            header('Location:/');
 //            exit;
 //        }
     }
 
-    function store_tuijian_goods_do_delete() {
+    function store_tuijian_goods_do_delete()
+    {
 //        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
-            $store_id = intval($_SESSION['user_info']['store_id']);
-            $this->assign('store_id', $store_id);
-            $id = $_GET['id'];
-            if (intval($id) > 0) {
-                $id = intval($id);
-                $db =& db();
-                $db->select_database('ecmall');
-                $db->query("delete from app_bzhwj_tuijian_goods where id = $id");
-                $db->select_database('ecmall');
-                $cms = &m('tmall_cms');
-                $people = $cms->get_bzhwj_tuijian_goods(0);
-                $this->assign('goods_list',$people);
-                $this->assign('store_id',0);
-                $this->display('store_tuijian_goods.html');
-            }
+        $store_id = intval($_SESSION['user_info']['store_id']);
+        $this->assign('store_id', $store_id);
+        $id = $_GET['id'];
+        if (intval($id) > 0) {
+            $id = intval($id);
+            $db =& db();
+            $db->select_database('ecmall');
+            $db->query("delete from app_bzhwj_tuijian_goods where id = $id");
+            $db->select_database('ecmall');
+            $cms = & m('tmall_cms');
+            $people = $cms->get_bzhwj_tuijian_goods(0);
+            $this->assign('goods_list', $people);
+            $this->assign('store_id', 0);
+            $this->display('store_tuijian_goods.html');
+        }
 //        } else {
 //            header('Location:/');
 //            exit;
@@ -547,7 +603,7 @@ if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_
 
     function _get_goods_by_id($store_id, $id)
     {
-        $goods_mod =& bm('goods',array('_store_id' => $store_id));
+        $goods_mod =& bm('goods', array('_store_id' => $store_id));
         $goods_list = $goods_mod->find(array(
             'conditions' => 'goods_id = ' . $id,
             'fields' => '*'
@@ -555,7 +611,7 @@ if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_
         $tmp = array();
         foreach ($goods_list as $key => $goods) {
             empty($goods['default_image']) && $goods_list[$key]['default_image'] = Conf::get('default_goods_image');
-            $goods_list[$key]['pics'] = json_decode($goods['pics'],true);
+            $goods_list[$key]['pics'] = json_decode($goods['pics'], true);
             $tmp[] = $goods_list[$key];
         }
 
@@ -578,20 +634,21 @@ if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_
         return $goods_list;
     }
 
-    function _get_goods_ctgs() {
+    function _get_goods_ctgs()
+    {
         $ctg_mod =& bm('gcategory');
         $parent_ctgs = $ctg_mod->find(array(
-            'conditions'  => 'if_show = 1 and parent_id=0',
-            'fields'      => 'cate_id,cate_name,parent_id'
+            'conditions' => 'if_show = 1 and parent_id=0',
+            'fields' => 'cate_id,cate_name,parent_id'
         ));
         $ret = array();
-        foreach($parent_ctgs as $k => $v) {
+        foreach ($parent_ctgs as $k => $v) {
             $tmp = array();
             $tmp['parent'] = $v;
 
             $sub_ctgs = $ctg_mod->find(array(
-                'conditions'  => 'if_show = 1 and parent_id=' . $v['cate_id'],
-                'fields'      => 'cate_id,cate_name,parent_id'
+                'conditions' => 'if_show = 1 and parent_id=' . $v['cate_id'],
+                'fields' => 'cate_id,cate_name,parent_id'
             ));
             $tmp['children'] = json_encode($sub_ctgs);
             $ret[] = $tmp;

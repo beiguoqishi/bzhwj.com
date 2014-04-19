@@ -26,6 +26,10 @@
     var MemberItemView, MemberList, MemberListView, MemberModel;
     Backbone.emulateHTTP = true;
     MemberModel = Backbone.Model.extend({
+      urlRoot: '/index.php?app=storeinterpose&act=member_community_list',
+      parse: function(resp, opts) {
+        return resp.data;
+      },
       url: function() {
         var base;
         base = _.result(this, 'urlRoot') || _.result(this.collection, 'url');
@@ -38,10 +42,36 @@
     MemberItemView = Backbone.View.extend({
       template: _.template($('#member_item_tpl').html()),
       tagName: 'tr',
-      initialize: this.render(),
+      initialize: function() {
+        return this.render();
+      },
       render: function() {
         this.$el.html(this.template(this.model.toJSON()));
         return this;
+      },
+      events: {
+        'click .remove-member': 'remove_item'
+      },
+      remove_item: function(e) {
+        var self;
+        self = this;
+        if (confirm('你确定要删除 "' + this.$el.find('.user_name').text() + '" 会员吗？')) {
+          return this.model.destroy({
+            success: function(m, resp) {
+              if (resp < 0) {
+                if (self.collection != null) {
+                  self.collection.fetch({
+                    reset: true
+                  });
+                }
+                return alert('删除失败，请联系网站管理员！');
+              } else {
+                alert('删除成功！');
+                return self.$el.remove();
+              }
+            }
+          });
+        }
       }
     });
     MemberList = Backbone.Collection.extend({
@@ -56,24 +86,60 @@
       }
     });
     MemberListView = Backbone.View.extend({
-      el: $('.member-list'),
+      el: $('.container'),
       initialize: function() {
         this.member_list = new MemberList;
         this.listenTo(this.member_list, 'add', this.addOne);
+        this.listenTo(this.member_list, 'destroy', this.destroy);
         return this.member_list.fetch();
       },
       events: {
-        'click #auth_member': 'auth_member'
+        'click #auth_member': 'auth_member',
+        'click #nav_cols li': 'switch_module'
+      },
+      render: function() {
+        this.$el.find('tbody').empty();
+        return this.member_list.each(this.addOne, this);
+      },
+      switch_module: function(e) {
+        var target;
+        $('#nav_cols').find('li').removeClass('active').each(function(idx, el) {
+          return $($(el).attr('for')).hide();
+        });
+        target = $(e.target);
+        if (!target.is('li')) {
+          target = target.closest('li');
+        }
+        target.addClass('active');
+        return $(target.attr('for')).show();
       },
       auth_member: function() {
-        var val;
+        var member, self, val;
         val = $.trim($('#member_username').val());
         if (!val) {
           alert('请您输入用户名！');
           return;
         }
-        return this.member_list.create({
+        self = this;
+        member = new MemberModel;
+        return member.save({
           user_name: val
+        }, {
+          success: function(m, res, opts) {
+            if (!res) {
+              alert('保存失败，请联系网站管理员！');
+            }
+            if (res && res.status === -2) {
+              alert('您输入的用户名不存在，请联系你要增加的会员获取准确的用户名！');
+            }
+            if (res.status === 0) {
+              alert('该用户已经是本店会员！');
+            }
+            if (res.status > 0) {
+              alert('保存成功');
+              return self.member_list.add(m);
+            }
+          }
         });
       },
       addOne: function(item) {
@@ -82,6 +148,9 @@
           model: item
         });
         return this.$el.find('tbody').append(member.el);
+      },
+      destroy: function() {
+        return this.render();
       }
     });
     return new MemberListView;
