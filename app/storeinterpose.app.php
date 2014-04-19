@@ -84,6 +84,53 @@ class StoreInterposeApp extends StorebaseApp
         return $db->getone("select user_id from ecm_member where user_name = '" . mysql_real_escape_string($user_name) . "'");
     }
 
+    function _get_user_name_by_id($user_id) {
+        $db =& db();
+        return $db->getone("select user_name from ecm_member where user_id=$user_id");
+    }
+
+    function _format_comments($comments) {
+        foreach($comments as $k => $v) {
+            $comments[$k]['user_name'] = $this->_get_user_name_by_id($v['user_id']);
+        }
+        return $comments;
+    }
+
+    function _get_total_page($store_id,$page_size = 20) {
+        $db =& db();
+        $count = $db->getone("select count(*) from app_bzhwj_comment where store_id=$store_id and status > 0");
+        $total = $count % $page_size == 0 ? $count / $page_size : ceil($count / $page_size);
+        return min(10,$total);
+    }
+
+    function member_publish_comment() {
+        $store_id = $_POST['store_id'];
+        $cnt = $_POST['cnt'];
+        $user_id = $this->get_user_id();
+        if (!$user_id) {
+            echo -1;//未登录
+            exit;
+        }
+        $db =& db();
+        $sql = "insert into app_bzhwj_comment set user_id = $user_id,store_id = $store_id,cnt='" . mysql_real_escape_string($cnt) . "',create_at=" . time() . ",update_at=" . time();
+        echo $db->query($sql);
+    }
+
+    function _get_store_comment($store_id,$page = 1,$page_size = 20) {
+        $offset = ($page - 1) * $page_size;
+        $db =& db();
+        $sql = "select * from app_bzhwj_comment where store_id = $store_id  and follower_id = 0 and status > 0 order by id desc";
+        $comment = $db->getall($sql);
+        $comment = $this->_format_comments($comment);
+        foreach($comment as $k => $v) {
+            $sql = "select * from app_bzhwj_comment where store_id = $store_id and follower_id = " . $v['id'] . " and status > 0 order by id";
+            $sub_comment = $db->getall($sql);
+            $sub_comment = $this->_format_comments($sub_comment);
+            $comment[$k]['sub_comments'] = $sub_comment;
+        }
+        return $comment;
+    }
+
     function member_community_comments() {
         header('Content-Type: application/json; charset=utf-8');
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
@@ -91,17 +138,8 @@ class StoreInterposeApp extends StorebaseApp
             $this->assign('store_id', $store_id);
             if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
             } else {
-                $db =& db();
-                $sql = "select id,user_id,create_at as member_create_at from app_bzhwj_store_member where status > 0 order by id desc";
-                $user_ids = $db->getall($sql);
-                $ret = array();
-                foreach($user_ids as $v) {
-                    $user = $this->_get_user_by_id($v['user_id']);
-                    $user = array_merge($user,$v);
-                    $ret[] = $user;
-                }
-
-                echo json_encode($ret);
+                $comments = $this->_get_store_comment($store_id);
+                echo json_encode($comments);
                 exit;
             }
         } else {
