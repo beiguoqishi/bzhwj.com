@@ -117,6 +117,9 @@ execute = (Backbone) ->
     initialize:->
       this.render()
       this.listenTo this.model,'sync',this.sync
+      this.listenTo this.model,'destroy',this.destroy
+    destroy:->
+      this.$el.remove()
     sync:->
       this.render()
     render    :->
@@ -150,14 +153,17 @@ execute = (Backbone) ->
       if this.isNew()
         return base
       base.replace(/([^\/])$/, '$1&') + ('id=' + encodeURIComponent this.id)
-    removeSubComment:(e,id,type) ->
+    removeComment:(e,id,type) ->
       self = this
-      $.post '/index.php?app=storeinterpose&act=member_community_comments_del_sub_comment',
+      $.post '/index.php?app=storeinterpose&act=member_community_comments_del_comment',
         id: id
         type: type
         (d)->
           if d >= 0
-            self.fetch()
+            if type isnt 1
+              self.destroy()
+            else
+              self.fetch()
             alert('删除成功！')
           else
             alert '删除失败，请联系网站管理员！'

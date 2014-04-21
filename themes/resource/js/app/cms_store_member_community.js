@@ -160,7 +160,11 @@
       template: _.template($('#comment_item_tpl').html()),
       initialize: function() {
         this.render();
-        return this.listenTo(this.model, 'sync', this.sync);
+        this.listenTo(this.model, 'sync', this.sync);
+        return this.listenTo(this.model, 'destroy', this.destroy);
+      },
+      destroy: function() {
+        return this.$el.remove();
       },
       sync: function() {
         return this.render();
@@ -185,7 +189,15 @@
         target = $(e.target);
         id = target.data('id');
         if (confirm('您确定要删除这条评论吗？')) {
-          return this.model.removeSubComment(e, id);
+          return this.model.removeComment(e, id, 1);
+        }
+      },
+      removeComment: function(e) {
+        var id, target;
+        target = $(e.target);
+        id = target.data('id');
+        if (confirm('您确定要删除这条评论吗？')) {
+          return this.model.removeComment(e, id, 0);
         }
       }
     });
@@ -199,14 +211,19 @@
         }
         return base.replace(/([^\/])$/, '$1&') + ('id=' + encodeURIComponent(this.id));
       },
-      removeSubComment: function(e, id) {
+      removeComment: function(e, id, type) {
         var self;
         self = this;
-        return $.post('/index.php?app=storeinterpose&act=member_community_comments_del_sub_comment', {
-          id: id
+        return $.post('/index.php?app=storeinterpose&act=member_community_comments_del_comment', {
+          id: id,
+          type: type
         }, function(d) {
           if (d >= 0) {
-            self.fetch();
+            if (type !== 1) {
+              self.destroy();
+            } else {
+              self.fetch();
+            }
             return alert('删除成功！');
           } else {
             return alert('删除失败，请联系网站管理员！');

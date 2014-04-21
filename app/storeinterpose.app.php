@@ -180,15 +180,29 @@ class StoreInterposeApp extends StorebaseApp
         }
     }
 
-    function member_community_comments_del_sub_comment() {
+    function member_community_comments_del_comment() {
         header('Content-Type: application/json; charset=utf-8');
         if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
             $store_id = intval($_SESSION['user_info']['store_id']);
             $this->assign('store_id', $store_id);
             $id = $_POST['id'];
-            $sql = "delete from app_bzhwj_comment where id = $id";
-            $db =& db();
-            echo $db->query($sql);
+            $type = $_POST['type'];
+            if ($type == 1) {
+                $sql = "delete from app_bzhwj_comment where id = $id";
+                $db =& db();
+                echo $db->query($sql);
+            } else {
+                $sql = "select id from app_bzhwj_comment where follower_id = $id";
+                $db =& db();
+                $ids = array();
+                $ids[] = $id;
+                $data = $db->getall($sql);
+                foreach($data as $v) {
+                    $ids[] = $v['id'];
+                }
+                $sql = "delete from app_bzhwj_comment where id in(" . implode(',',$ids) . ")";
+                echo $db->query($sql);
+            }
         } else {
             header('Location:/');
             exit;
