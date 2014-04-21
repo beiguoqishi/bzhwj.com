@@ -192,9 +192,15 @@ execute = (Backbone) ->
     el        :$('#comment_list')
     initialize:->
       this.listenTo commentList,'add',this.addOne
+      this.listenTo commentList,'sync',this.sync
       commentList.fetch()
     addOne    :(m)->
       view = new CommentView model:m
       this.$el.append view.el
+    sync      :(c)->
+      if c.length is 0
+        $('#no_comment_tip').show()
+      else
+        $('#no_comment_tip').hide()
 
   new CommentAppView

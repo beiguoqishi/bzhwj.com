@@ -259,6 +259,7 @@
       el: $('#comment_list'),
       initialize: function() {
         this.listenTo(commentList, 'add', this.addOne);
+        this.listenTo(commentList, 'sync', this.sync);
         return commentList.fetch();
       },
       addOne: function(m) {
@@ -267,6 +268,13 @@
           model: m
         });
         return this.$el.append(view.el);
+      },
+      sync: function(c) {
+        if (c.length === 0) {
+          return $('#no_comment_tip').show();
+        } else {
+          return $('#no_comment_tip').hide();
+        }
       }
     });
     return new CommentAppView;

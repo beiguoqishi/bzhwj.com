@@ -1,0 +1,66 @@
+{include file=custom_header.html}
+<link href="/themes/resource/js/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="/themes/mall/tmall/styles/default/css/user.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+    .right {
+        float: left;
+        width: 999px;
+        overflow: hidden;
+    }
+    a {
+        color: #333333;
+    }
+    a:hover {
+        color: #b00000;
+    }
+    .appointment-list {
+        clear: both;
+    }
+    .appointment-list .item {
+        width: 200px;
+        float: left;
+        margin: 0 24px;
+    }
+    .appointment-list .item a.pic {
+        display: block;
+        height: 100%;
+        overflow: hidden;
+    }
+    .appointment-list .item a.pic img {
+        width: 200px;
+        height: 200px;
+    }
+    .appointment-list .item a.txt {
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 8px;
+        text-align: center;
+        width: 100%;
+    }
+    .appointment-list .item .op {
+        margin-top: 8px;
+        text-align: center;
+    }
+    .all-op {
+        overflow: hidden;
+        margin: 0 0 15px;
+    }
+    h1, .h1, h2, .h2, h3, .h3 {
+        margin: 0;
+    }
+</style>
+<div class="content" style="width: 1200px;margin: 0 auto;overflow: hidden;border-top: 1px solid #666;padding-top: 30px">
+    {include file=bzhwj_member.menu.html}
+    <div class="right">
+    </div>
+</div>
+{include file=helper_footer.html}
+<div id="footer_index">
+    Copyright 2014-2020 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+<script src="/themes/resource/js/require.js"></script>
+<script src="/themes/resource/js/app/user_appointment.js"></script>
+</body>
+</html>

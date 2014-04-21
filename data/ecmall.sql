@@ -77,7 +77,7 @@ CREATE TABLE `app_bzhwj_comment` (
   PRIMARY KEY (`id`),
   KEY `store_follower_idx` (`store_id`,`follower_id`),
   KEY `user_idx` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `app_bzhwj_comment` (
 
 LOCK TABLES `app_bzhwj_comment` WRITE;
 /*!40000 ALTER TABLE `app_bzhwj_comment` DISABLE KEYS */;
-INSERT INTO `app_bzhwj_comment` VALUES (1,21,'这是对这个店铺的第一条评论',14,0,0,1397654225,1397654225,1),(2,8,'谢谢您的支持',14,1,0,1397655020,1397655020,1),(3,8,'这是我对你的第二次评论。',14,1,0,1397655055,1397655055,1),(4,19,'我是另一个用户，我对此店进行好评。',14,0,0,1397655077,1397655077,1),(5,20,'我是第三个用户。',14,0,0,1397655119,1397655119,1),(6,8,'我作为一个院长进行的回复',14,0,0,1397657373,1397657373,1);
+INSERT INTO `app_bzhwj_comment` VALUES (1,21,'这是对这个店铺的第一条评论',8,0,0,1397654225,1397654225,1),(2,8,'谢谢您的支持',8,1,0,1397655020,1397655020,1),(3,8,'这是我对你的第二次评论。',8,1,0,1397655055,1397655055,1),(4,19,'我是另一个用户，我对此店进行好评。',8,0,0,1397655077,1397655077,1),(5,20,'我是第三个用户。',8,0,0,1397655119,1397655119,1),(6,8,'我作为一个院长进行的回复',8,0,0,1397657373,1397657373,1),(7,8,'谢谢您的支持。',13,5,0,1398089985,1398089985,1),(8,8,'中国',8,6,0,1398090058,1398090058,1);
 /*!40000 ALTER TABLE `app_bzhwj_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +166,7 @@ CREATE TABLE `app_bzhwj_store_member` (
   `update_at` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `store_user_idx` (`store_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,6 +175,7 @@ CREATE TABLE `app_bzhwj_store_member` (
 
 LOCK TABLES `app_bzhwj_store_member` WRITE;
 /*!40000 ALTER TABLE `app_bzhwj_store_member` DISABLE KEYS */;
+INSERT INTO `app_bzhwj_store_member` VALUES (8,8,8,1,1397925803,1397925803),(9,13,8,1,1398093466,1398093466);
 /*!40000 ALTER TABLE `app_bzhwj_store_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1579,7 +1580,7 @@ CREATE TABLE `ecm_sessions` (
 
 LOCK TABLES `ecm_sessions` WRITE;
 /*!40000 ALTER TABLE `ecm_sessions` DISABLE KEYS */;
-INSERT INTO `ecm_sessions` VALUES ('387f78b22dcb59d7c8d1c43c033bcb9c',1397388483,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397354932\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0),('20a74db778c0b964e0d84e1d9a8d5e5c',1397482329,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397355051\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0),('00ffa14140b33175aae70232177356f0',1397661779,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397400059\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0);
+INSERT INTO `ecm_sessions` VALUES ('387f78b22dcb59d7c8d1c43c033bcb9c',1397388483,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397354932\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0),('20a74db778c0b964e0d84e1d9a8d5e5c',1397482329,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397355051\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0),('00ffa14140b33175aae70232177356f0',1398094910,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397400059\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0);
 /*!40000 ALTER TABLE `ecm_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1721,6 +1722,7 @@ CREATE TABLE `ecm_store` (
   `update_at` int(10) unsigned NOT NULL DEFAULT '0',
   `lianbao_auth` tinyint(4) NOT NULL DEFAULT '0',
   `appointment_auth` tinyint(4) NOT NULL DEFAULT '0',
+  `number` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`store_id`),
   KEY `store_name` (`store_name`),
   KEY `owner_name` (`owner_name`),
@@ -1735,7 +1737,7 @@ CREATE TABLE `ecm_store` (
 
 LOCK TABLES `ecm_store` WRITE;
 /*!40000 ALTER TABLE `ecm_store` DISABLE KEYS */;
-INSERT INTO `ecm_store` VALUES (8,'杭州美容','李辉','34262219900116195x',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123456','13221050995',1,'',3,0.00,'',1,'',1394670038,0,'autonym,material',65535,0,'','data/files/store_8/other/store_banner.jpg','data/files/store_8/other/store_logo.jpg','','','','','123456789','','','','','','','',0,0,1396079565,1,1),(9,'超验美容','殷建','342622199001161957',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123457','13221050995',8,'',0,0.00,'',1,'',1395007628,0,'',65535,0,'',NULL,NULL,NULL,'','','','','','','','','','','',0,1,1395846458,0,0),(13,'超好美容','李辉','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028975,0,NULL,65535,0,'',NULL,'data/files/store_13/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0),(14,'苏州美容','李辉2','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028953,0,NULL,65535,0,'',NULL,'data/files/store_14/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0),(15,'超超美容','李辉4','34262219900116195x',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123456','13221050995',2,'',0,0.00,'',1,'',1396028942,0,NULL,65535,0,'',NULL,'data/files/store_15/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0),(16,'超出欧美容','李辉5','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028938,0,'',65535,1,'',NULL,'data/files/store_16/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,1,1),(17,'超的美容','李辉6','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028933,0,'',65535,0,'',NULL,'data/files/store_17/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0);
+INSERT INTO `ecm_store` VALUES (8,'杭州美容','李辉','34262219900116195x',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123456','13221050995',1,'',3,0.00,'',1,'',1394670038,0,'autonym,material',65535,0,'','data/files/store_8/other/store_banner.jpg','data/files/store_8/other/store_logo.jpg','','','','','123456789','','','','','','','',0,0,1396079565,1,1,''),(9,'超验美容','殷建','342622199001161957',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123457','13221050995',8,'',0,0.00,'',1,'',1395007628,0,'',65535,0,'',NULL,NULL,NULL,'','','','','','','','','','','',0,1,1395846458,0,0,''),(13,'超好美容','李辉','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028975,0,NULL,65535,0,'',NULL,'data/files/store_13/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,''),(14,'苏州美容','李辉2','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028953,0,NULL,65535,0,'',NULL,'data/files/store_14/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,''),(15,'超超美容','李辉4','34262219900116195x',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123456','13221050995',2,'',0,0.00,'',1,'',1396028942,0,NULL,65535,0,'',NULL,'data/files/store_15/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,''),(16,'超出欧美容','李辉5','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028938,0,'',65535,1,'',NULL,'data/files/store_16/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,1,1,''),(17,'超的美容','李辉6','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028933,0,'',65535,0,'',NULL,'data/files/store_17/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,'');
 /*!40000 ALTER TABLE `ecm_store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1884,4 +1886,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-17 23:33:24
+-- Dump completed on 2014-04-21 23:22:21
