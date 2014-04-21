@@ -19,7 +19,50 @@
     <script src="/themes/resource/flatui/js/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-
+        em {
+            font-style: normal;
+        }
+        .comment-list {
+            padding: 10px;
+            color: #333;
+            font-size: 14px;
+        }
+        .comment-list .l1-list .seg {
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        .comment-list .l1-list .l1-seg * {
+            font-size: 14px;
+        }
+        .comment-list .l1-list .l1-item {
+            margin: 10px 0;
+        }
+        .comment-list .l2-list .l2-item {
+            margin: 8px 0;
+        }
+        .comment-list .l2-list .l2-item p.c-cnt {
+            font-size: 12px;
+        }
+        .comment-list .l1-list .user-name {
+            color: #5d7895;
+            float: left;
+            margin-right: 8px;
+        }
+        .comment-list .l2-list {
+            font-size: 12px;
+            overflow: hidden;
+            padding-left: 32px;
+            background-color: #fafafa;
+            margin-top: 5px;
+        }
+        .reply_area {
+            display: block;
+            width: 95%;
+        }
+        .reply-op {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body style="height: 1200px">
@@ -29,7 +72,7 @@
             <li class="active" for=".member-list">
                 <a href="javascript:void(0)">我的会员</a>
             </li>
-            <li for="comment-list">
+            <li for=".comment-list">
                 <a href="javascript:void(0)">评论列表</a>
             </li>
         </ul>
@@ -61,8 +104,8 @@
             </tbody>
         </table>
     </div>
-    <div class="comment-list">
-
+    <div class="comment-list" style="display: none">
+<ul id="comment_list" class="l1-list"></ul>
     </div>
     <script type="text/tpl" id="member_item_tpl">
     <td><%=user_id%></td>
@@ -74,6 +117,28 @@
     <td><%-im_qq%></td>
     <td><a href="javascript:void(0)" data-id="<%=id%>" class="fui-cross remove-member" style="color:#f30"></a></td>
 </script>
+    <script type="text/tpl" id="comment_item_tpl">
+        <div class="l1-seg seg">
+                <em class="member-name user-name"><%-user_name%>:</em>
+        <p class="c-cnt"><%-cnt%><a href="javascript:void(0)" title="删除" style="color:#f30;font-size:14px;margin-left:10px;" data-id="<%=id%>" class="fui-cross delete-comment"></a></p>
+        </div>
+        <%if (sub_comments && sub_comments.length > 0) {%>
+        <ul class="l2-list">
+                    <%_.each(sub_comments,function(comment){%>
+                <li class="l2-item">
+                        <div class="l2-seg seg">
+                        <em class="store-name user-name">我的回复：</em>
+                <p class="c-cnt"><%-comment.cnt%><a href="javascript:void(0)" data-id="<%=comment.id%>" title="删除" style="color:#f30;font-size:12px;margin-left:10px;" class="fui-cross delete-sub-comment"></a></p>
+                </div>
+                </li>
+                <%});%>
+        </ul>
+            <%}%>
+        <div class="reply">
+                <textarea class="reply_area"></textarea>
+        <p class="reply-op"><button class="btn btn-success reply-btn">回复</button></p>
+        </div>
+    </script>
 </div>
 <script src="/themes/resource/js/require.js"></script>
 <script src="/themes/resource/js/app/cms_store_member_community.js"></script>

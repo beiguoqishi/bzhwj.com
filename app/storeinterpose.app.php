@@ -143,6 +143,20 @@ class StoreInterposeApp extends StorebaseApp
         return $comment;
     }
 
+    function _get_store_comment_by_id($id) {
+        $db =& db();
+        $sql = "select * from app_bzhwj_comment where id = $id  and status > 0";
+        $comment = $db->getall($sql);
+        $comment = $this->_format_comments($comment);
+        foreach ($comment as $k => $v) {
+            $sql = "select * from app_bzhwj_comment where follower_id = " . $v['id'] . " and status > 0 order by id";
+            $sub_comment = $db->getall($sql);
+            $sub_comment = $this->_format_comments($sub_comment);
+            $comment[$k]['sub_comments'] = $sub_comment;
+        }
+        return $comment[0];
+    }
+
     function member_community_comments()
     {
         header('Content-Type: application/json; charset=utf-8');
@@ -151,10 +165,46 @@ class StoreInterposeApp extends StorebaseApp
             $this->assign('store_id', $store_id);
             if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
             } else {
-                $comments = $this->_get_store_comment($store_id);
-                echo json_encode($comments);
-                exit;
+                $id = intval($_GET['id']);
+                if ($id > 0) {
+                    $comment = $this->_get_store_comment_by_id($id);
+                    echo json_encode($comment);
+                } else {
+                    $comments = $this->_get_store_comment($store_id);
+                    echo json_encode($comments);
+                }
             }
+        } else {
+            header('Location:/');
+            exit;
+        }
+    }
+
+    function member_community_comments_del_sub_comment() {
+        header('Content-Type: application/json; charset=utf-8');
+        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
+            $store_id = intval($_SESSION['user_info']['store_id']);
+            $this->assign('store_id', $store_id);
+            $id = $_POST['id'];
+            $sql = "delete from app_bzhwj_comment where id = $id";
+            $db =& db();
+            echo $db->query($sql);
+        } else {
+            header('Location:/');
+            exit;
+        }
+    }
+
+    function member_community_comments_reply() {
+        header('Content-Type: application/json; charset=utf-8');
+        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['store_id']) > 0) || ($_SESSION['user_info']['user_name'] == 'admin')) {
+            $store_id = intval($_SESSION['user_info']['store_id']);
+            $this->assign('store_id', $store_id);
+            $id = $_POST['id'];
+            $cnt = $_POST['cnt'];
+            $sql = "insert app_bzhwj_comment set cnt='" . mysql_real_escape_string($cnt) . "',follower_id=$id,user_id=$store_id,store_id=$store_id,create_at=" . time() . ",update_at=" . time();
+            $db =& db();
+            echo $db->query($sql);
         } else {
             header('Location:/');
             exit;

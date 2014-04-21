@@ -23,7 +23,7 @@
   });
 
   execute = function(Backbone) {
-    var MemberItemView, MemberList, MemberListView, MemberModel;
+    var CommentAppView, CommentCollection, CommentModel, CommentView, MemberItemView, MemberList, MemberListView, MemberModel, commentList;
     Backbone.emulateHTTP = true;
     MemberModel = Backbone.Model.extend({
       urlRoot: '/index.php?app=storeinterpose&act=member_community_list',
@@ -153,7 +153,106 @@
         return this.render();
       }
     });
-    return new MemberListView;
+    new MemberListView;
+    CommentView = Backbone.View.extend({
+      tagName: 'li',
+      className: 'list-group-item',
+      template: _.template($('#comment_item_tpl').html()),
+      initialize: function() {
+        this.render();
+        return this.listenTo(this.model, 'sync', this.sync);
+      },
+      sync: function() {
+        return this.render();
+      },
+      render: function() {
+        this.$el.empty();
+        this.$el.html(this.template(this.model.toJSON()));
+        return this;
+      },
+      events: {
+        'click .reply-btn': 'reply',
+        'click .delete-sub-comment': 'removeSubComment',
+        'click .delete-comment': 'removeComment'
+      },
+      reply: function(e) {
+        var cnt;
+        cnt = $.trim(this.$el.find('.reply_area').val());
+        return this.model.reply(e, cnt);
+      },
+      removeSubComment: function(e) {
+        var id, target;
+        target = $(e.target);
+        id = target.data('id');
+        if (confirm('您确定要删除这条评论吗？')) {
+          return this.model.removeSubComment(e, id);
+        }
+      }
+    });
+    CommentModel = Backbone.Model.extend({
+      urlRoot: '/index.php?app=storeinterpose&act=member_community_comments',
+      url: function() {
+        var base;
+        base = _.result(this, 'urlRoot') || _.result(this.collection, 'url');
+        if (this.isNew()) {
+          return base;
+        }
+        return base.replace(/([^\/])$/, '$1&') + ('id=' + encodeURIComponent(this.id));
+      },
+      removeSubComment: function(e, id) {
+        var self;
+        self = this;
+        return $.post('/index.php?app=storeinterpose&act=member_community_comments_del_sub_comment', {
+          id: id
+        }, function(d) {
+          if (d >= 0) {
+            self.fetch();
+            return alert('删除成功！');
+          } else {
+            return alert('删除失败，请联系网站管理员！');
+          }
+        });
+      },
+      reply: function(e, cnt) {
+        var self;
+        self = this;
+        if (!cnt) {
+          alert('请输入评论内容！');
+          return;
+        }
+        return $.post('/index.php?app=storeinterpose&act=member_community_comments_reply', {
+          cnt: cnt,
+          id: self.get('id')
+        }, function(d) {
+          if (d >= 0) {
+            self.fetch();
+            return alert('回复成功！');
+          } else {
+            return alert('回复失败，请联系网站管理员！');
+          }
+        });
+      }
+    });
+    CommentCollection = Backbone.Collection.extend({
+      model: CommentModel,
+      url: '/index.php?app=storeinterpose&act=member_community_comments'
+    });
+    commentList = new CommentCollection;
+    CommentAppView = Backbone.View.extend({
+      el: $('#comment_list'),
+      initialize: function() {
+        this.listenTo(commentList, 'add', this.addOne);
+        return commentList.fetch();
+      },
+      addOne: function(m) {
+        var view;
+        view = new CommentView({
+          model: m
+        });
+        return this.$el.append(view.el);
+      }
+    });
+    return new CommentAppView;
   };
 
 }).call(this);

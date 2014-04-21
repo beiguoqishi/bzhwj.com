@@ -109,3 +109,86 @@ execute = (Backbone) ->
       this.render()
 
   new MemberListView
+
+  CommentView = Backbone.View.extend
+    tagName   : 'li'
+    className : 'list-group-item'
+    template  : _.template($('#comment_item_tpl').html())
+    initialize:->
+      this.render()
+      this.listenTo this.model,'sync',this.sync
+    sync:->
+      this.render()
+    render    :->
+      this.$el.empty()
+      this.$el.html this.template this.model.toJSON()
+      this
+    events:
+      'click .reply-btn': 'reply'
+      'click .delete-sub-comment': 'removeSubComment'
+      'click .delete-comment'    : 'removeComment'
+    reply:(e)->
+      cnt = $.trim this.$el.find('.reply_area').val()
+      this.model.reply(e,cnt)
+    removeSubComment: (e)->
+      target = $(e.target)
+      id = target.data('id')
+      if confirm '您确定要删除这条评论吗？'
+        this.model.removeComment(e,id,1)
+    removeComment: (e) ->
+      target = $(e.target)
+      id = target.data('id')
+      if confirm '您确定要删除这条评论吗？'
+        this.model.removeComment(e,id,0)
+
+  CommentModel = Backbone.Model.extend
+    urlRoot: '/index.php?app=storeinterpose&act=member_community_comments'
+    url    : ->
+      base =
+        _.result(this, 'urlRoot') or
+        _.result(this.collection, 'url')
+      if this.isNew()
+        return base
+      base.replace(/([^\/])$/, '$1&') + ('id=' + encodeURIComponent this.id)
+    removeSubComment:(e,id,type) ->
+      self = this
+      $.post '/index.php?app=storeinterpose&act=member_community_comments_del_sub_comment',
+        id: id
+        type: type
+        (d)->
+          if d >= 0
+            self.fetch()
+            alert('删除成功！')
+          else
+            alert '删除失败，请联系网站管理员！'
+    reply:(e,cnt)->
+      self = this
+      if not cnt
+        alert('请输入评论内容！');
+        return
+      $.post '/index.php?app=storeinterpose&act=member_community_comments_reply',
+        cnt: cnt
+        id : self.get('id'),
+        (d)->
+          if d >= 0
+            self.fetch()
+            alert('回复成功！')
+          else
+            alert '回复失败，请联系网站管理员！'
+
+  CommentCollection = Backbone.Collection.extend
+    model: CommentModel
+    url  : '/index.php?app=storeinterpose&act=member_community_comments'
+
+  commentList = new CommentCollection
+
+  CommentAppView = Backbone.View.extend
+    el        :$('#comment_list')
+    initialize:->
+      this.listenTo commentList,'add',this.addOne
+      commentList.fetch()
+    addOne    :(m)->
+      view = new CommentView model:m
+      this.$el.append view.el
+
+  new CommentAppView
