@@ -6,6 +6,7 @@
         float: left;
         width: 999px;
         overflow: hidden;
+        border-top: 1px solid #333333;
     }
     a {
         color: #333333;
@@ -48,23 +49,98 @@
     h1, .h1, h2, .h2, h3, .h3 {
         margin: 0;
     }
+    .right .store-comments {
+        padding: 40px;
+    }
+    .right .store-comments .comment .store a {
+        color: #F30;
+        font-size: 14px;
+    }
+    .right .store-comments .comment .store a .store-num {
+        color: #666;
+    }
+    .right .store-comments .comment .store a .store-name {
+        margin-right: 10px;
+    }
+    .right .store-comments .comment .comment-list .l1-comment {
+        font-size: 14px;
+        color: #333333;
+        padding-left: 2em;
+    }
+    .right .store-comments .comment .comment-list .l1-comment em {
+        color: #999;
+        margin-right: 8px;
+        float: left;
+        font-size: 14px;
+    }
+    .right .store-comments .comment .comment-list .l2-comment {
+        padding-left: 4em;
+        font-size: 12px;
+        margin-top: 8px;
+    }
+    .right .store-comments .comment .comment-list .l2-comment p em {
+        float: left;
+        color: #999;
+        margin-right: 5px;
+    }
+    .right .store-comments .comment {
+        margin-bottom: 30px;
+    }
+    .reply-area {
+        padding: 1em;
+        width: 820px;
+        display: block;
+        margin: 0 auto;
+    }
+    .reply {
+        margin: 15px auto 0;
+        text-align: center;
+    }
+    .reply-btn {
+        margin-top: 10px;
+    }
 </style>
 <div class="content" style="width: 1200px;margin: 0 auto;overflow: hidden;border-top: 1px solid #666;padding-top: 30px">
     {include file=bzhwj_member.menu.html}
     <div class="right">
-<!--{if store_comments}-->
+<!--{if $store_comments && $store_comments.0}-->
         <div class="store-comments">
-            <!--{foreach from=$store_comments item=comment}-->
+            <!--{foreach from=$store_comments item=store}-->
             <div class="comment">
                 <p class="store">
-                    <a href="/index.php?app=store&id={$comment.store_id}" target="_blank"><span class="store-name">{$comment.store_name|escape}</span><em class="store-num">{$comment.number|escape}</em></a>
+                    <a href="/index.php?app=store&id={$store.store_id}" target="_blank"><span class="store-name">{$store.store_name|escape}</span><em class="store-num">代号&nbsp;&nbsp;{$store.number|escape}</em></a>
                 </p>
                 <div class="detail">
-
+                    <!--{if $store.comments}-->
+                    <div class="comment-list">
+                        <!--{foreach from=$store.comments item=comment}-->
+                        <div class="l1-comment">
+                            <em>{$comment.user_name|escape}:</em>
+                            <span>{$comment.cnt|escape}</span>
+                        </div>
+                        <!--{if $comment.sub_comments}-->
+                        <div class="l2-comment">
+                            <!--{foreach from=$comment.sub_comments item=sub_c}-->
+                            <p>
+                                <em>院长回复:</em>
+                                <span>{$sub_c.cnt|escape}</span>
+                            </p>
+                            <!--{/foreach}-->
+                        </div>
+                        <!--{/if}-->
+                        <!--{/foreach}-->
+                    </div>
+                    <!--{/if}-->
+                </div>
+                <div class="reply">
+                    <textarea class="reply-area"></textarea>
+                    <button class="btn btn-success reply-btn" store_id="{$store.store_id}">回复</button>
                 </div>
             </div>
             <!--{/foreach}-->
         </div>
+        <!--{else}-->
+        <h2 style="text-align: center;padding-top: 40px;font-size: 30px">您还不是任何美容院的会员，请联系相关美容院院长！</h2>
         <!--{/if}-->
     </div>
 </div>
@@ -75,6 +151,26 @@
     <br />
 </div>
 <script src="/themes/resource/js/require.js"></script>
-<script src="/themes/resource/js/app/user_appointment.js"></script>
+        <script>
+            $('body').on('click','.reply-btn',function(e) {
+                var $this = $(this),
+                        val = $.trim($this.siblings('.reply-area').val());
+                if (!val) {
+                    alert("要回复的内容不能为空！");
+                    return;
+                }
+                $.post('/index.php?app=bzhwj_member_community&act=publish_comment',{
+                    store_id: $this.attr('store_id'),
+                    cnt:val
+                },function(d) {
+                    if (d >= 0) {
+                        alert('回复成功！');
+                        location.reload();
+                    } else if (d == -1) {
+                        alert("您未登录，不能发表评论！");
+                    }
+                });
+            });
+        </script>
 </body>
 </html>

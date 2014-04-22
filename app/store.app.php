@@ -257,6 +257,10 @@ class StoreApp extends StorebaseApp
         $store_id = $_POST['store_id'];
         $cnt = $_POST['cnt'];
         $user_id = $this->get_user_id();
+        if (!$this->_is_member_of_store($store_id,$user_id)) {
+            echo -2;
+            exit;
+        }
         if (!$user_id) {
             echo -1;//未登录
             exit;
@@ -264,6 +268,11 @@ class StoreApp extends StorebaseApp
         $db =& db();
         $sql = "insert into app_bzhwj_comment set user_id = $user_id,store_id = $store_id,cnt='" . mysql_real_escape_string($cnt) . "',create_at=" . time() . ",update_at=" . time();
         echo $db->query($sql);
+    }
+
+    function _is_member_of_store($store_id,$user_id) {
+        $db =& db();
+        return intval($db->getone("select id from app_bzhwj_store_member where store_id = $store_id and user_id = $user_id and status > 0 "));
     }
 
     function _get_store_comment($store_id,$page = 1,$page_size = 20) {

@@ -21,11 +21,21 @@ class Bzhwj_member_communityApp extends MallbaseApp
 
         $user_id = intval($_SESSION['user_info']['user_id']);
         $store_comments = $this->_get_member_store_comments($user_id);
-        echo '<meta charset="utf-8">';
-        print_r($store_comments);
         $this->assign('store_comments',$store_comments);
         $this->assign('recommend_search',$cms->get_manual_data('bzhwj',0,'search_recommend'));
         $this->display('bzhwj_member_community.html');
+    }
+    function publish_comment() {
+        if (($_SESSION && $_SESSION['user_info'] && intval($_SESSION['user_info']['user_id']) > 0)) {
+            $store_id = $_POST['store_id'];
+            $user_id  = intval($_SESSION['user_info']['user_id']);
+            $cnt      = $_POST['cnt'];
+            $db =& db();
+            $sql = "insert app_bzhwj_comment set store_id=$store_id,user_id=$user_id,cnt='" . mysql_real_escape_string($cnt) . "',create_at=" . time() . ",update_at=" . time();
+            echo $db->query($sql);
+        } else {
+            echo -1;
+        }
     }
 
     function _get_member_store_comments($user_id) {
@@ -46,12 +56,15 @@ class Bzhwj_member_communityApp extends MallbaseApp
     }
 
     function _get_store_comments($store_id,$user_id) {
-        $sql = "select * from app_bzhwj_comment where store_id = $store_id and user_id = $user_id and follower_id = 0 and status > 0";
+        $sql = "select * from app_bzhwj_comment where store_id = $store_id and user_id = $user_id and follower_id = 0 and status > 0 order by id desc ";
         $db =& db();
         $data = $db->getall($sql);
+        $data = $this->_format_comments($data);
         foreach($data as $k => $v) {
             $sub_sql = "select * from app_bzhwj_comment where follower_id = " . $v['id'] . " and status > 0";
-            $data[$k]['sub_comments'] = $db->getall($sub_sql);
+            $sub_comments = $db->getall($sub_sql);
+            $sub_comments = $this->_format_comments($sub_comments);
+            $data[$k]['sub_comments'] = $sub_comments;
         }
         return $data;
     }
@@ -59,5 +72,17 @@ class Bzhwj_member_communityApp extends MallbaseApp
     function _get_store_by_id($store_id) {
         $db =& db();
         return $db->getrow("select store_id,store_name,number from ecm_store where store_id = $store_id");
+    }
+
+    function _get_user_name_by_id($user_id) {
+        $db =& db();
+        return $db->getone("select user_name from ecm_member where user_id=$user_id");
+    }
+
+    function _format_comments($comments) {
+        foreach($comments as $k => $v) {
+            $comments[$k]['user_name'] = $this->_get_user_name_by_id($v['user_id']);
+        }
+        return $comments;
     }
 } 

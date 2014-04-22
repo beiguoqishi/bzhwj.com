@@ -77,7 +77,7 @@ CREATE TABLE `app_bzhwj_comment` (
   PRIMARY KEY (`id`),
   KEY `store_follower_idx` (`store_id`,`follower_id`),
   KEY `user_idx` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `app_bzhwj_comment` (
 
 LOCK TABLES `app_bzhwj_comment` WRITE;
 /*!40000 ALTER TABLE `app_bzhwj_comment` DISABLE KEYS */;
-INSERT INTO `app_bzhwj_comment` VALUES (1,21,'这是对这个店铺的第一条评论',8,0,0,1397654225,1397654225,1),(2,8,'谢谢您的支持',8,1,0,1397655020,1397655020,1),(3,8,'这是我对你的第二次评论。',8,1,0,1397655055,1397655055,1),(4,19,'我是另一个用户，我对此店进行好评。',8,0,0,1397655077,1397655077,1),(5,20,'我是第三个用户。',8,0,0,1397655119,1397655119,1),(6,8,'我作为一个院长进行的回复',8,0,0,1397657373,1397657373,1),(7,8,'谢谢您的支持。',13,5,0,1398089985,1398089985,1),(8,8,'中国',8,6,0,1398090058,1398090058,1);
+INSERT INTO `app_bzhwj_comment` VALUES (1,21,'这是对这个店铺的第一条评论',8,0,0,1397654225,1397654225,1),(2,8,'谢谢您的支持',8,1,0,1397655020,1397655020,1),(3,8,'这是我对你的第二次评论。',8,1,0,1397655055,1397655055,1),(4,19,'我是另一个用户，我对此店进行好评。',8,0,0,1397655077,1397655077,1),(5,20,'我是第三个用户。',8,0,0,1397655119,1397655119,1),(6,8,'我作为一个院长进行的回复',8,0,0,1397657373,1397657373,1),(7,8,'谢谢您的支持。',13,5,0,1398089985,1398089985,1),(8,8,'中国',8,6,0,1398090058,1398090058,1),(11,8,'这是我的一条评论。',8,0,0,1398183220,1398183220,1),(12,8,'这又是一条评论。',8,0,0,1398183237,1398183237,1),(13,8,'这是我对超好美容的一条评论。',13,0,0,1398183257,1398183257,1),(14,8,'这是对超好美容的另一条好的评论。',13,0,0,1398183280,1398183280,1),(15,8,'瞄瞄',8,0,0,1398183424,1398183424,1),(16,8,'睇睇',13,0,0,1398183435,1398183435,1),(17,8,'谢谢您 的支持。',8,15,0,1398183534,1398183534,1),(18,8,'非常感谢您的支持。',8,15,0,1398183546,1398183546,1),(19,8,'欢迎下次再来。',8,12,0,1398183559,1398183559,1),(20,22,'质量不错，下回还来。',8,0,0,1398184498,1398184498,1),(21,22,'谢谢你们的商店。',8,0,0,1398184518,1398184518,1),(22,8,'谢谢你的支持，欢迎下次再来。',8,21,0,1398184560,1398184560,1),(23,8,'谢谢您 的两次支持。',8,20,0,1398184573,1398184573,1),(24,8,'哈哈哈',8,21,0,1398184581,1398184581,1),(25,22,'这个店铺不错，我很喜欢。',8,0,0,1398185422,1398185422,1);
 /*!40000 ALTER TABLE `app_bzhwj_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +166,7 @@ CREATE TABLE `app_bzhwj_store_member` (
   `update_at` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `store_user_idx` (`store_id`,`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `app_bzhwj_store_member` (
 
 LOCK TABLES `app_bzhwj_store_member` WRITE;
 /*!40000 ALTER TABLE `app_bzhwj_store_member` DISABLE KEYS */;
-INSERT INTO `app_bzhwj_store_member` VALUES (8,8,8,1,1397925803,1397925803),(9,13,8,1,1398093466,1398093466);
+INSERT INTO `app_bzhwj_store_member` VALUES (8,8,8,1,1397925803,1397925803),(9,13,8,1,1398093466,1398093466),(10,8,22,1,1398184170,1398184170);
 /*!40000 ALTER TABLE `app_bzhwj_store_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -947,7 +947,7 @@ CREATE TABLE `ecm_goods_statistics` (
 
 LOCK TABLES `ecm_goods_statistics` WRITE;
 /*!40000 ALTER TABLE `ecm_goods_statistics` DISABLE KEYS */;
-INSERT INTO `ecm_goods_statistics` VALUES (9,95,1,0,0,0,0),(12,23,0,0,0,0,0),(16,15,0,0,0,0,0),(18,41,0,1,1,0,1),(20,58,0,1,1,1,1),(21,6,0,1,1,0,1),(22,5,0,0,0,0,0),(23,7,0,0,0,0,0),(24,6,0,1,1,1,1),(25,4,0,0,0,0,0),(26,5,0,1,1,0,1),(27,7,0,0,0,0,0),(28,10,0,1,1,1,1),(29,10,0,0,0,0,0);
+INSERT INTO `ecm_goods_statistics` VALUES (9,97,1,0,0,0,0),(12,23,0,0,0,0,0),(16,15,0,0,0,0,0),(18,42,0,1,1,0,1),(20,58,0,1,1,1,1),(21,6,0,1,1,0,1),(22,5,0,0,0,0,0),(23,7,0,0,0,0,0),(24,6,0,1,1,1,1),(25,4,0,0,0,0,0),(26,5,0,1,1,0,1),(27,7,0,0,0,0,0),(28,10,0,1,1,1,1),(29,10,0,0,0,0,0);
 /*!40000 ALTER TABLE `ecm_goods_statistics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1084,7 +1084,7 @@ CREATE TABLE `ecm_member` (
   KEY `user_name` (`user_name`),
   KEY `email` (`email`),
   KEY `outer_id` (`outer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1093,7 +1093,7 @@ CREATE TABLE `ecm_member` (
 
 LOCK TABLES `ecm_member` WRITE;
 /*!40000 ALTER TABLE `ecm_member` DISABLE KEYS */;
-INSERT INTO `ecm_member` VALUES (1,'admin','lpt2008303483@gmail.com','21232f297a57a5a743894a0e4a801fc3',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1388908447,1397288776,'127.0.0.1',74,0,NULL,0,NULL,''),(3,'buyer','buyer@ecmall.com','e10adc3949ba59abbe56e057f20f883e','超级买家',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1389064410,1394775410,'114.252.46.214',1,0,NULL,0,NULL,''),(10,'老五','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1395335843,1395335843,'218.109.224.116',1,0,NULL,0,NULL,''),(11,'红银','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1395420920,1395594454,'218.109.226.25',2,0,NULL,0,NULL,''),(9,'殷建','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1394752341,1395632930,'218.109.226.25',11,0,NULL,0,NULL,''),(8,'李辉','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1394669140,1397652745,'127.0.0.1',38,0,NULL,0,NULL,''),(12,'泓易美容','985718063@qq.com','55587a910882016321201e6ebbc9f595',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1395600399,1396033429,'218.109.226.25',10,0,NULL,0,NULL,''),(13,'李辉1','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396027052,1396029214,'218.109.226.25',2,0,NULL,0,NULL,''),(14,'李辉2','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396027290,1396031047,'218.109.226.25',2,0,NULL,0,NULL,''),(15,'李辉4','123456789@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396027992,1396031916,'218.109.226.25',2,0,NULL,0,NULL,''),(16,'李辉5','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028184,1396031995,'218.109.226.25',2,0,NULL,0,NULL,''),(17,'李辉6','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028302,1396032282,'218.109.226.25',2,0,NULL,0,NULL,''),(18,'李辉7','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028402,1396028402,'218.109.226.25',1,0,NULL,0,NULL,''),(19,'李辉8','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028492,1396028492,'218.109.226.25',1,0,NULL,0,NULL,''),(20,'李辉9','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028832,1396028832,'218.109.226.25',1,0,NULL,0,NULL,''),(21,'王3','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396040880,1396040880,'218.109.226.25',1,0,NULL,0,NULL,'');
+INSERT INTO `ecm_member` VALUES (1,'admin','lpt2008303483@gmail.com','21232f297a57a5a743894a0e4a801fc3',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1388908447,1397288776,'127.0.0.1',74,0,NULL,0,NULL,''),(3,'buyer','buyer@ecmall.com','e10adc3949ba59abbe56e057f20f883e','超级买家',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1389064410,1394775410,'114.252.46.214',1,0,NULL,0,NULL,''),(10,'老五','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1395335843,1395335843,'218.109.224.116',1,0,NULL,0,NULL,''),(11,'红银','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1395420920,1395594454,'218.109.226.25',2,0,NULL,0,NULL,''),(9,'殷建','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1394752341,1395632930,'218.109.226.25',11,0,NULL,0,NULL,''),(8,'李辉','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1394669140,1398184530,'127.0.0.1',41,0,NULL,0,NULL,''),(12,'泓易美容','985718063@qq.com','55587a910882016321201e6ebbc9f595',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1395600399,1396033429,'218.109.226.25',10,0,NULL,0,NULL,''),(13,'李辉1','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396027052,1396029214,'218.109.226.25',2,0,NULL,0,NULL,''),(14,'李辉2','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396027290,1396031047,'218.109.226.25',2,0,NULL,0,NULL,''),(15,'李辉4','123456789@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396027992,1396031916,'218.109.226.25',2,0,NULL,0,NULL,''),(16,'李辉5','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028184,1396031995,'218.109.226.25',2,0,NULL,0,NULL,''),(17,'李辉6','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028302,1396032282,'218.109.226.25',2,0,NULL,0,NULL,''),(18,'李辉7','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028402,1396028402,'218.109.226.25',1,0,NULL,0,NULL,''),(19,'李辉8','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028492,1396028492,'218.109.226.25',1,0,NULL,0,NULL,''),(20,'李辉9','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396028832,1396028832,'218.109.226.25',1,0,NULL,0,NULL,''),(21,'王3','1095468411@qq.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1396040880,1396040880,'218.109.226.25',1,0,NULL,0,NULL,''),(22,'liupengtao','lpt@aa.com','e10adc3949ba59abbe56e057f20f883e','刘鹏涛',1,'0000-00-00',NULL,NULL,'913398769','',NULL,NULL,NULL,1398183862,1398184607,'127.0.0.1',4,0,NULL,0,NULL,''),(23,'beiguoqishi','lpt@baidu.com','e10adc3949ba59abbe56e057f20f883e',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1398185640,1398185640,'127.0.0.1',1,0,NULL,0,NULL,'');
 /*!40000 ALTER TABLE `ecm_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1580,7 +1580,7 @@ CREATE TABLE `ecm_sessions` (
 
 LOCK TABLES `ecm_sessions` WRITE;
 /*!40000 ALTER TABLE `ecm_sessions` DISABLE KEYS */;
-INSERT INTO `ecm_sessions` VALUES ('387f78b22dcb59d7c8d1c43c033bcb9c',1397388483,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397354932\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0),('20a74db778c0b964e0d84e1d9a8d5e5c',1397482329,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397355051\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0),('00ffa14140b33175aae70232177356f0',1398094910,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397400059\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0);
+INSERT INTO `ecm_sessions` VALUES ('387f78b22dcb59d7c8d1c43c033bcb9c',1397388483,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397354932\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0),('20a74db778c0b964e0d84e1d9a8d5e5c',1397482329,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:1:\"8\";s:9:\"user_name\";s:6:\"李辉\";s:8:\"reg_time\";s:10:\"1394669140\";s:10:\"last_login\";s:10:\"1397355051\";s:7:\"last_ip\";s:9:\"127.0.0.1\";s:8:\"store_id\";s:1:\"8\";}',0),('00ffa14140b33175aae70232177356f0',1398187148,0,0,'127.0.0.1','user_info|a:6:{s:7:\"user_id\";s:2:\"23\";s:9:\"user_name\";s:11:\"beiguoqishi\";s:8:\"reg_time\";s:10:\"1398185640\";s:10:\"last_login\";N;s:7:\"last_ip\";N;s:8:\"store_id\";N;}',0);
 /*!40000 ALTER TABLE `ecm_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1737,7 +1737,7 @@ CREATE TABLE `ecm_store` (
 
 LOCK TABLES `ecm_store` WRITE;
 /*!40000 ALTER TABLE `ecm_store` DISABLE KEYS */;
-INSERT INTO `ecm_store` VALUES (8,'杭州美容','李辉','34262219900116195x',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123456','13221050995',1,'',3,0.00,'',1,'',1394670038,0,'autonym,material',65535,0,'','data/files/store_8/other/store_banner.jpg','data/files/store_8/other/store_logo.jpg','','','','','123456789','','','','','','','',0,0,1396079565,1,1,''),(9,'超验美容','殷建','342622199001161957',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123457','13221050995',8,'',0,0.00,'',1,'',1395007628,0,'',65535,0,'',NULL,NULL,NULL,'','','','','','','','','','','',0,1,1395846458,0,0,''),(13,'超好美容','李辉','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028975,0,NULL,65535,0,'',NULL,'data/files/store_13/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,''),(14,'苏州美容','李辉2','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028953,0,NULL,65535,0,'',NULL,'data/files/store_14/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,''),(15,'超超美容','李辉4','34262219900116195x',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123456','13221050995',2,'',0,0.00,'',1,'',1396028942,0,NULL,65535,0,'',NULL,'data/files/store_15/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,''),(16,'超出欧美容','李辉5','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028938,0,'',65535,1,'',NULL,'data/files/store_16/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,1,1,''),(17,'超的美容','李辉6','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028933,0,'',65535,0,'',NULL,'data/files/store_17/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,'');
+INSERT INTO `ecm_store` VALUES (8,'杭州美容','李辉','34262219900116195x',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123456','13221050995',1,'',3,0.00,'',1,'',1394670038,0,'autonym,material',65535,0,'','data/files/store_8/other/store_banner.jpg','data/files/store_8/other/store_logo.jpg','','','','','123456789','','','','','','','',0,0,1396079565,1,1,'1008'),(9,'超验美容','殷建','342622199001161957',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123457','13221050995',8,'',0,0.00,'',1,'',1395007628,0,'',65535,0,'',NULL,NULL,NULL,'','','','','','','','','','','',0,1,1395846458,0,0,'1009'),(13,'超好美容','李辉','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028975,0,NULL,65535,0,'',NULL,'data/files/store_13/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,'1013'),(14,'苏州美容','李辉2','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028953,0,NULL,65535,0,'',NULL,'data/files/store_14/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,'1014'),(15,'超超美容','李辉4','34262219900116195x',195,'中国	浙江省	杭州','杭州市萍水街昆仑橡树园7栋','123456','13221050995',2,'',0,0.00,'',1,'',1396028942,0,NULL,65535,0,'',NULL,'data/files/store_15/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,'1015'),(16,'超出欧美容','李辉5','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028938,0,'',65535,1,'',NULL,'data/files/store_16/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,1,1,'1016'),(17,'超的美容','李辉6','34262219900116195x',195,'中国	浙江省	杭州','萍水街昆仑橡树园','123456','13221050995',2,'',0,0.00,'',1,'',1396028933,0,'',65535,0,'',NULL,'data/files/store_17/other/store_logo.jpg','','','','','','','','','','','','',0,0,0,0,0,'1017');
 /*!40000 ALTER TABLE `ecm_store` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1886,4 +1886,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-21 23:22:21
+-- Dump completed on 2014-04-23  0:56:27
