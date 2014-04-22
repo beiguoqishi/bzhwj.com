@@ -52,6 +52,20 @@
 <div class="content" style="width: 1200px;margin: 0 auto;overflow: hidden;border-top: 1px solid #666;padding-top: 30px">
     {include file=bzhwj_member.menu.html}
     <div class="right">
+<!--{if store_comments}-->
+        <div class="store-comments">
+            <!--{foreach from=$store_comments item=comment}-->
+            <div class="comment">
+                <p class="store">
+                    <a href="/index.php?app=store&id={$comment.store_id}" target="_blank"><span class="store-name">{$comment.store_name|escape}</span><em class="store-num">{$comment.number|escape}</em></a>
+                </p>
+                <div class="detail">
+
+                </div>
+            </div>
+            <!--{/foreach}-->
+        </div>
+        <!--{/if}-->
     </div>
 </div>
 {include file=helper_footer.html}

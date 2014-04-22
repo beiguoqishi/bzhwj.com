@@ -23,6 +23,7 @@ class Bzhwj_member_communityApp extends MallbaseApp
         $store_comments = $this->_get_member_store_comments($user_id);
         echo '<meta charset="utf-8">';
         print_r($store_comments);
+        $this->assign('store_comments',$store_comments);
         $this->assign('recommend_search',$cms->get_manual_data('bzhwj',0,'search_recommend'));
         $this->display('bzhwj_member_community.html');
     }
@@ -45,7 +46,7 @@ class Bzhwj_member_communityApp extends MallbaseApp
     }
 
     function _get_store_comments($store_id,$user_id) {
-        $sql = "select * from app_bzhwj_comment where store_id = $store_id and user_id = $user_id and status > 0";
+        $sql = "select * from app_bzhwj_comment where store_id = $store_id and user_id = $user_id and follower_id = 0 and status > 0";
         $db =& db();
         $data = $db->getall($sql);
         foreach($data as $k => $v) {
