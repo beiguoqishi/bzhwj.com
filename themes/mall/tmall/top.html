@@ -35,6 +35,24 @@ var PRICE_FORMAT = '{$price_format}';
 
 {$_head_tags}
 <!--<editmode></editmode>-->
+    <style type="text/css">
+        .user-area {
+            float: left;
+            margin-right: 450px;
+            margin-left: 15px;
+        }
+        .user-area .cur-city {
+            color: #f30;
+            font-weight: bold;
+        }
+        .user-area .switch-city {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        #site-nav .quick-menu li.login_area {
+            margin-right: auto!important;
+        }
+    </style>
 </head>
 <body>
 <div id="site-nav" class="w-full">
@@ -42,7 +60,7 @@ var PRICE_FORMAT = '{$price_format}';
       <div class="login_info">
          
       </div>
-      <ul class="quick-menu">
+      <ul class="quick-menu" style="float: left">
       
          <li style="line-height:23px;" class="login_area">{$lang.hello},
          <!--{if !$visitor.user_id}-->
@@ -54,28 +72,71 @@ var PRICE_FORMAT = '{$price_format}';
          <li class="login_area"><a href="{url app=member&act=logout}">{$lang.logout}</a></li>
          <li style="margin-right: 730px" class="login_area"></li>
          <!--{/if}-->
-          <li class="service">
-              <a href="/index.php?app=bzhwjbuilding">项目推荐</a>
+          <!--{if $cur_loc}-->
+          <li class="user-area">
+              <span class="cur-city" data-pid="{$cur_loc.pid}" data-cid="{$cur_loc.cid}">{$cur_loc.city|escape}</span>
+              <a href="javascript:void(0)" class="switch-city">切换城市</a>
+              <span class="zone-switch" style="display: none">
+                  <!--{if $provinces}-->
+              <select class="all-provinces">
+                  <!--{foreach from=$provinces item=prov}-->
+                  <option value="{$prov.id}" <!--{if $l_cur_pid == $prov.id}-->selected=""<!--{/if}-->>{$prov.name|escape}</option>
+                  <!--{/foreach}-->
+              </select>
+
+              <!--{/if}-->
+              <!--{if $cities}-->
+              <select class="all-cities">
+                  <!--{foreach from=$cities item=city}-->
+                  <option value="{$city.id}" <!--{if $l_cur_cid == $city.id}-->selected=""<!--{/if}-->>{$city.name|escape}</option>
+                  <!--{/foreach}-->
+              </select>
+              <!--{/if}-->
+                  <button type="button" class="do-switch-city">确定</button>
+              </span>
           </li>
-          <li class="service">
-              <a href="/index.php?app=newestgoods">最新项目</a>
-          </li>
-         <li class="item">
-            <div class="menu favorite">
-               <a class="menu-hd" href="{url app=my_favorite}">收藏夹<b></b></a>
-               <div class="menu-bd">
-                  <div class="menu-bd-panel">
-                     <div>
-                       <p><a href="{url app=my_favorite}">收藏的宝贝</a></p>
-                       <p><a href="{url app=my_favorite&type=store}">收藏的店铺</a></p>
-                    </div>
-                 </div>
-               </div>
-           </div>
-         </li>
-          <li class="service">
-          <a href="{url app=bzhwjcontact}">联系客服</a>
-          </li>
+          <!--{/if}-->
      </ul>
+       <ul class="quick-menu" style="float: right">
+           <li class="service">
+               <a href="/index.php?app=bzhwjbuilding">项目推荐</a>
+           </li>
+           <li class="service">
+               <a href="/index.php?app=newestgoods">最新项目</a>
+           </li>
+           <li class="item">
+               <div class="menu favorite">
+                   <a class="menu-hd" href="{url app=my_favorite}">收藏夹<b></b></a>
+                   <div class="menu-bd">
+                       <div class="menu-bd-panel">
+                           <div>
+                               <p><a href="{url app=my_favorite}">收藏的宝贝</a></p>
+                               <p><a href="{url app=my_favorite&type=store}">收藏的店铺</a></p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </li>
+           <li class="service">
+               <a href="{url app=bzhwjcontact}">联系客服</a>
+           </li>
+       </ul>
    </div>
 </div>
+<script>
+    $('.switch-city').on('click',function(e) {
+        var $this = $(this);
+        $this.hide();
+        $('.zone-switch').show();
+    });
+    $('body').on('click','.zone-switch .do-switch-city',function(e) {
+        $('.switch-city')
+                .data('pid',$('.all-provinces').val())
+                .data('cid',$('.all-cities').val())
+                .text($('.all-cities')[0].selected)
+                .show();
+        $('.zone-switch').hide();
+    }).on('change','.all-provinces',function(e) {
+
+    });
+</script>

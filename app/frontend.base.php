@@ -32,6 +32,23 @@ class FrontendApp extends ECBaseApp
         $categories= $init->_get_header_gcategories(0,$position);// 参数说明（二级分类显示数量,弹出层位置）
         $this->assign('g_categories',$categories);
         # 在运行action之前，无法访问到visitor对象
+        $cur_loc = $this->get_cur_location();
+        $cur_loc = json_decode($cur_loc,true);
+        $cur_loc = $cur_loc['cityinfo'];
+        $this->assign('cur_loc',$cur_loc);
+
+        $provinces = $this->get_provinces();
+        $provinces = json_decode($provinces,true);
+        $this->assign('provinces',$provinces);
+
+        $pid = $cur_loc['pid'];
+        $this->assign('l_cur_pid',$pid);
+        $cities = $this->get_cities_by_pid($pid);
+        $cities = json_decode($cities,true);
+        $this->assign('cities',$cities);
+
+        $cid = $cur_loc['cid'];
+        $this->assign('l_cur_cid',$cid);
     }
 
     function get_cur_location() {
