@@ -1,0 +1,209 @@
+{include file=custom_header.html}
+<link href="/themes/mall/tmall/styles/default/css/user.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+    .right{
+        float: left;
+        margin-left: 20px;
+        width: 979px;
+        border: 1px solid #ccc;
+        padding-left: 10px;
+    }
+    .right .title{
+        font-size: 16px;
+        background-color: #f9fafc;
+        padding: 4px 12px;
+        border-bottom: 1px solid #c4d5e0;
+        margin-left: -10px;
+    }
+    .right .weiquanlist{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-top: 1px solid #c4d5e0;
+    }
+    #weiquan{
+        margin-top: 10px;
+        padding-left: 10px;
+    }
+    .formtable td{
+        vertical-align: middle;
+        padding: 6px;
+    }
+    .formtable label{
+        padding-right: 8px;
+    }
+    .formtable .text-input{
+        border: 1px solid #7F9DB9;
+        height: 15px;
+        padding: 1px 2px;
+        vertical-align: middle;
+        width: 110px;
+    }
+    .formtable textarea{
+        border: 1px solid #7F9DB9;
+        height: 50px;
+        width: 250px;
+    }
+    .formtable .cause{
+        float: left;
+        margin-top: 20px;
+    }
+    .formtable .submit{
+        padding: 4px 6px;
+        cursor: pointer;
+    }
+    .formtable .picsbt{
+
+    }
+    .formtable .pic{
+        float: left;
+    }
+    .weiquantable{
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    .weiquantable th{
+        border: 1px solid #aec7e5;
+        background: #aec7e5;
+    }
+    .weiquantable td, .weiquantable th{
+        padding: 4px 6px;
+    }
+    #close{
+        padding-bottom: 10px;
+    }
+    .list li{
+        padding: 10px;
+    }
+    .list li .detail{
+        padding-right: 10px;
+        color: #36c;
+    }
+</style>
+<div class="content" style="width: 1200px;margin: 0 auto;overflow: hidden;border-top: 1px solid #666;padding-top: 30px">
+    {include file=bzhwj_member.menu.html}
+    <div class="right">
+        <h2 class="title">维权退款</h2>
+        <div id="weiquan">
+            <table class="formtable">
+                <tbody>
+                <tr>
+                    <td><label>商品名称:</label><input type="text" class="text-input" name="product_name"/></td>
+                    <td><labe>美店名称:</labe><input type="text" class="text-input" name="shop_name"/></td>
+                    <td><label>价格:</label><input type="text" class="text-input" name="price"/></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><label class="cause">退款原因:</label><textarea name="cause"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <form action="" method="post" target="pic" class="pic">
+                            <label>上传图片:</label><input type="file" name="pic"/>
+                        </form>
+                        <input type="submit" class="picsbt" value="确定上传"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>真实姓名:</label><input type="text" class="text-input" name="customer_name"/></td>
+                    <td colspan="2"><label>手机号码:</label><input type="text" class="text-input" name="mobile_number"/></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><label>邮箱:</label><input type="text" class="text-input" name="email"/> </td>
+                </tr>
+                <tr>
+                    <td colspan="3"><button class="submit save">提交</button><input type="hidden" name="picurl"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="process">
+            <h2 class="title weiquanlist">正在进行中的维权</h2>
+            <ul class="list">
+                <li>
+                    <div>
+                        <span>面部保养</span> <a href="#" class="detail" index="0">>>详细信息</a></span>
+                    </div>
+                    <table class="weiquantable" for="0" style="display: none">
+                        <tbody>
+                        <tr>
+                            <th>商品名称</th>
+                            <th>美店名称</th>
+                            <th>价格</th>
+                            <th>退款原因</th>
+                            <th>真实姓名</th>
+                            <th>手机号码</th>
+                            <th>邮箱</th>
+                        </tr>
+                        <tr>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <div>
+                        <span>面部保养</span> <a href="#" class="detail" index="1">>>详细信息</a></span>
+                    </div>
+                    <table class="weiquantable" for="1" style="display: none">
+                        <tbody>
+                        <tr>
+                            <th>商品名称</th>
+                            <th>美店名称</th>
+                            <th>价格</th>
+                            <th>退款原因</th>
+                            <th>真实姓名</th>
+                            <th>手机号码</th>
+                            <th>邮箱</th>
+                        </tr>
+                        <tr>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                            <td>面部保养</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+        <div id="close">
+            <h2 class="title weiquanlist">已结束的退款维权</h2>
+            <ul class="list">
+                <li>面部保养</li>
+                <li>面部保养</li>
+            </ul>
+        </div>
+    </div>
+    <iframe  width="0" height="0" style="display: none" name="pic"></iframe>
+</div>
+{include file=helper_footer.html}
+<div id="footer_index">
+    Copyright 2014-2020 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+<script src="/themes/resource/js/require.js"></script>
+<script>
+
+    $(".save").on("click", function(){
+        var data=$("#weiquan input, #weiquan textarea").serialize();
+        $.post("", data, function(msg){
+
+        });
+    });
+    $(".detail").on("click", function(e){
+        e.preventDefault();
+        var index=$(this).attr("index");
+        $(".weiquantable").eq(index).toggle();
+    });
+</script>
+</body>
+</html>
