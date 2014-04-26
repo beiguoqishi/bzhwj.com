@@ -42,13 +42,34 @@ class FrontendApp extends ECBaseApp
         $this->assign('provinces',$provinces);
 
         $pid = $cur_loc['pid'];
+        $c_pid = trim($_GET['c_pid']);
+        if (!empty($c_pid)) {
+            $pid = $c_pid;
+        }
         $this->assign('l_cur_pid',$pid);
         $cities = $this->get_cities_by_pid($pid);
         $cities = json_decode($cities,true);
         $this->assign('cities',$cities);
 
         $cid = $cur_loc['cid'];
+        $c_cid = trim($_GET['c_cid']);
+        if (!empty($c_cid)) {
+            $cid = $c_cid;
+        }
         $this->assign('l_cur_cid',$cid);
+
+        foreach($cities as $city) {
+            if ($city['id'] == $cid) {
+                $cur_city = $city['name'];
+            }
+        }
+        $this->assign('cur_city',$cur_city);
+
+        $zones = $this->get_dist_by_pid_cid($pid,$cid);
+        $zones = json_decode($zones,true);
+        $this->assign('city_zones',$zones);
+        $zid = $cur_loc['zid'];
+        $this->assign('l_cur_zid',$zid);
     }
 
     function get_cur_location() {

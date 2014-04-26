@@ -104,15 +104,24 @@
         margin-top: 8px;
         font-size: 12px;
     }
-    .ctgs .ctg a {
+    .ctgs .ctg a,.area-list a {
         padding: 5px 8px;
     }
-    .ctgs .ctg a.cur,.ctgs .ctg a:hover {
+    .ctgs .ctg a.cur,.ctgs .ctg a:hover,.area-list a.cur,.area-list a:hover {
         color: #b00000;
         background-color: #ccc;
     }
     h1, .h1, h2, .h2, h3, .h3 {
         margin: 0!important;
+    }
+    a.zone-item {
+        font-size: 12px;
+    }
+    a.zone-item.city-caption {
+        font-size: 14px;
+    }
+    .area-list {
+        margin-left: 20px;
     }
 </style>
 <div style="width: 1200px;margin: 0 auto;overflow: hidden;">
@@ -132,6 +141,17 @@
             </div>
             <!--{/foreach}-->
             <!--{/if}-->
+        </div>
+        <div class="area-list">
+            <span class="tle">区域：</span>
+            <span class="zone-list">
+                <a class="zone-item <!--{if 'all'==$loc}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc=all" target="_self">全部</a>
+                <!--{if $city_zones}-->
+                    <!--{foreach from=$city_zones item=zone}-->
+                    <a class="zone-item <!--{if $zone.id=='01'}-->city-caption<!--{/if}--> <!--{if $zone.name==$loc}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc={$zone.name|escape}" target="_self">{$zone.name|escape}</a>
+                    <!--{/foreach}-->
+                <!--{/if}-->
+            </span>
         </div>
         <div class="nav-bar">
             <div class="sort">

@@ -25,6 +25,12 @@ class ExperimentApp extends MallbaseApp {
         $sort_order = trim($_GET['sort_order']);
         $b_ctg = intval(trim($_GET['b_ctg']));
         $s_ctg = intval(trim($_GET['s_ctg']));
+        $loc = $_GET['loc'];
+
+        if ($loc != 'all') {
+            $store_ids = $this->_get_store_ids_by_loc($loc);
+            $store_ids = implode(',',$store_ids);
+        }
 
         $sort_type = empty($sort_type) ? 'newest' : $sort_type;
         $sort_order = $sort_order == 'asc' ? 'asc' : 'desc';
@@ -46,6 +52,10 @@ class ExperimentApp extends MallbaseApp {
             $this->assign('s_ctg_id',$s_ctg);
             $where .= " and cate_id_2 = $s_ctg ";
         }
+        if ($loc != 'all') {
+            $where .= " and store_id in (" . $store_ids . ") ";
+        }
+
         $conds = "select * from ecm_goods " . $where . " order by ";
         switch($sort_type) {
             case 'price':
@@ -76,6 +86,7 @@ class ExperimentApp extends MallbaseApp {
         $this->assign('exact_sort_order',$sort_order);
         $this->assign('page',$page);
         $this->assign('total',$total);
+        $this->assign('loc',$loc);
         $this->display('bzhwjexperiment_list.html');
     }
 
@@ -97,5 +108,16 @@ class ExperimentApp extends MallbaseApp {
     function _get_store_address_by_id($store_id) {
         $db =& db();
         return $db->getone("select address from ecm_store where store_id = $store_id");
+    }
+
+    function _get_store_ids_by_loc($pos) {
+        $db =& db();
+        $sql = "select store_id from ecm_store where region_name like '%" . $pos . "%' or address like '%" . $pos . "%'";
+        $ids = $db->getall($sql);
+        $ret = array();
+        foreach ($ids as $id) {
+            $ret[] = $id['store_id'];
+        }
+        return $ret;
     }
 }
