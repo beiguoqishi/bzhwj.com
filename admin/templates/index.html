@@ -14,6 +14,12 @@ var menu = {$menu_json};
 </script>
 
 <script type="text/javascript" src="{res file=js/index.js}" charset="utf-8"></script>
+    <style type="text/css">
+        #head ul#nav li:nth-child(2),#head ul#nav li:nth-child(6),
+        #head ul#nav li:nth-child(7),#head ul#nav li:nth-child(8) {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div class="back_nav">
@@ -39,21 +45,33 @@ var menu = {$menu_json};
     </div>
     <ul id="nav">
     </ul>
-    <ul style="position: absolute;left: 780px;top:70px;">
+    <ul style="position: absolute;left: 520px;top:70px;">
         <li style="float: left">
             <a href="http://admin.bzhwj.com/generaldata/page_interpose_index?table=app_common_mis_page_app_config&app_id=1" target="_blank">首页管理</a>
         </li>
-        <li style="float: left;margin-left: 30px">
+        <li style="float: left;margin-left: 10px">
             <a href="http://admin.bzhwj.com/generaldata/page_interpose_list?&app_id=2&table=app_bzhwj_news" target="_blank">新闻管理</a>
         </li>
-        <li style="float: left;margin-left: 30px">
+        <li style="float: left;margin-left: 10px">
             <a href="http://www.bzhwj.com/index.php?app=storeinterpose&act=store_fengyun_people_all" target="_blank">风云人物管理</a>
         </li>
-        <li style="float: left;margin-left: 30px">
+        <li style="float: left;margin-left: 10px">
             <a href="http://www.bzhwj.com/index.php?app=storeinterpose&act=store_tuijian_goods_all" target="_blank">精品项目推荐管理</a>
         </li>
-        <li style="float: left;margin-left: 30px">
+        <li style="float: left;margin-left: 10px">
             <a href="http://www.bzhwj.com/index.php?app=storeinterpose&act=store_grade" target="_blank">店铺信用度管理</a>
+        </li>
+        <li style="float: left;margin-left: 10px">
+            <a href="http://admin.bzhwj.com/generaldata/page_interpose_list?&app_id=2&table=app_bzhwj_common_question" target="_blank">常见问题</a>
+        </li>
+        <li style="float: left;margin-left: 10px">
+            <a href="http://admin.bzhwj.com/generaldata/page_interpose_list?&app_id=2&table=app_bzhwj_newest_notice" target="_blank">最新公告</a>
+        </li>
+        <li style="float: left;margin-left: 10px">
+            <a href="http://admin.bzhwj.com/generaldata/page_interpose_list?&app_id=2&table=app_bzhwj_baozhang" target="_blank">保障范围</a>
+        </li>
+        <li style="float: left;margin-left: 10px">
+            <a href="http://admin.bzhwj.com/generaldata/page_interpose_list?&app_id=2&table=app_bzhwj_about" target="_blank">关于我们</a>
         </li>
     </ul>
     <div id="headBg"></div>

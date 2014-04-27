@@ -4,6 +4,8 @@ class Tmall_cmsModel extends BaseModel
 {
     var $manual_table = 'app_common_mis_page_table_extra_data';
     var $news_table = 'app_bzhwj_news';
+    var $common_question = 'app_bzhwj_common_question';
+    var $newest_notice = 'app_bzhwj_newest_notice';
     var $people_table = 'app_bzhwj_people';
     var $tuijian_goods_table = 'app_bzhwj_tuijian_goods';
 
@@ -35,6 +37,32 @@ class Tmall_cmsModel extends BaseModel
         }
 
         $this->db->select_database('ecmall');
+
+        return $ret[0];
+    }
+
+    function get_bzhwj_common_question($id) {
+        $sql = "select * from " . $this->common_question . " where id = $id";
+
+        $res = $this->db->query($sql);
+        $ret = array();
+        while ($row = $this->db->fetchRow($res)) {
+            $row['update_at'] = date('Y-m-d',$row['update_at']);
+            $ret[] = $row;
+        }
+
+        return $ret[0];
+    }
+
+    function get_bzhwj_newest_notice($id) {
+        $sql = "select * from " . $this->newest_notice . " where id = $id";
+
+        $res = $this->db->query($sql);
+        $ret = array();
+        while ($row = $this->db->fetchRow($res)) {
+            $row['update_at'] = date('Y-m-d',$row['update_at']);
+            $ret[] = $row;
+        }
 
         return $ret[0];
     }
@@ -109,6 +137,54 @@ class Tmall_cmsModel extends BaseModel
         $this->db->select_database('ecmall');
 
         return $ret;
+    }
+
+    function get_last_common_question($id) {
+        $sql = "select title,id from " . $this->common_question . " where id < $id order by id desc limit 1";
+
+        $res = $this->db->query($sql);
+        $ret = array();
+        while ($row = $this->db->fetchRow($res)) {
+            $ret[] = $row;
+        }
+
+        return $ret[0];
+    }
+
+    function get_next_common_question($id) {
+        $sql = "select title,id from " . $this->common_question . " where id > $id order by id limit 1";
+
+        $res = $this->db->query($sql);
+        $ret = array();
+        while ($row = $this->db->fetchRow($res)) {
+            $ret[] = $row;
+        }
+
+        return $ret[0];
+    }
+
+    function get_last_newest_notice($id) {
+        $sql = "select title,id from " . $this->newest_notice . " where id < $id order by id desc limit 1";
+
+        $res = $this->db->query($sql);
+        $ret = array();
+        while ($row = $this->db->fetchRow($res)) {
+            $ret[] = $row;
+        }
+
+        return $ret[0];
+    }
+
+    function get_next_newest_notice($id) {
+        $sql = "select title,id from " . $this->newest_notice . " where id > $id order by id limit 1";
+
+        $res = $this->db->query($sql);
+        $ret = array();
+        while ($row = $this->db->fetchRow($res)) {
+            $ret[] = $row;
+        }
+
+        return $ret[0];
     }
 
     function get_last_news($id) {

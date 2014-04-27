@@ -87,24 +87,26 @@
             <table class="formtable">
                 <tbody>
                 <tr>
-                    <td><label>商品名称:</label><input type="text" class="text-input" name="product_name"/></td>
-                    <td><labe>美店名称:</labe><input type="text" class="text-input" name="shop_name"/></td>
+                    <td><label>商品名称:</label><input type="text" class="text-input" name="goods_name"/></td>
+                    <td><labe>美店名称:</labe><input type="text" class="text-input" name="store_name"/></td>
                     <td><label>价格:</label><input type="text" class="text-input" name="price"/></td>
                 </tr>
                 <tr>
-                    <td colspan="3"><label class="cause">退款原因:</label><textarea name="cause"></textarea></td>
+                    <td colspan="3"><label class="cause">退款原因:</label><textarea name="reason"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <form action="" method="post" target="pic" class="pic">
-                            <label>上传图片:</label><input type="file" name="pic"/>
+                        <label>上传图片:</label><input style="margin-left: 4px;width: 600px" name="pic" class="text-input" value="">
+                        <form style="margin-left: 62px;margin-top: 10px" class="upload-file-form" enctype="multipart/form-data" method="post" target="bridge_win" action="http://admin.bzhwj.com/generaldata/upload">
+                            <input type="file" name="fileinfo">
+                            <input type="submit" value="上传">
+                            <iframe name="bridge_win" src="http://admin.bzhwj.com/generaldata/bridge" style="display: none"></iframe>
                         </form>
-                        <input type="submit" class="picsbt" value="确定上传"/>
                     </td>
                 </tr>
                 <tr>
-                    <td><label>真实姓名:</label><input type="text" class="text-input" name="customer_name"/></td>
-                    <td colspan="2"><label>手机号码:</label><input type="text" class="text-input" name="mobile_number"/></td>
+                    <td><label>真实姓名:</label><input type="text" class="text-input" name="actual_name"/></td>
+                    <td colspan="2"><label>手机号码:</label><input type="text" class="text-input" name="phone"/></td>
                 </tr>
                 <tr>
                     <td colspan="3"><label>邮箱:</label><input type="text" class="text-input" name="email"/> </td>
@@ -195,7 +197,7 @@
 
     $(".save").on("click", function(){
         var data=$("#weiquan input, #weiquan textarea").serialize();
-        $.post("", data, function(msg){
+        $.post("/index.php?app=bzhwj_weiquan&act=save_weiquan", data, function(msg){
 
         });
     });
@@ -203,6 +205,42 @@
         e.preventDefault();
         var index=$(this).attr("index");
         $(".weiquantable").eq(index).toggle();
+    });
+
+    var entitiesMap = {
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        '&': '&amp;'
+    };
+
+    function htmlEscape(str) {
+        return str.replace(/(<|>|"|&)/g, function (m, m1) {
+            return entitiesMap[m1];
+        });
+    }
+
+    var global = window;
+    global.callback = function (data) {
+        var attachmentInput = global.attachmentInput,preImg;
+        if (attachmentInput) {
+            attachmentInput.val(htmlEscape(data.imgurl));
+            if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
+                preImg.attr('src',data.imgurl);
+            }
+        }
+    };
+    global.addEventListener('message',function(e) {
+        var data = e.data,attachmentInput = global.attachmentInput,preImg;
+        if (attachmentInput) {
+            attachmentInput.val(htmlEscape(data.imgurl));
+            if ((preImg = attachmentInput.parents('.m-form-control-image:eq(0)').find('.preview-image img')).length > 0) {
+                preImg.attr('src',data.imgurl);
+            }
+        }
+    },false);
+    $('body').on('mousedown', '.upload-file-form input[type="submit"]', function (e) {
+        global.attachmentInput = $(this).parents('.upload-file-form:eq(0)').prev();
     });
 </script>
 </body>
