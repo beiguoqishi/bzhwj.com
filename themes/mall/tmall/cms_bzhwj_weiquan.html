@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <link href="/themes/resource/flatui/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!--<link href="/themes/resource/flatui/bootstrap/css/bootstrap.css" rel="stylesheet">-->
 
     <!-- Loading Flat UI -->
-    <link href="/themes/resource/flatui/css/flat-ui.css" rel="stylesheet">
+    <!--<link href="/themes/resource/flatui/css/flat-ui.css" rel="stylesheet">-->
 
     <link rel="shortcut icon" href="/themes/resource/flatui/images/favicon.ico">
 
@@ -19,14 +19,151 @@
     <script src="/themes/resource/flatui/js/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-
+        .right{
+            width: 979px;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+            margin:  0 auto;
+        }
+        .right .title{
+            font-size: 16px;
+            background-color: #f9fafc;
+            padding: 4px 12px;
+            border-bottom: 1px solid #c4d5e0;
+            margin-left: -10px;
+            margin-top: 0px;
+        }
+        .right .weiquanlist{
+            margin-bottom: 10px;
+            border-top: 1px solid #c4d5e0;
+            margin-top: 10px;
+        }
+        .weiquantable{
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .weiquantable th{
+            border: 1px solid #aec7e5;
+            background: #aec7e5;
+        }
+        .weiquantable td, .weiquantable th{
+            padding: 4px 6px;
+            text-align: center;
+        }
+        #close{
+            padding-bottom: 10px;
+        }
+        .list li{
+            padding: 10px;
+        }
+        .list li .detail{
+            padding-right: 10px;
+            color: #36c;
+        }
     </style>
 </head>
-<body style="height: 1200px">
+<body>
 <div class="container">
+    <div class="right">
+        <div id="process">
+            <h2 class="title">正在进行中的维权</h2>
+            <div class="list">
+                <table class="weiquantable">
+                        <tbody class="process-tbody">
+                        <tr>
+                            <th>id</th>
+                            <th>商品名称</th>
+                            <th>美店名称</th>
+                            <th>价格</th>
+                            <th>退款原因</th>
+                            <th>真实姓名</th>
+                            <th>手机号码</th>
+                            <th>邮箱</th>
+                            <th>上传的照片</th>
+                            <th>上传时间</th>
+                            <th>操作</th>
+                        </tr>
+                        <!--{if $pending}-->
+                        <!--{foreach from=$pending item=el}-->
+                        <tr>
+                            <td>{$el.id}</td>
+                            <td>{$el.goods_name}</td>
+                            <td>{$el.store_name}</td>
+                            <td>{$el.price}</td>
+                            <td>{$el.reason}</td>
+                            <td>{$el.actual_name}</td>
+                            <td>{$el.phone}</td>
+                            <td>{$el.email}</td>
+                            <td><a href="{$el.pic}" target="_blank">照片url</a></td>
+                            <td>{$el.create_at}</td>
+                            <td class="admin"><button class="sure" id="{$el.id}" status="2">确定退款</button></td>
+                        </tr>
+                        <!--{/foreach}-->
+                        <!--{else}-->
+                        <tr><td colspan="11">暂无数据</td></tr>
+                        <!--{/if}-->
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+        <div id="close">
+            <h2 class="title weiquanlist">已结束的退款维权</h2>
+            <table class="weiquantable">
+                <tbody class="close-tbody">
+                <tr>
+                    <th>id</th>
+                    <th>商品名称</th>
+                    <th>美店名称</th>
+                    <th>价格</th>
+                    <th>退款原因</th>
+                    <th>真实姓名</th>
+                    <th>手机号码</th>
+                    <th>邮箱</th>
+                    <th>上传的照片</th>
+                    <th>上传时间</th>
+                </tr>
+                <!--{if $finished}-->
+                <!--{foreach from=$finished item=el}-->
+                <tr>
+                    <td>{$el.id}</td>
+                    <td>{$el.goods_name}</td>
+                    <td>{$el.store_name}</td>
+                    <td>{$el.price}</td>
+                    <td>{$el.reason}</td>
+                    <td>{$el.actual_name}</td>
+                    <td>{$el.phone}</td>
+                    <td>{$el.email}</td>
+                    <td><a href="{$el.pic}" target="_blank">照片url</a></td>
+                    <td>{$el.create_at}</td>
+                </tr>
+                <!--{/foreach}-->
+                <!--{else}-->
+                <tr class="nodata"><td colspan="11">暂无数据</td></tr>
+                <!--{/if}-->
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<script src="/themes/resource/js/require.js"></script>
+<script src="/themes/resource/js/jquery.js"></script>
 <script src="http://www.hao123.com/resource/erji/public/js/autoheight-client.js"></script>
 <script>autoheight.config = { "id":"main_frame",  "interval":"50",  "url":"http://lady.hao123.com/resource/erji/public/js/delegate.html", "origin":"*", "query":function(){} };</script>
+<script>
+    $("#process").on("click", ".sure", function(){
+        var id=$(this).attr("id");
+        var me=$(this);
+        $.post('/index.php?app=bzhwj_weiquan&act=update_tui_status',{id : id, status : 2},function(data){
+            if(data){
+                alert("操作成功！");
+                if($(".close-tbody .nodata").length){
+                    $(".close-tbody .nodata").hide();
+                }
+                $(".close-tbody").append(me.parents("tr")).find(".admin").remove();
+
+            }
+        })
+    });
+</script>
 </body>
 </html>

@@ -59,7 +59,7 @@
     .rightbox{
         padding-left: 10px;
     }
-    .service{
+    .service-tle{
         font-size: 16px;
         padding: 4px 12px;
         margin-bottom: 10px;
@@ -81,19 +81,19 @@
         <div class="leftbox">
             <h2 class="title">常见问题专栏</h2>
             <ul class="list questions clearfix">
-                <li><a href="">招商引资电话</a></li>
-                <li><a href="">招商引资电话</a></li>
-                <li><a href="">招商引资电话</a></li>
-                <li><a href="">招商引资电话</a></li>
+                <!--{foreach from=$common_question item=el}-->
+                <li><a href="{$el.link}" target="_blank">{$el.title}</a></li>
+                <!--{/foreach}-->
             </ul>
             <h2 class="title border-top">最新公告</h2>
             <ul class="list">
-                <li><a href="">招商引资电话</a></li>
-                <li><a href="">招商引资电话</a></li>
+                <!--{foreach from=$newest_notice item=el}-->
+                <li><a href="{$el.link}" target="_blank">{$el.title}</a></li>
+                <!--{/foreach}-->
             </ul>
         </div>
         <div class="rightbox">
-            <h2 class="service">常用服务</h2>
+            <h2 class="service-tle">常用服务</h2>
             <ul class="list service-list">
                 <li><a href="">找回密码</a></li>
                 <li><a href="">修改手机号码</a></li>

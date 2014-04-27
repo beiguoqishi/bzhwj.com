@@ -19,7 +19,7 @@ class Bzhwj_baozhangApp extends MallbaseApp{
         $cms = &m('tmall_cms');
         $this->assign('recommend_search',$cms->get_manual_data('bzhwj',0,'search_recommend'));
         $db =& db();
-        $baozhang = $db->getone("select * from app_bzhwj_baozhang");
+        $baozhang = $db->getrow("select * from app_bzhwj_baozhang");
         $this->assign('baozhang',$baozhang);
         $this->display('bzhwj_baozhang.html');
     }

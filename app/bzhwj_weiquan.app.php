@@ -23,8 +23,6 @@ class Bzhwj_weiquanApp extends MallbaseApp{
             $user_id = intval($_SESSION['user_info']['user_id']);
             $pending_list = $this->_get_weiquan_list($user_id,1);
             $finished_list = $this->_get_weiquan_list($user_id,2);
-            print_r($pending_list);
-            print_r($finished_list);
             $this->assign('pending_list',$pending_list);
             $this->assign('finished_lish',$finished_list);
             $this->display('bzhwj_weiquan.html');
@@ -40,10 +38,22 @@ class Bzhwj_weiquanApp extends MallbaseApp{
         return $db->getall($sql);
     }
 
+    function update_tui_status() {
+        $id = $_POST['id'];
+        $status = $_POST['status'];
+        $db =& db();
+        echo $db->query("update app_bzhwj_weiquan set status = $status where id = $id");
+    }
+
     function _get_weiquan_by_store_name($store_name,$status = 1) {
         $db =& db();
         $sql = "select * from app_bzhwj_weiquan where store_name = '" . mysql_real_escape_string($store_name) . "' and status = $status";
-        return $db->getall($sql);
+        $data = $db->getall($sql);
+        foreach($data as $k => $v) {
+            $data[$k]['create_at'] = date('Y-m-d',$v['create_at']);
+            $data[$k]['update_at'] = date('Y-m-d',$v['update_at']);
+        }
+        return $data;
     }
 
     function _get_store_name_by_id($store_id) {
@@ -58,8 +68,8 @@ class Bzhwj_weiquanApp extends MallbaseApp{
             $store_name = $this->_get_store_name_by_id($store_id);
             $pending = $this->_get_weiquan_by_store_name($store_name,1);
             $finished = $this->_get_weiquan_by_store_name($store_name,2);
-            print_r($pending);
-            print_r($finished);
+//            print_r($pending);
+//            print_r($finished);
             $this->assign('pending',$pending);
             $this->assign('finished',$finished);
             $this->display('cms_bzhwj_weiquan.html');
