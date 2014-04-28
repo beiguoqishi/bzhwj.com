@@ -148,7 +148,7 @@
                 <a class="zone-item <!--{if 'all'==$loc}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc=all" target="_self">全部</a>
                 <!--{if $city_zones}-->
                     <!--{foreach from=$city_zones item=zone}-->
-                    <a class="zone-item <!--{if $zone.id=='01'}-->city-caption<!--{/if}--> <!--{if $zone.name==$loc}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc={$zone.name|escape}" target="_self">{$zone.name|escape}</a>
+                    <a class="zone-item <!--{if $zone.id=='01'}-->city-caption<!--{/if}--> <!--{if $zone.name==$loc || !$loc && $zone.id == '01'}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc={$zone.name|escape}" target="_self">{$zone.name|escape}</a>
                     <!--{/foreach}-->
                 <!--{/if}-->
             </span>
@@ -167,6 +167,7 @@
                     <input type="hidden" name="app" value="experiment"/>
                     <input type="hidden" name="s_ctg" value="{$s_ctg_id}"/>
                     <input type="hidden" name="b_ctg" value="{$b_ctg_id}"/>
+                    <input type="hidden" name="loc" value="{$loc|escape}"/>
                     <input type="text" name="q" value="{$keyword|escape}"/>
                     <button type="submit">搜索</button>
                 </form>
@@ -210,6 +211,7 @@
             <input type="hidden" name="s_ctg" value="{$s_ctg_id}"/>
             <input type="hidden" name="b_ctg" value="{$b_ctg_id}"/>
             <input type="hidden" name="q" value="{$keyword|escape}"/>
+            <input type="hidden" name="loc" value="{$loc|escape}">
             <button type="submit" style="margin: 0 15px;" id="prev_page">上一页</button>
             <span>当前是第<input id="cur_page" style="margin: 0 15px;padding-left: 5px" value="{$page}" name="page">页，共&nbsp;&nbsp;{$total}&nbsp;&nbsp;页</span><button type="submit" style="margin-left: 15px">确定</button>
             <button type="submit" style="margin: 0 15px;" id="next_page">下一页</button>

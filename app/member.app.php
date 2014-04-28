@@ -304,6 +304,7 @@ class MemberApp extends MemberbaseApp
                 'real_name' => $_POST['real_name'],
                 'gender'    => $_POST['gender'],
                 'birthday'  => $_POST['birthday'],
+                'phone_mob' => $_POST['phone_mob'],
                 'im_msn'    => $_POST['im_msn'],
                 'im_qq'     => $_POST['im_qq'],
             );

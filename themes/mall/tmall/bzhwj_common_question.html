@@ -66,8 +66,8 @@
     }
     .service-list{
         list-style-type: disc;
-        list-style: inside;
         padding-left: 10px;
+        margin-left: 20px;
     }
     .service-list li{
         height: 25px;
@@ -88,7 +88,8 @@
         background: rgb(196, 197, 199);
     }
     .next-title{
-        margin-top: 10px;
+        margin-top: 40px;
+        margin-bottom: 20px;
     }
 </style>
 <div class="content" style="width: 1200px;margin: 0 auto;overflow: hidden;border-top: 1px solid #666;padding-top: 30px">
@@ -107,17 +108,17 @@
                 </div>
             </div>
             <div class="next-title">
-                <p><a href="http://www.bzhwj.com/index.php?app=bzhwj_common_question&id={$last.id}" target="_self">{$last.title}<<</a></p>
-                <p><a href="http://www.bzhwj.com/index.php?app=bzhwj_common_question&id={$next.id}" target="_self">{$next.title}>></a></p>
+                <p><span style="margin-right: 8px">上一篇：</span><a style="color: #f30" href="/index.php?app=bzhwj_common_question&id={$last.id}" target="_self">{$last.title}<<</a></p>
+                <p><span style="margin-right: 8px">下一篇：</span><a style="color: #f30" href="/index.php?app=bzhwj_common_question&id={$next.id}" target="_self">{$next.title}>></a></p>
             </div>
         </div>
         <div class="rightbox">
             <h2 class="service-tle">常用服务</h2>
             <ul class="list service-list">
-                <li><a href="">找回密码</a></li>
-                <li><a href="">修改手机号码</a></li>
-                <li><a href="">维权退款</a></li>
-                <li><a href="">百真无假规则</a></li>
+                <li><a target="_blank" href="/index.php?app=find_password">找回密码</a></li>
+                <li><a target="_blank" href="/index.php?app=member&act=profile">修改信息</a></li>
+                <li><a target="_blank" href="/index.php?app=bzhwj_weiquan">维权退款</a></li>
+                <li><a target="_blank" href="/index.php?app=article&act=system&code=eula">百真无假规则</a></li>
             </ul>
         </div>
     </div>

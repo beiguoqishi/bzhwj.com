@@ -26,6 +26,12 @@ class ExperimentApp extends MallbaseApp {
         $b_ctg = intval(trim($_GET['b_ctg']));
         $s_ctg = intval(trim($_GET['s_ctg']));
         $loc = $_GET['loc'];
+        if (empty($loc)) {
+            $cur_loc = $this->get_cur_location();
+            $cur_loc = json_decode($cur_loc,true);
+            $cur_loc = $cur_loc['cityinfo'];
+            $loc = $cur_loc['city'];
+        }
 
         if ($loc != 'all') {
             $store_ids = $this->_get_store_ids_by_loc($loc);
@@ -76,7 +82,7 @@ class ExperimentApp extends MallbaseApp {
         foreach ($data as $k => $v) {
             $data[$k]['address'] = $this->_get_store_address_by_id($v['store_id']);
         }
-        $total = $db->getone('select count(*) from ecm_goods where experiment = 1');
+        $total = $db->getone('select count(*) from ecm_goods ' . $where);
         $total = $total % $page_limit == 0 ? $total / $page_limit : floor($total / $page_limit) + 1;
         $ctgs = $this->_get_category();
         $this->assign('ctgs',$ctgs);

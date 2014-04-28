@@ -1,5 +1,4 @@
-{include file=custom_header.html}
-<link href="/themes/mall/tmall/styles/default/css/user.css" type="text/css" rel="stylesheet">
+{include file=member.header.html}
 <style>
 .borline td { padding:10px 0px; }
 .ware_list th { text-align:left; }
@@ -31,8 +30,9 @@ $(function(){
     });
 });
 </script>
-<div class="content" style="width:1200px;padding-top: 20px">
-    <div id="right" style="float: none;width: auto">
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
             {include file=member.submenu.html}
             <div class="wrap">
                 <div class="public">
@@ -57,10 +57,6 @@ $(function(){
                                 <tr>
                                     <th>{$lang.email}:</th>
                                     <td>{$profile.email}</td>
-                                </tr>
-                                <tr>
-                                    <th>手机号码:</th>
-                                    <td><input type="text" class="text width_normal" name="phone_mob" value="{$profile.phone_mob|escape}" /></td>
                                 </tr>
                                 <tr>
                                     <th>{$lang.real_name}:</th>
@@ -117,14 +113,5 @@ $(function(){
         </div>
         <div class="clear"></div>
     </div>
-{include file=helper_footer.html}
-<div id="footer_index">
-    Copyright 2014-2020 百真无假网 Inc.,All rights reserved.<br />
-    Powered by 百真无假网 1.0
-    <br />
 </div>
-<script src="/themes/resource/js/require.js"></script>
-<script>
-</script>
-</body>
-</html>
+{include file=footer.html}

@@ -66,7 +66,34 @@ class FrontendApp extends ECBaseApp
         $this->assign('cur_city',$cur_city);
 
         $zones = $this->get_dist_by_pid_cid($pid,$cid);
+
         $zones = json_decode($zones,true);
+        if (strstr($cur_city,'无锡')) {
+            $zones[] = array(
+                "id" => '05',
+                'name' => '崇安'
+            );
+            $zones[] = array(
+                'id' => '06',
+                'name' => '南长'
+            );
+            $zones[] = array(
+                'id' => '07',
+                'name' => '北塘'
+            );
+            $zones[] = array(
+                'id' => '08',
+                'name' => '惠山'
+            );
+            $zones[] = array(
+                'id' => '09',
+                'name' => '滨湖'
+            );
+            $zones[] = array(
+                'id' => '10',
+                'name' => '新区'
+            );
+        }
         $this->assign('city_zones',$zones);
         $zid = $cur_loc['zid'];
         $this->assign('l_cur_zid',$zid);
@@ -359,8 +386,9 @@ class FrontendApp extends ECBaseApp
      */
     function jslang()
     {
-        $lang = Lang::fetch(lang_file('jslang'));
-        parent::jslang($lang);
+        return '';
+//        $lang = Lang::fetch(lang_file('jslang'));
+//        parent::jslang($lang);
     }
 
     /**
