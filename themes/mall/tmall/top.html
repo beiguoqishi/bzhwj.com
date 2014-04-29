@@ -164,7 +164,7 @@ var PRICE_FORMAT = '{$price_format}';
                 search += k + '=' + v + '&';
             }
         });
-        location.href = 'http://' + location.host + location.pathname + '?' + search + '#' + location.hash;
+        location.href = 'http://' + location.host + location.pathname + search + '#' + location.hash;
     }).on('change','.all-provinces',function(e) {
          var pid = $(this).val();
         $.post("/index.php?app=lbs&act=lbs_get_cities_by_pid",{

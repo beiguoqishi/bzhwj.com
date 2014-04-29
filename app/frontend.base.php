@@ -99,11 +99,39 @@ class FrontendApp extends ECBaseApp
         $this->assign('l_cur_zid',$zid);
     }
 
+    function getClientIp() {
+        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+            $ip = $_SERVER["HTTP_CLIENT_IP"];
+        else if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        else if (!empty($_SERVER["REMOTE_ADDR"]))
+            $ip = $_SERVER["REMOTE_ADDR"];
+        else
+            $ip = "err";
+        return $ip;
+    }
+
     function get_cur_location() {
-        $opt=array('http'=>array('header'=>"Referer: http://www.hao123.com/"));
-        $context=stream_context_create($opt);
-        $file_contents = file_get_contents("http://www.hao123.com/api/newforecast?t=1&_=" . time(),false, $context);
-        return $file_contents;
+        $ip = $this->getClientIp();
+        if ($_GET['debug']) {
+            print_r($ip);
+        }
+        if ($ip != '127.0.0.1') {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://www.hao123.com/api/newforecast?t=1&_=" . time());
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-FORWARDED-FOR:' . $ip, 'CLIENT-IP:' . $ip));  //构造IP
+            curl_setopt($ch, CURLOPT_REFERER, "http://www.hao123.com/");   //构造来路
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $out = curl_exec($ch);
+            curl_close($ch);
+            print_r($out);
+            return $out;
+        } else {
+            $opt=array('http'=>array('header'=>"Referer: http://www.hao123.com/"));
+            $context=stream_context_create($opt);
+            $file_contents = file_get_contents("http://www.hao123.com/api/newforecast?t=1&_=" . time(),false, $context);
+            return $file_contents;
+        }
     }
 
     function get_provinces() {
