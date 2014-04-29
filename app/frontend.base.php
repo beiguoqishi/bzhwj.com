@@ -113,7 +113,7 @@ class FrontendApp extends ECBaseApp
 
     function get_cur_location() {
         $ip = $this->getClientIp();
-        if ($_GET['debug']) {
+        if ($_GET['debug'] === 'true') {
             print_r($ip);
         }
         if ($ip != '127.0.0.1') {
@@ -124,7 +124,7 @@ class FrontendApp extends ECBaseApp
             curl_setopt($ch, CURLOPT_HEADER, 0);
             $out = curl_exec($ch);
             curl_close($ch);
-            if ($_GET['debug']) {
+            if ($_GET['debug'] === 'true') {
                 print_r($out);
             }
             return $out;
