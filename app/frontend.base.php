@@ -119,6 +119,7 @@ class FrontendApp extends ECBaseApp
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-FORWARDED-FOR:' . $ip, 'CLIENT-IP:' . $ip));  //构造IP
             curl_setopt($ch, CURLOPT_REFERER, "http://www.hao123.com/");   //构造来路
             curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $out = curl_exec($ch);
             curl_close($ch);
             return $out;
