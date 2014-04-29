@@ -113,9 +113,6 @@ class FrontendApp extends ECBaseApp
 
     function get_cur_location() {
         $ip = $this->getClientIp();
-        if ($_GET['debug'] === 'true') {
-            print_r($ip);
-        }
         if ($ip != '127.0.0.1') {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, "http://www.hao123.com/api/newforecast?t=1&_=" . time());
@@ -124,9 +121,6 @@ class FrontendApp extends ECBaseApp
             curl_setopt($ch, CURLOPT_HEADER, 0);
             $out = curl_exec($ch);
             curl_close($ch);
-            if ($_GET['debug'] === 'true') {
-                print_r($out);
-            }
             return $out;
         } else {
             $opt=array('http'=>array('header'=>"Referer: http://www.hao123.com/"));
