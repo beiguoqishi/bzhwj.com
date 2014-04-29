@@ -130,11 +130,11 @@
             <!--{if $ctgs}-->
             <!--{foreach from=$ctgs item=ctg}-->
             <div class="ctg">
-                <a class="b-ctg <!--{if $ctg.cate_id == $b_ctg_id}-->cur<!--{/if}-->" href="/index.php?app=experiment&b_ctg={$ctg.cate_id}" target="_self">{$ctg.cate_name|escape}</a>
+                <a class="b-ctg <!--{if $ctg.cate_id == $b_ctg_id}-->cur<!--{/if}-->" href="/index.php?app=experiment&b_ctg={$ctg.cate_id}&c_pid={$c_pid}&c_cid={$c_cid}" target="_self">{$ctg.cate_name|escape}</a>
                 <!--{if $ctg.sub_ctgs}-->
                 <div class="sub-ctgs">
                     <!--{foreach from=$ctg.sub_ctgs item=sub_ctg}-->
-                    <a target="_self" class="<!--{if $sub_ctg.cate_id == $s_ctg_id}-->cur<!--{/if}--> " href="/index.php?app=experiment&s_ctg={$sub_ctg.cate_id}">{$sub_ctg.cate_name|escape}</a>
+                    <a target="_self" class="<!--{if $sub_ctg.cate_id == $s_ctg_id}-->cur<!--{/if}--> " href="/index.php?app=experiment&s_ctg={$sub_ctg.cate_id}&c_pid={$c_pid}&c_cid={$c_cid}">{$sub_ctg.cate_name|escape}</a>
                     <!--{/foreach}-->
                 </div>
                 <!--{/if}-->
@@ -145,20 +145,20 @@
         <div class="area-list">
             <span class="tle">区域：</span>
             <span class="zone-list">
-                <a class="zone-item <!--{if 'all'==$loc}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc=all" target="_self">全部</a>
+                <a class="zone-item <!--{if 'all'==$loc}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc=all&c_pid={$c_pid}&c_cid={$c_cid}" target="_self">全部</a>
                 <!--{if $city_zones}-->
                     <!--{foreach from=$city_zones item=zone}-->
-                    <a class="zone-item <!--{if $zone.id=='01'}-->city-caption<!--{/if}--> <!--{if $zone.name==$loc || !$loc && $zone.id == '01'}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc={$zone.name|escape}" target="_self">{$zone.name|escape}</a>
+                    <a class="zone-item <!--{if $zone.id=='01'}-->city-caption<!--{/if}--> <!--{if $zone.name==$loc || !$loc && $zone.id == '01' || $cur_city == $zone.name}-->cur<!--{/if}-->" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&loc={$zone.name|escape}&c_pid={$c_pid}&c_cid={$c_cid}" target="_self">{$zone.name|escape}</a>
                     <!--{/foreach}-->
                 <!--{/if}-->
             </span>
         </div>
         <div class="nav-bar">
             <div class="sort">
-                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'newest'}-->cur<!--{/if}--> default-sort btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=newest<!--{if $sort_type == 'newest'}-->&sort_order={$sort_order}<!--{/if}-->">最新</a>
-                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'renqi'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->">人气</a>
-                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'credit'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=credit<!--{if $sort_type == 'credit'}-->&sort_order={$sort_order}<!--{/if}-->">信用</a>
-                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'price'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=price<!--{if $sort_type == 'price'}-->&sort_order={$sort_order}<!--{/if}-->">价格</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'newest'}-->cur<!--{/if}--> default-sort btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=newest<!--{if $sort_type == 'newest'}-->&sort_order={$sort_order}<!--{/if}-->&c_pid={$c_pid}&c_cid={$c_cid}">最新</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'renqi'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=renqi<!--{if $sort_type == 'renqi'}-->&sort_order={$sort_order}<!--{/if}-->&c_pid={$c_pid}&c_cid={$c_cid}">人气</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'credit'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=credit<!--{if $sort_type == 'credit'}-->&sort_order={$sort_order}<!--{/if}-->&c_pid={$c_pid}&c_cid={$c_cid}">信用</a>
+                <a target="_self" class="glyphicon glyphicon-sort <!--{if $sort_type == 'price'}-->cur<!--{/if}--> btn-order-click" href="/index.php?app=experiment&s_ctg={$s_ctg_id}&b_ctg={$b_ctg_id}&sort_type=price<!--{if $sort_type == 'price'}-->&sort_order={$sort_order}<!--{/if}-->&c_pid={$c_pid}&c_cid={$c_cid}">价格</a>
             </div>
             <div class="search">
                 <form action="/index.php" method="get" target="_self">
@@ -169,6 +169,8 @@
                     <input type="hidden" name="b_ctg" value="{$b_ctg_id}"/>
                     <input type="hidden" name="loc" value="{$loc|escape}"/>
                     <input type="text" name="q" value="{$keyword|escape}"/>
+                    <input type="hidden" name="c_pid" value="{$c_pid}">
+                    <input type="hidden" name="c_cid" value="{$c_cid}">
                     <button type="submit">搜索</button>
                 </form>
             </div>
@@ -212,6 +214,8 @@
             <input type="hidden" name="b_ctg" value="{$b_ctg_id}"/>
             <input type="hidden" name="q" value="{$keyword|escape}"/>
             <input type="hidden" name="loc" value="{$loc|escape}">
+            <input type="hidden" name="c_pid" value="{$c_pid}">
+            <input type="hidden" name="c_cid" value="{$c_cid}">
             <button type="submit" style="margin: 0 15px;" id="prev_page">上一页</button>
             <span>当前是第<input id="cur_page" style="margin: 0 15px;padding-left: 5px" value="{$page}" name="page">页，共&nbsp;&nbsp;{$total}&nbsp;&nbsp;页</span><button type="submit" style="margin-left: 15px">确定</button>
             <button type="submit" style="margin: 0 15px;" id="next_page">下一页</button>

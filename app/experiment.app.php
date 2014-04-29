@@ -25,7 +25,17 @@ class ExperimentApp extends MallbaseApp {
         $sort_order = trim($_GET['sort_order']);
         $b_ctg = intval(trim($_GET['b_ctg']));
         $s_ctg = intval(trim($_GET['s_ctg']));
+        $c_pid = ($_GET['c_pid']);
+        $c_cid = ($_GET['c_cid']);
         $loc = $_GET['loc'];
+        if (!empty($c_pid) && !empty($c_cid)) {
+            $city = $this->get_city_by_pid_cid($c_pid,$c_cid);
+            if (!empty($city) && !$this->hasZoneOfCity($c_pid,$c_cid,$loc)) {
+                $loc = $city;
+            }
+        }
+        $this->assign('c_pid',$c_pid);
+        $this->assign('c_cid',$c_cid);
         if (empty($loc)) {
             $cur_loc = $this->get_cur_location();
             $cur_loc = json_decode($cur_loc,true);

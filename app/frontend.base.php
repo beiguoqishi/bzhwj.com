@@ -145,6 +145,27 @@ class FrontendApp extends ECBaseApp
         return $file_contents;
     }
 
+    function hasZoneOfCity($pid,$cid,$zone) {
+        $cities = $this->get_dist_by_pid_cid($pid,$cid);
+        $cities = json_decode($cities,true);
+        foreach($cities as $v) {
+            if ($v['name'] == $zone) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function get_city_by_pid_cid($pid,$cid) {
+        $cities = json_decode($this->get_cities_by_pid($pid),true);
+        foreach($cities as $city) {
+            if ($city['id'] == $cid) {
+                return $city['name'];
+            }
+        }
+        return '';
+    }
+
     function get_dist_by_pid_cid($pid,$cid) {
         $opt=array('http'=>array('header'=>"Referer: http://www.hao123.com/"));
         $context=stream_context_create($opt);
