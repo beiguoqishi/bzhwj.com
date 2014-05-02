@@ -3,6 +3,13 @@
 <style>
 .borline td { padding:10px 0px; }
 .ware_list th { text-align:left; }
+    #right{
+        float: left;
+        margin-left: 20px;
+        width: 979px;
+        border: 1px solid #ccc;
+        padding-left: 10px;
+    }
 </style>
 <script type="text/javascript">
 
@@ -32,7 +39,8 @@ $(function(){
 });
 </script>
 <div class="content" style="width:1200px;padding-top: 20px">
-    <div id="right" style="float: none;width: auto">
+    {include file=bzhwj_member.menu.html}
+    <div id="right">
             {include file=member.submenu.html}
             <div class="wrap">
                 <div class="public">
