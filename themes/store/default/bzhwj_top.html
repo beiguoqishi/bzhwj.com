@@ -60,7 +60,7 @@
         <div class="login_info">
 
         </div>
-        <ul class="quick-menu">
+        <ul class="quick-menu" style="float: left">
 
             <li style="line-height:23px;" class="login_area">{$lang.hello},
                 <!--{if !$visitor.user_id}-->
@@ -72,6 +72,39 @@
             <li class="login_area"><a href="{url app=member&act=logout}">{$lang.logout}</a></li>
             <li style="margin-right: 730px" class="login_area"></li>
             <!--{/if}-->
+            <!--{if $cur_loc}-->
+            <li class="user-area">
+                <span class="cur-city" data-zid="{$cur_loc.zid}" data-pid="{$cur_loc.pid}" data-cid="{$cur_loc.cid}">{$cur_city|escape}</span>
+                <a href="javascript:void(0)" class="switch-city">切换城市</a>
+              <span class="zone-switch" style="display: none">
+                  <!--{if $provinces}-->
+              <select class="all-provinces">
+                  <!--{foreach from=$provinces item=prov}-->
+                  <option value="{$prov.id}" <!--{if $l_cur_pid == $prov.id}-->selected=""<!--{/if}-->>{$prov.name|escape}</option>
+                  <!--{/foreach}-->
+              </select>
+
+              <!--{/if}-->
+              <!--{if $cities}-->
+              <select class="all-cities">
+                  <!--{foreach from=$cities item=city}-->
+                  <option value="{$city.id}" <!--{if $l_cur_cid == $city.id}-->selected=""<!--{/if}-->>{$city.name|escape}</option>
+                  <!--{/foreach}-->
+              </select>
+              <!--{/if}-->
+                  <button type="button" class="do-switch-city">确定</button>
+              </span>
+                <!--{if $city_zones}-->
+                <select class="city-zones">
+                    <!--{foreach from=$city_zones item=zone}-->
+                    <option value="{$zone.id}" <!--{if $l_cur_zid == $zone.id}-->selected=""<!--{/if}-->>{$zone.name|escape}</option>
+                    <!--{/foreach}-->
+                </select>
+                <!--{/if}-->
+            </li>
+            <!--{/if}-->
+            </ul>
+        <ul style="float: right" class="quick-menu">
             <li class="service">
                 <a href="/index.php?app=bzhwjbuilding">项目推荐</a>
             </li>
@@ -99,6 +132,72 @@
 </div>
 
 <script type="text/javascript">
+    $('.switch-city').on('click',function(e) {
+        var $this = $(this);
+        $this.hide();
+        $('.zone-switch').show();
+    });
+    $('body').on('click','.zone-switch .do-switch-city',function(e) {
+        $('.switch-city,.cur-city')
+                .data('pid',$('.all-provinces').val())
+                .data('cid',$('.all-cities').val())
+                .data('zid',$('.city-zones').val())
+                .show();
+
+        $('.cur-city').text($('.all-cities').find('option:selected').text());
+        $('.zone-switch').hide();
+        var query = location.search || '',
+                params = {};
+        var arr = query.split("&"),item;
+        $.each(arr,function(idx,el) {
+            item = el.split('=');
+            params[item[0]] = item[1];
+        });
+        params['c_pid'] = $('.all-provinces').val();
+        params['c_cid'] = $('.all-cities').val();
+        var search = '';
+        $.each(params,function(k,v) {
+            if (k) {
+                search += k + '=' + v + '&';
+            }
+        });
+        location.href = 'http://' + location.host + location.pathname + search + '#' + location.hash;
+    }).on('change','.all-provinces',function(e) {
+        var pid = $(this).val();
+        $.post("/index.php?app=lbs&act=lbs_get_cities_by_pid",{
+            pid:pid
+        },function(d) {
+            var allCities = $('.all-cities');
+            allCities.empty();
+            $.each(d,function(idx,el) {
+                allCities.append(
+                        $("<option>").val(el.id).text(el.name)
+                );
+                if (idx == 0) {
+                    changeZone(pid,el.id);
+                }
+            });
+        });
+    }).on('change','.all-cities',function(e) {
+        var cid = $(this).val(),
+                pid = $('.all-provinces').val();
+        changeZone(pid,cid);
+    });
+    function changeZone(pid,cid) {
+        $.post("/index.php?app=lbs&act=lbs_get_dist_by_pid_cid",{
+            pid:pid,
+            cid:cid
+        },function(d) {
+            var cityZones = $('.city-zones');
+            cityZones.empty();
+            $.each(d,function(idx,el) {
+                cityZones.append(
+                        $("<option>").val(el.id).text(el.name)
+                )
+            })
+        })
+    }
+
     $(function(){
         //首页左侧分类菜单
         var arr=$('li.each');
