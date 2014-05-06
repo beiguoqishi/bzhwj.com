@@ -567,8 +567,8 @@ function &db()
 function get_domain()
 {
     /* 协议 */
-    $protocol = (isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) != 'off')) ? 'https://' : 'http://';
-
+//    $protocol = (isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) != 'off')) ? 'https://' : 'http://';
+$protocol = 'http://';
     /* 域名或IP地址 */
     if (isset($_SERVER['HTTP_X_FORWARDED_HOST']))
     {
