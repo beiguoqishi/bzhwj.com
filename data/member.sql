@@ -23,3 +23,14 @@ create table app_bzhwj_store_member(
   primary key (id),
   unique key store_user_idx(store_id,user_id)
 ) ENGINE=InnoDB CHARSET=utf8;
+
+create table app_bzhwj_store_member(
+  id int unsigned not null auto_increment,
+  store_id int unsigned not null,
+  user_id int unsigned not null ,
+  status tinyint not null default 1,
+  create_at int unsigned,
+  update_at int unsigned,
+  primary key (id),
+  unique key store_user_idx(store_id,user_id)
+) ENGINE=InnoDB CHARSET=utf8;
