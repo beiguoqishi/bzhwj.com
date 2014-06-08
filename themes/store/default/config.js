@@ -883,6 +883,44 @@ var fields = [
 
 var index_new = {
     index_luobo:{
+        "ctg": {
+            "show": "第几屏",
+            "type": "select",
+            "data_source": "local",
+            "required": true,
+            "model": {
+                "data": [
+                    {
+                        "v": 1,
+                        "k": "第一屏轮播图"
+                    },
+                    {
+                        "v": 2,
+                        "k": "第二屏轮播图"
+                    },
+                    {
+                        "v": 3,
+                        "k":"导师特辑"
+                    },
+                    {
+                        "v": 4,
+                        "k":"约美周刊"
+                    },
+                    {
+                        "v": 5,
+                        "k":"约美城市"
+                    },
+                    {
+                        "v": 6,
+                        "k":"旗舰店"
+                    },
+                    {
+                        "v": 7,
+                        "k":"签约特选"
+                    }
+                ]
+            }
+        },
         "title": {
             "show":"标题",
             "required":true
@@ -895,23 +933,36 @@ var index_new = {
             "show":"图片",
             "type":"image"
         },
-        "ctg": {
-            "show": "第几屏",
-            "type": "select",
-            "data_source": "local",
-            "required": true,
-            "model": {
-                "data": [
-                    {
-                        "v": 1,
-                        "k": "第一屏"
-                    },
-                    {
-                        "v": 2,
-                        "k": "第二屏"
-                    }
-                ]
-            }
+        "cnt":{
+            "show":"内容",
+            "type":"textarea"
+        }
+    },
+    index_mingdian:{
+        "title": {
+            "show":"标题",
+            "required":true
+        },
+        "url":{
+            "show":"链接",
+            "required":true
+        },
+        "imgurl":{
+            "show":"图片",
+            "type":"image"
+        },
+        "s_imgurl":{
+            "show":"小图片",
+            "type":"image"
+        },
+        "effect":{
+            "show":"特效"
+        },
+        "price":{
+            "show":"价格"
+        },
+        "discount_price":{
+            "show":"打折价格"
         }
     }
 };

@@ -31,8 +31,25 @@ create table app_bzhwj_index_luobo(
   imgurl varchar(1024),
   ctg tinyint not null default 1,
   status tinyint not null default 1,
+  cnt text,
   create_at int unsigned,
   update_at int unsigned,
   primary key (id),
   unique key ctg_title_idx(ctg,title)
+) ENGINE=InnoDB CHARSET=utf8;
+
+create table app_bzhwj_index_mingdian(
+  id int unsigned not null auto_increment,
+  title varchar(200),
+  url varchar(255),
+  imgurl varchar(1024),
+  s_imgurl varchar(1024),
+  effect varchar(255),
+  price double default 0,
+  discount_price double default 0,
+  status tinyint not null default 1,
+  create_at int unsigned,
+  update_at int unsigned,
+  primary key (id),
+  unique key title_idx(title)
 ) ENGINE=InnoDB CHARSET=utf8;
