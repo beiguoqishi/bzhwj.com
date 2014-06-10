@@ -1,34 +1,418 @@
 {include file=header.html}
-    <div class="mallBack mallBack1" id="style-0" style="opacity: 1;"></div>
-	<div id="page-home" class="w clearfix">
-        <div class="col-sub mallLeft" area="mallLeft" widget_type="area">
-        <!--{widgets page=index area=mallLeft}-->
+<link rel="stylesheet" href="/themes/resource/plugins/bxslider/jquery.bxslider.css"
+      type="text/css" media="screen" />
+<link rel="stylesheet" href="/themes/resource/css/index/style.css"
+      type="text/css" media="screen" />
+<link rel="stylesheet" href="/themes/resource/css/index/style2.css"
+      type="text/css" media="screen" />
+<style type="text/css">
+    div#page_center {
+        margin-left: 240px;
+        margin-right: 240px;
+        top: 0;
+    }
+    div#page_right {
+        width: 230px;
+        height: 600px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+</style>
+
+<!-- jQuery Configuration -->
+<script type="text/javascript"
+        src="/themes/resource/js/index/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" scr="/themes/resource/js/jquery.js"></script>
+<div class="mallBack mallBack1" id="style-0" style="opacity: 1;">
+
+</div>
+
+
+<div id="page-home" class="w clearfix">
+<div id="sidebar">
+    <div id="sidebar-wrapper">
+        <ul id="main-nav">
+            <li>
+                <font size="4" style="font-style:italic;text-align:right;" face="微软雅黑" color="#ff7f50">面部美容</font>
+            </li></ul>
+        <ul id="main-nav">
+            <!-- Accordion Menu -->
+            <li><a href="#" class="nav-top-item"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+                <font style="font-style:italic;" face="微软雅黑">面部皮肤 </font></a>
+                <ul>
+                    <li><a href="my_collection.php">我的收藏</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item"> <!-- Add the class "current" to current menu item -->
+                <font style="font-style:italic;" face="微软雅黑">眼部护理 </font></a>
+                <ul>
+                    <li><a href="my_subscription.php">我的订阅</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item">
+                <font style="font-style:italic;" face="微软雅黑">皮肤修复 </font></a>
+                <ul>
+                    <li><a href="my_remarks.php">我的评论</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item">
+                <font style="font-style:italic;" face="微软雅黑">暗疮炎症护理 </font></a>
+                <ul>
+                    <li><a href="view_profile.php">查看个人信息</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item">
+                <font style="font-style:italic;" face="微软雅黑">净化排毒护理 </font></a>
+                <ul>
+                    <li><a href="view_profile.php">查看个人信息</a></li>
+                </ul>
+            </li>
+
+        </ul>
+        <ul id="main-nav">
+            <li>
+                <font size="4" style="font-style:italic;text-align:right;" face="微软雅黑" color="#ff7f50">身体管理</font>
+            </li></ul>
+        <ul id="main-nav">
+            <!-- Accordion Menu -->
+            <li><a href="#" class="nav-top-item"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
+                <font style="font-style:italic;" face="微软雅黑">头部理疗 </font></a>
+                <ul>
+                    <li><a href="my_collection.php">我的收藏</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item"> <!-- Add the class "current" to current menu item -->
+                <font style="font-style:italic;" face="微软雅黑">肩颈理疗 </font></a>
+                <ul>
+                    <li><a href="my_subscription.php">我的订阅</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item">
+                <font style="font-style:italic;" face="微软雅黑">胸部理疗 </font></a>
+                <ul>
+                    <li><a href="my_remarks.php">我的评论</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item">
+                <font style="font-style:italic;" face="微软雅黑">五脏理疗 </font></a>
+                <ul>
+                    <li><a href="view_profile.php">查看个人信息</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item">
+                <font style="font-style:italic;" face="微软雅黑">淋巴排毒 </font></a>
+                <ul>
+                    <li><a href="view_profile.php">查看个人信息</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item">
+                <font style="font-style:italic;" face="微软雅黑">卵巢、盆腔保养 </font></a>
+                <ul>
+                    <li><a href="view_profile.php">查看个人信息</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-top-item">
+                <font style="font-style:italic;" face="微软雅黑">肠胃综合理疗 </font></a>
+                <ul>
+                    <li><a href="view_profile.php">查看个人信息</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- End #main-nav --> <!-- End #messages --></div>
+</div>
+<!-- End #sidebar -->
+
+<div id="page_center" class="page_center">
+    <ul class="bxslider">
+        <!--{foreach from=$luo1 item=el}-->
+        <li><a href="{$el.url|escape}"><img src="{$el.imgurl|escape}" title="{$el.title|escape}"/></a></li>
+        <!--{/foreach}-->
+    </ul>
+    <ul class="bxslider">
+        <!--{foreach from=$luo2 item=el}-->
+        <li><a href="{$el.url|escape}"><img src="{$el.imgurl|escape}" title="{$el.title|escape}"/></a></li>
+        <!--{/foreach}-->
+    </ul>
+    <div id="page_center1" style="float: left;text-align: left;">
+        <font size="5" face="微软雅黑" color="black">名店大牌 </font>
+        <font size="4" face="微软雅黑" color="red">限时体验中 </font>
+
+        <div class="list">
+            <dl class="list_type" style="width: 600px;">
+                <!--{foreach from=$mingdian item=el}-->
+                <dd style="width: 280px;height: 280px;">
+                    <a href="{$el.url|escape}">
+                        <img style="width: 280px;height: 200px;" src="{$el.imgurl|escape}" title="{$el.title|escape}"/></a>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td width="50%" align="left">
+                                <B><font color="black">{$el.title|escape}</font></B>
+                                <br><font color="black">{$el.effect|escape}</font></td>
+                            <td width="50%" align="right">
+                                <img style="width: 40px;height: 30px;" src="{$el.s_imgurl|escape}"/></td>
+                        </tr>
+                    </table>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td width="50%" align="left">
+                                <B><font color="red">￥{$el.discount_price|escape}</font></B>
+                                <font color="#A9A9A9" size="1">原价：{$el.price|escape}</font></td>
+                            <td width="50%" align="right">
+                                <font color="black" size="1">
+                                    <ul>
+                                        <li class="item" data-seconds="{$el.seconds|escape}">
+                                            <span class="time"></span>
+                                        </li></ul>
+                                </font></td>
+                        </tr>
+                    </table>
+                </dd>
+                <!--{/foreach}-->
+            </dl>
         </div>
-        <div class="col-main mallRight" area="mallRight" widget_type="area">
-        <!--{widgets page=index area=mallRight}-->
-        {include file=helper_footer.html}
-        <div id="footer_index">
-            浙ICP备14013284号 百真无假网 Inc.,All rights reserved.<br />
-  			 Powered by 百真无假网 1.0
-  <br />
-   </div>
-    	</div>
-    <div id="footer">
-    	<div class="footer-fixed">
-			<a id="gotop" class="toTop" href="javascript:void(0);"></a>
-    	</div>
+
+
+
+
     </div>
-    <script type="text/javascript">
-	$('.rightBanner div.j_MaskBanner').hover(function(){
-		$(this).siblings().find('.black').css({'z-index':'10','background':'#000'});
-		}, function(){
-		$(this).siblings().find('.black').css({'z-index':'5','background':'#EFEBE6'});
-	});
-	$('.floorCon-img a.floorPro-img').hover(function(){
-		$(this).stop().animate({"margin-left":"-50px"},300);
-		}, function(){
-		$(this).stop().animate({"margin-left":"110px"},200);
-	});
-	</script>
-	</body>
+</div>
+<div id="page_right">
+
+    <div style="height: 410px;">
+        <script type="text/javascript">
+            $(document).ready(function(){
+                selectMenu1(document.getElementById('td0'),'tab0');
+                selectMenu2(document.getElementById('td3'),'tab3');
+            })
+            function selectMenu1(oThis,tabID)
+            {
+                for(i = 0; i<3; i++){
+                    document.getElementById("tab" + i).style.display = "none";
+                }
+                document.getElementById(tabID).style.display = "";
+
+            }
+            function selectMenu2(oThis,tabID)
+            {
+                for(i = 3; i<5; i++){
+                    document.getElementById("tab" + i).style.display = "none";
+                }
+                document.getElementById(tabID).style.display = "";
+
+            }
+        </script>
+        </head>
+        <body>
+        <table border="0">
+            <tbody>
+            <tr id="tabtr">
+                <td id="td0" class="on" onclick="selectMenu1(this,'tab0')"><a
+                        href="javascript:void(0)"><span><font size="4">导师特辑</font></span></a></td>
+                <td id="td1" onclick="selectMenu1(this,'tab1')"><a
+                        href="javascript:void(0)"><span><font size="4">约美周刊</font></span></a></td>
+                <td id="td2" onclick="selectMenu1(this,'tab2')"><a
+                        href="javascript:void(0)"><span><font size="4">约美城市</font></span></a></td>
+            </tr>
+            </tbody>
+        </table>
+        <table id="tab0" style="width: 200px; height: 200px;" border="0"
+               cellspacing="1">
+            <tbody>
+            <tr><td width="230px" height="100px">
+                <ul class="bxslider">
+                    <!--{foreach from=$luo3 item=el name=part0}-->
+                    <!--{if $smarty.foreach.part0.index >= 0 && $smarty.foreach.part0.index <= 4}-->
+                    <li><a href="{$el.url|escape}"><img src="{$el.imgurl|escape}" title="{$el.title|escape}" width="230" height="100"/></a></li>
+                    <!--{/if}-->
+                    <!--{/foreach}-->
+                </ul>
+            </td></tr><tr><td width="230px" height="100px">
+                <ul class="bxslider">
+                    <!--{foreach from=$luo3 item=el name=part1}-->
+                    <!--{if $smarty.foreach.part1.index >= 5 && $smarty.foreach.part1.index <= 9}-->
+                    <li><a href="{$el.url|escape}"><img src="{$el.imgurl|escape}" title="{$el.title|escape}" width="230" height="100"/></a></li>
+                    <!--{/if}-->
+                    <!--{/foreach}-->
+                </ul></td></tr>
+            <tr><td width="230px" height="100px">
+                <ul class="bxslider">
+                    <!--{foreach from=$luo3 item=el name=part2}-->
+                    <!--{if $smarty.foreach.part2.index >= 10 && $smarty.foreach.part2.index <= 14}-->
+                    <li><a href="{$el.url|escape}"><img src="{$el.imgurl|escape}" title="{$el.title|escape}" width="230" height="100"/></a></li>
+                    <!--{/if}-->
+                    <!--{/foreach}-->
+                </ul></td></tr>
+            </tbody>
+        </table>
+        <table id="tab1" style="display: none; width: 200px; height: 200px;"
+               border="0" cellspacing="1">
+            <tbody>
+            <!--{foreach from=$luo4 item=el}-->
+            <tr>
+                <td>
+                    <img src="{$el.imgurl|escape}" width="100" height="100">
+                </td>
+                <td>
+                    <font color="#008b8b">{$el.cnt|truncate:10:"……"|escape}</font>
+                </td>
+            </tr>
+            <!--{/foreach}-->
+            </tbody>
+        </table>
+        <table id="tab2" style="display: none; width: 200px; height: 200px;"
+               border="0" cellspacing="1">
+            <tbody>
+            <tr>
+                <td>
+                    <div class="list">
+                        <dl class="list_type">
+                            <!--{foreach from=$luo5 item=el}-->
+                            <dd>
+                                <a href="{$el.url|escape}"><img src="{$el.imgurl|escape}" title="{$el.title|escape}"/></a>
+                            </dd>
+                            <!--{/foreach}-->
+                        </dl>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div style="height: 350px;">
+        <font size="4" face="微软雅黑" color="red">约美城市特辑 </font>
+        <table border="0">
+            <tbody>
+            <tr id="tabtr1">
+                <td id="td3" class="on" onclick="selectMenu2(this,'tab3')"><a
+                        href="javascript:void(0)"><span><font size="4">旗舰店</font></span></a></td>
+                <td id="td4" onclick="selectMenu2(this,'tab4')"><a
+                        href="javascript:void(0)"><span><font size="4">签约特选</font></span></a></td>
+            </tr>
+            </tbody>
+        </table>
+        <table id="tab3" style="width: 200px; height: 200px;" border="0"
+               cellspacing="1">
+            <tbody>
+            <!--{foreach from=$luo6 item=el name=part3}-->
+            <!--{if $smarty.foreach.part3.index >= 0 && $smarty.foreach.part3.index <= 2}-->
+            <tr><td width="230px" height="110px">
+                <a href="{$el.url|escape}">
+                    <img style="width: 220px;height: 100px;" src="{$el.imgurl|escape}" title="{$el.title|escape}"/>
+                </a>
+            </td></tr>
+            <!--{/if}-->
+            <!--{/foreach}-->
+            </tbody>
+        </table>
+        <table id="tab4" style="display: none; width: 200px; height: 200px;"
+               border="0" cellspacing="1">
+            <tbody>
+            <!--{foreach from=$luo7 item=el name=part4}-->
+            <!--{if $smarty.foreach.part4.index >= 0 && $smarty.foreach.part4.index <= 2}-->
+            <tr><td width="230px" height="110px">
+                <a href="{$el.url|escape}">
+                    <img style="width: 220px;height: 100px;" src="{$el.imgurl|escape}" title="{$el.title|escape}"/>
+                </a>
+            </td></tr>
+            <!--{/if}-->
+            <!--{/foreach}-->
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+</div>
+
+{include file=helper_footer.html}
+<div id="footer_index">
+    浙ICP备14013284号 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+
+<div id="footer">
+    <div class="footer-fixed">
+        <a id="gotop" class="toTop" href="javascript:void(0);"></a>
+    </div>
+</div><script type="text/javascript"
+              src="/themes/resource/plugins/bxslider/jquery.bxslider.js"></script>
+
+<script type="text/javascript">
+    $('.rightBanner div.j_MaskBanner').hover(function(){
+        $(this).siblings().find('.black').css({'z-index':'10','background':'#000'});
+    }, function(){
+        $(this).siblings().find('.black').css({'z-index':'5','background':'#EFEBE6'});
+    });
+    $('.floorCon-img a.floorPro-img').hover(function(){
+        $(this).stop().animate({"margin-left":"-50px"},300);
+    }, function(){
+        $(this).stop().animate({"margin-left":"110px"},200);
+    });
+</script>
+
+<script language="javascript" type="text/javascript">
+    $('.bxslider').bxSlider({
+        mode: 'fade',
+        captions: true
+    });
+
+    setInterval(function(){
+        $('ul li.item').each(function(idx,el) {
+            el = $(el);//el 就是每个li
+            var seconds = parseInt(el.data('seconds'));//获取初始秒数
+
+            var day = parseInt(seconds/(24*60*60));
+            var hour = parseInt((seconds-day*24*60*60)/(60*60));
+            var minute = parseInt((seconds-day*24*60*60-hour*60*60)/60);
+            var second = parseInt((seconds-day*24*60*60-hour*60*60-minute*60));
+
+            second = second - 1;
+            if(second >= 0)
+                second = second;
+            else
+            {
+                if(minute > 0)
+                {
+                    minute = minute - 1;
+                    second = 59;
+                }
+                else
+                {
+                    if(hour > 0)
+                    {
+                        hour = hour - 1;
+                        minute = 59;
+                        second = 59;
+                    }
+                    else
+                    {
+                        if(day > 0)
+                        {
+                            day = day - 1;
+                            hour = 23;
+                            minute = 59;
+                            second = 59;
+                        }
+                        else
+                        {
+                            day = 0;hour = 0;minute = 0;second = 0;
+                        }
+                    }
+                }
+            }
+            //seconds = seconds - 1;
+            var time_str = day + '天' + hour + '时' + minute + '分' + second + '秒';
+            if(day==0 && hour==0 && minute==0 && second==0)
+                time_str = '很抱歉，已到期';
+            el.find('span.time').text(time_str);//
+            el.data('seconds',seconds-1);
+        });
+    },1000);
+
+</script>
+
+</body>
 </html>
