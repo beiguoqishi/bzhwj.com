@@ -1,0 +1,84 @@
+<?php echo $this->fetch('custom_header.html'); ?>
+<link href="/themes/mall/tmall/styles/default/css/user.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+    .right{
+        float: left;
+        margin-left: 20px;
+        width: 979px;
+        border: 1px solid #ccc;
+        padding-left: 10px;
+    }
+    .right .title{
+        font-size: 16px;
+        background-color: #f9fafc;
+        padding: 4px 12px;
+        border-bottom: 1px solid #c4d5e0;
+        margin-left: -10px;
+    }
+    .leftbox{
+        margin:20px 40px;
+    }
+    .rightbox{
+        margin:20px;
+        margin-left: 300px;
+    }
+    .list{
+        padding-top: 10px;
+        list-style-type: disc;
+        list-style-position: inside;
+    }
+    .list li{
+        height: 25px;
+        line-height: 25px;
+        padding-left: 10px;
+    }
+
+</style>
+<div class="content" style="width: 1200px;margin: 0 auto;overflow: hidden;border-top: 1px solid #666;padding-top: 30px">
+    <?php echo $this->fetch('bzhwj_member.menu.html'); ?>
+    <div class="right">
+        <h2 class="title">新手上路</h2>
+        <div class="container">
+            <div class="leftbox">
+                <h3>1：注册账号</h3>
+                <ul class="list">
+                    <li>只需要一个手机号码和邮箱即可</li>
+                    <li>百真无假的会员即可获得百真无假的保障</li>
+                </ul>
+            </div>
+            <div class="rightbox">
+                <h3>2：预约体验</h3>
+                <ul class="list">
+                    <li>选择适合项目体验</li>
+                    <li>体验名额与店家交流</li>
+                    <li>专业咨询和最终解释为店家</li>
+                </ul>
+            </div>
+            <div class="leftbox">
+                <h3>3：买下项目</h3>
+                <ul class="list">
+                    <li>到店里购买适合自己的项目</li>
+                </ul>
+            </div>
+            <div class="rightbox">
+                <h3>4：发现产品问题退款</h3>
+                <ul class="list">
+                    <li>发现产品问题提供有效证据</li>
+                    <li>百真无假及时处理投诉问题</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <iframe  width="0" height="0" style="display: none" name="pic"></iframe>
+</div>
+<?php echo $this->fetch('helper_footer.html'); ?>
+<div id="footer_index">
+    浙ICP备14013284号 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+<script src="/themes/resource/js/require.js"></script>
+<script>
+</script>
+</body>
+</html>

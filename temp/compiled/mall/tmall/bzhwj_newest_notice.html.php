@@ -1,0 +1,137 @@
+<?php echo $this->fetch('custom_header.html'); ?>
+<link href="/themes/mall/tmall/styles/default/css/user.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+    .right{
+        float: left;
+        margin-left: 20px;
+        width: 979px;
+        border: 1px solid #ccc;
+        padding-left: 10px;
+    }
+    .right .title{
+        font-size: 16px;
+        padding: 4px 12px;
+        margin-left: -10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .border-top{
+        border-top: 1px solid #c4d5e0;
+    }
+    .list{
+        padding-bottom: 10px;
+    }
+    .list li{
+        height: 30px;
+        line-height: 30px;
+    }
+    .leftbox,.rightbox{
+        float: left;
+    }
+    .leftbox{
+        width: 600px;
+        border-right: 1px solid #ccc;
+    }
+    .questions li{
+        width: 300px;
+        float: left;
+    }
+    .questions a{
+        display: block;
+    }
+    .questions{
+        list-style-type: disc;
+        list-style: inside;
+    }
+    .clearfix:after {
+        content: "";
+        height: 0;
+        visibility: hidden;
+        display: block;
+        clear: both;
+        font-size: 0;
+        line-height: 0;
+    }
+    .clearfix{
+        zoom: 1;
+    }
+    .rightbox{
+        padding-left: 10px;
+    }
+    .service-tle{
+        font-size: 16px;
+        padding: 4px 12px;
+        margin-bottom: 10px;
+        margin-top: 6px;
+    }
+    .service-list{
+        list-style-type: disc;
+        padding-left: 10px;
+        margin-left: 20px;
+    }
+    .service-list li{
+        height: 25px;
+        line-height: 25px;
+    }
+    .nav{
+        background: url("http://www.bzhwj.com/themes/mall/tmall/styles/default/images/member/left_h2.gif") repeat-x;
+        height: 25px;
+        margin-left: -10px;
+        margin-top: -1px;
+        line-height: 25px;
+    }
+    .nav li{
+        float: left;
+        padding: 0px 10px;
+    }
+    .nav .cur{
+        background: rgb(196, 197, 199);
+    }
+    .next-title{
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+</style>
+<div class="content" style="width: 1200px;margin: 0 auto;overflow: hidden;border-top: 1px solid #666;padding-top: 30px">
+    <?php echo $this->fetch('bzhwj_member.menu.html'); ?>
+    <div class="right">
+        <div class="leftbox">
+            <ul class="nav clearfix">
+                <li><a href="http://www.bzhwj.com/index.php?app=bzhwj_kefu">常见问题专栏</a></li>
+                <li><a href="http://www.bzhwj.com/index.php?app=bzhwj_tuihuo">退货流程</a></li>
+                <li class="cur"><a href="http://www.bzhwj.com/index.php?app=bzhwj_kefu">最新公告</a></li>
+            </ul>
+            <div class="text-container">
+                <h2 class="title"><?php echo $this->_var['news']['title']; ?></h2>
+                <div class="aside">
+                    <?php echo $this->_var['news']['cnt']; ?>
+                </div>
+            </div>
+            <div class="next-title">
+                <p><span style="margin-right: 8px">上一篇：</span><a style="color: #f30" href="/index.php?app=bzhwj_newest_notice&id=<?php echo $this->_var['last']['id']; ?>" target="_self"><?php echo $this->_var['last']['title']; ?><<</a></p>
+                <p><span style="margin-right: 8px">下一篇：</span><a style="color: #f30" href="/index.php?app=bzhwj_newest_notice&id=<?php echo $this->_var['next']['id']; ?>" target="_self"><?php echo $this->_var['next']['title']; ?>>></a></p>
+            </div>
+        </div>
+        <div class="rightbox">
+            <h2 class="service-tle">常用服务</h2>
+            <ul class="list service-list">
+                <li><a target="_blank" href="/index.php?app=find_password">找回密码</a></li>
+                <li><a target="_blank" href="/index.php?app=member&act=profile">修改信息</a></li>
+                <li><a target="_blank" href="/index.php?app=bzhwj_weiquan">维权退款</a></li>
+                <li><a target="_blank" href="/index.php?app=article&act=system&code=eula">百真无假规则</a></li>
+            </ul>
+        </div>
+    </div>
+    <iframe  width="0" height="0" style="display: none" name="pic"></iframe>
+</div>
+<?php echo $this->fetch('helper_footer.html'); ?>
+<div id="footer_index">
+    浙ICP备14013284号 百真无假网 Inc.,All rights reserved.<br />
+    Powered by 百真无假网 1.0
+    <br />
+</div>
+<script src="/themes/resource/js/require.js"></script>
+<script>
+</script>
+</body>
+</html>
