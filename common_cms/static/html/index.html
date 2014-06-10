@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>通用管理后台</title>
+    <link rel="stylesheet" href="/common_cms/static/flatui/bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/common_cms/static/flatui/css/flat-ui.css" type="text/css">
+    <link rel="stylesheet" href="/common_cms/static/css/cms.css" type="text/css">
+</head>
+<body>
+<div class="container">
+</div>
+<script src="/common_cms/static/js/lib/jquery-1.8.0.js"></script>
+<script src="/common_cms/static/js/lib/bootstrap.min.js"></script>
+<script src="/common_cms/static/js/lib/jquery.json.js"></script>
+<script src="/common_cms/static/js/lib/jqPaginator.js"></script>
+<script src="/common_cms/static/kindeditor/kindeditor-min.js"></script>
+<script src="/common_cms/static/kindeditor/lang/zh_CN.js"></script>
+<script src="/common_cms/static/js/cms.js"></script>
+<script>
+    var tabs = {
+        field: 'ctg',
+        defaultFieldVal: 3,
+        fieldMap: [
+            {
+                "v": 1,
+                "k": "第一屏轮播图"
+            },
+            {
+                "v": 2,
+                "k": "第二屏轮播图"
+            },
+            {
+                "v": 3,
+                "k": "导师特辑"
+            },
+            {
+                "v": 4,
+                "k": "约美周刊"
+            },
+            {
+                "v": 5,
+                "k": "约美城市"
+            },
+            {
+                "v": 6,
+                "k": "旗舰店"
+            },
+            {
+                "v": 7,
+                "k": "签约特选"
+            }
+        ]
+    }
+    $('.container').common_cms('app_bzhwj_index_luobo', 1, 1, 1, {
+//        tabs: tabs
+    });
+</script>
+</body>
+</html>
