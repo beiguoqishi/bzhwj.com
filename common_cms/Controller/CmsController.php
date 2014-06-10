@@ -49,7 +49,7 @@ class CmsController {
             'conditions' => "table_name = '" . mysql_real_escape_string($table) . "' and app_id=" . mysql_real_escape_string($app_id),
             'select'     => 'fields'
         );
-        $ret = CommonTableModel::first($options);
+        $ret = CommonTableModel::first($options)->to_array();
         if ($ret && $ret['fields']) {
             $result = unserialize($ret['fields']);
             return $result;
