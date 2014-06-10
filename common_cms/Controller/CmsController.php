@@ -46,9 +46,14 @@ class CmsController {
     function getConfigByTableAndAppId($table,$app_id) {
         CommonTableModel::$table_name = 'app_common_mis_page_table_fields_config';
         $options = array(
-            'conditions' => "table_name = '" . mysql_real_escape_string($table) . "' and app_id=" . mysql_real_escape_string($app_id)
+            'conditions' => "table_name = '" . mysql_real_escape_string($table) . "' and app_id=" . mysql_real_escape_string($app_id),
+            'select'     => 'fields'
         );
         $ret = CommonTableModel::first($options);
-        return $ret;
+        if ($ret && $ret['fields']) {
+            $result = unserialize($ret['fields']);
+            return $result;
+        }
+        return array();
     }
 } 
