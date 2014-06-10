@@ -43,15 +43,12 @@ class CmsController {
         return $ret;
     }
 
-    private function ob2ar($obj) {
-        if(is_object($obj)) {
-            $obj = (array)$obj;
-            $obj = $this->ob2ar($obj);
-        } elseif(is_array($obj)) {
-            foreach($obj as $key => $value) {
-                $obj[$key] = $this->ob2ar($value);
-            }
-        }
-        return $obj;
+    function getConfigByTableAndAppId($table,$app_id) {
+        CommonTableModel::$table_name = 'app_common_mis_page_table_fields_config';
+        $options = array(
+            'conditions' => "table_name = '" . mysql_real_escape_string($table) . "' and app_id=" . mysql_real_escape_string($app_id)
+        );
+        $ret = CommonTableModel::first($options);
+        return $ret;
     }
 } 

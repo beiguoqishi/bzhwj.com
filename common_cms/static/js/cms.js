@@ -14,6 +14,7 @@
             showField: 'title',
             urlPrefix: 'common_cms'
         };
+        var fieldConfigCache = {};
         var $el = $(this[0]), $body = $('body');
         options = $.extend({}, defaults, options);
         (function () {
@@ -114,6 +115,15 @@
                 e.preventDefault();
             });
         })();
+
+        var fetchFieldConfig = function(table,app_id) {
+            if (fieldConfigCache.hasOwnProperty(table + app_id)) {
+                return fieldConfigCache[table + app_id];
+            }
+            $.getJSON('/' + options.urlPrefix + '/config/' + table + '/' + app_id,function(data) {
+
+            });
+        };
 
 
 //        var fieldsConfig = '',

@@ -41,4 +41,10 @@ $app->get('/list/:table(/:page)',function($table,$page = 1) use ($app,$cmsContro
     echo json_encode($cmsController->findListByTable($table,$page,$params));
 });
 
+$app->get('/config/:table/:app_id',function($table,$app_id) use ($app,$cmsController){
+    header('Content-type:application/json;charset=UTF-8');
+    echo $cmsController->getConfigByTableAndAppId($table,$app_id)->to_json();
+
+});
+
 $app->run();
