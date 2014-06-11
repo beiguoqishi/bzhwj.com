@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^common_cms/static/(.*)$ common_cms/static/$1 [L]
-    RewriteRule ^common_cms/(.*)$ common_cms/index.php [L]
-</IfModule>
