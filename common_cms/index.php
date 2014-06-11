@@ -41,9 +41,10 @@ $app->get('/list/:table(/:page)',function($table,$page = 1) use ($app,$cmsContro
     echo json_encode($cmsController->findListByTable($table,$page,$params));
 });
 
-$app->get('/config/:table/:app_id',function($table,$app_id) use ($app,$cmsController){
+$app->get('/config/:table/:app_id(/:id)',function($table,$app_id,$id = 0) use ($app,$cmsController){
     header('Content-Type:application/json;charset=UTF-8');
-    echo json_encode($cmsController->getConfigByTableAndAppId($table,$app_id));
+    $id_field = $app->request->get('id_field');
+    echo json_encode($cmsController->getRecord($table,$app_id,$id,$id_field));
 
 });
 

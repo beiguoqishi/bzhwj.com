@@ -4,7 +4,7 @@
 
 ;
 (function ($) {
-    $.fn.common_cms = function (table, app_id, table_id, id_field, options) {
+    $.fn.common_cms = function (table, app_id, id_field, options) {
         if (this.length === 0) {
             return this;
         }
@@ -58,8 +58,8 @@
                     ul = $('<ul></ul>')
                         .addClass('list-group data-list')
                         .data({
-                            table:table,
-                            app_id:app_id
+                            table: table,
+                            app_id: app_id
                         }),
                     li, list = data.list,
                     totalPage = data.totalPage,
@@ -121,16 +121,19 @@
             });
         })();
 
-        var fetchFieldConfig = function (table, app_id) {
+        var fetchFieldConfig = function (table, app_id, $id) {
             if (fieldConfigCache.hasOwnProperty(table + app_id)) {
                 return $.Deferred().resolve(fieldConfigCache[table + app_id]);
             }
-            return $.getJSON('/' + options.urlPrefix + '/config/' + table + '/' + app_id);
+            return $.getJSON('/' + options.urlPrefix + '/config/' + table + '/' + app_id + '/' + $id);
         };
 
-        var editTableData = function(data) {
+        var editTableData = function (data) {
             fieldConfigCache[table + app_id] = data;
-            render(data);
+            var dom = $('<div class="modal fade in"></div>').
+                        append($('<div class="modal-dialog"></div>').append(render(data)));
+
+            dom.appendTo(document.body).modal('show')
         };
 
         $('body').on('click', '.data-list .data-list-item', function (e) {
@@ -138,11 +141,12 @@
             var ul = $this.closest('ul.data-list');
             var table = ul.data('table');
             var app_id = ul.data('app_id');
-            fetchFieldConfig(table,app_id).then(editTableData);
+            var id = $this.data('cid');
+            fetchFieldConfig(table, app_id, id).then(editTableData);
         });
 
 
-        var fieldsInterpose = $('<div class="fields-interpose"></div>');
+        var fieldsInterpose = $('<div class="fields-interpose modal-content"></div>');
 
         function generateControlGroup(k, type) {
             var formControl;
@@ -171,7 +175,7 @@
                     break;
             }
             formControl.data(
-                {'type': type,'field': k}
+                {'type': type, 'field': k}
             );
             return formControl;
         }
@@ -341,6 +345,7 @@
                     $('<button class="btn btn-success fields-save" id="fields-save" type="button">保存</button>')
                 )
             );
+            return fieldsInterpose;
         }
 
         $('#fields-save').on('click', function (e) {
@@ -391,8 +396,6 @@
                 '&': '&amp;'
             };
 
-        var interposeSegs = $('[role="interpose_segs"]');
-
         function htmlEscape(str) {
             return str.replace(/(<|>|"|&)/g, function (m, m1) {
                 return entitiesMap[m1];
@@ -406,291 +409,6 @@
                 preImg.attr('src', data.imgurl);
             }
         };
-        function renderModule(idx, el, data, ul, depth, seg, extra) {
-            var module = $('<li role="module-tab"></li>'), moduleData;
-            ul.append(module);
-            idx == 0 && module.addClass('active');
-            moduleData = $('<a href="javascript:void(0)" role="module"></a>').text(
-                    el.title && el.title.fixed ?
-                        ($.trim(el.title.show) ? el.title.show : "无标题")
-                        : "无标题"
-                ).data({
-                    'config': el,
-                    'level': module.parents('[data-type="level"]').eq(0),
-                    'data': data
-                }).attr({'depth': depth});
 
-            module.append(
-                moduleData
-            );
-            if (seg) {
-                moduleData.attr('seg', seg).data('pub_st', extra['pub_st']);
-                var pubSt = $('<span class="label pub-st label-danger" style="display: none">未发布</span>').appendTo(moduleData);
-
-                if (extra['pub_st'] && extra['pub_st'] != 1) {
-                    pubSt.show();
-                }
-            }
-            module.parents('[data-type="level"]')
-                .eq(0).find('li.active a[role="module"]')
-                .trigger('click')
-        }
-
-        function generateLeaf(fields, data) {
-            var leafNode = $('<div class="leaf-node"></div>');
-
-            $.each(fields, function (idx, el) {
-                var field = $('<div class="input-group leaf-field"></div>');
-                field.append(
-                    $('<span class="input-group-addon"></span>').text(el['show'])
-                );
-                if (el['type'] == 'textarea') {
-                    var textarea = $('<textarea class="form-control field" style="height: 150px">').data('name', idx).val(data && data[idx]);
-                    field.append(textarea);
-                } else if (el['type'] == 'editor') {
-                    var textarea = $('<textarea class="form-control field" style="height: 300px">').attr('editor', idx).data('name', idx).val(data && data[idx]);
-                    field.append(textarea);
-                } else {
-                    field.append($('<input type="text" class="form-control field">').data('name', idx).val(data && data[idx]))
-                }
-                if (el['input_type'] == 'file') {
-                    field.append(
-                        $('<form class="upload-file-form" enctype="multipart/form-data" method="post" target="bridge_win" action="/generaldata/upload"></form>').append(
-                            $('<input type="file" name="fileinfo">'),
-                            $('<input type="submit" value="上传">'),
-                            $('<iframe name="bridge_win" src="/generaldata/bridge" style="display: none"></iframe>')
-                        )
-                    )
-                }
-                leafNode.append(field);
-            });
-
-            leafNode.append(
-                $('<button type="button" class="btn btn-danger save-leaf-node"><span class="m-label">保存</span><span class="m-label">保存</span></button>'),
-                $('<button type="button" class="btn btn-warning cancel-leaf-node"><span class="m-label">取消</span><span class="m-label">取消</span></button>')
-            ).data('data', data);
-            return leafNode;
-        }
-
-        function generateRecord(record, depth) {
-            var node = $('<div class="record-tle-w"></div>');
-
-            node.append(
-                $('<div class="summery"></div>').append(
-                    $('<a href="javascript:void(0)" class="record-tle"></a>')
-                        .text(record && record['title'] || "请输入内容")
-                        .data('data', record).attr('depth', depth),
-                    $('<a class="glyphicon glyphicon-remove remove-leaf-node close" href="javascript:void(0)"></a>')
-                )
-            );
-            return node;
-        }
-
-        function saveData(level) {
-            var curNode, depth, parentNode, levelData = [];
-
-            curNode = level.data('belongTo');
-            level.find('[depth]').each(function (idx, record) {
-                record = $(record);
-                depth = parseInt(record.attr('depth'));
-                levelData.push(record.data('data'));
-            });
-            curNode.data('data', levelData);
-
-            if (curNode && curNode.attr('seg')) {
-                $('[role="module"][seg]').attr('edit_seg', 'off');
-                curNode.attr('edit_seg', 'on');
-            }
-            depth = parseInt(curNode.attr('depth'));
-            while (curNode && (parentNode = curNode.parents('[data-type="level"]:eq(0)')).length === 1) {
-                var dataSet = parentNode.find('[depth="' + depth + '"]'),
-                    index = dataSet.index(curNode),
-                    curData,
-                    data;
-
-                depth--;
-                curData = curNode.data('data');
-                curNode = parentNode.data('belongTo');
-                if (curNode && curNode.attr('seg')) {
-                    $('[role="module"][seg]').attr('edit_seg', 'off');
-                    curNode.attr('edit_seg', 'on');
-                }
-                if (!curNode) {
-                    break;
-                }
-                data = curNode.data('data') || [];
-                data[index] = curData;
-                curNode.data('data', data);
-            }
-        }
-
-
-        $('body').on('click', 'li a[role="module"]',function (e) {
-            var $this = $(this),
-                config = $this.data("config"),
-                level = $this.data('level'),
-                data = $this.data('data'),
-                depth = parseInt($this.attr('depth')) + 1;
-
-            level.find('>[data-type="level"]').hide();
-            $this.parents('ul.nav-tabs:eq(0)').find('>li').removeClass('active');
-            $this.parents('li:eq(0)').addClass('active');
-
-            if ($this.data('childLoaded') && $this.data('childLoaded').show()) return;
-
-            if ($.isPlainObject(config['fields'])) {
-                var childLevel = $('<div data-type="level"></div>'),
-                    contentZone = $('<div class="content-zone"></div>'),
-                    recordZone = $('<div class="record-zone"></div>'),
-                    opZone = $('<div class="op-zone"></div>');
-
-                data && $.each(data, function (idx, record) {
-                    recordZone.append(generateRecord(record, depth));
-                });
-                contentZone.append(
-                    opZone.append(
-                        $('<button type="button" class="btn btn-info" role="add-record"><span class="m-label">增加</span><span class="m-label">增加</span></button>'),
-                        $('<button class="btn btn-success save-page" type="button"><span class="m-label">保存</span><span class="m-label">保存</span></button>'),
-                        $('<button class="btn btn-primary publish-page" type="button"><span class="m-label">发布</span><span class="m-label">发布</span></button>')
-                    ),
-                    recordZone
-                );
-                childLevel.append(contentZone).data('belongTo', $this);
-                level.append(childLevel);
-                $this.data('childLoaded', childLevel);
-            } else {
-                $.each(config, function (idx, el) {
-                    if ($.isArray(el)) {
-                        var list = $('<ul  class="nav nav-tabs"></ul>'),
-                            childLevel = $('<div data-type="level"></div>');
-                        level.append(childLevel.append(list));
-                        $.each(el, function (idx, el1) {
-                            renderModule(idx, el1, data && data[idx], list, depth);
-                        });
-                        childLevel.data('belongTo', $this);
-                        $this.data('childLoaded', childLevel);
-                    }
-                });
-            }
-        }).on('click', 'button[role="add-record"]',function (e) {
-            var $this = $(this),
-                level = $this.parents('[data-type="level"]:eq(0)'),
-                parentTrigger = level.data('belongTo'),
-                depth = parseInt(parentTrigger.attr('depth')) + 1;
-
-            $this.parents('.content-zone:eq(0)')
-                .find('.record-zone')
-                .append(
-                    generateRecord({title: '请输入内容'}, depth)
-                );
-        }).on('click', 'a.record-tle',function (e) {
-
-            var $this = $(this);
-
-            $('.popup-leaf-node').each(function (idx, el) {
-                if (el != $this[0]) {
-                    $(el).addClass('cardOutBottom').removeClass('cardInBottom');
-                }
-            });
-            if ($this.data('leafNode') && $this.data('leafNode').addClass('cardInBottom').removeClass('cardOutBottom')) {
-                return;
-            }
-
-            var level = $this.parents('[data-type="level"]:eq(0)'),
-                parentTrigger = level.data('belongTo'),
-                config = parentTrigger.data('config'),
-                leafNode = generateLeaf(config['fields'], $this.data('data')),
-                recordTleW = $this.parents('.record-tle-w:eq(0)');
-
-            leafNode.addClass('popup-leaf-node panel panel-success cardInBottom');
-            recordTleW.append(leafNode);
-            $this.data({
-                leafNode: leafNode
-            });
-
-            $this.parents('.record-tle-w:eq(0)').find('textarea[editor]').each(function (idx, el) {
-                el = $(el);
-                if (!el.data['editor']) {
-                    var name = el.attr('editor'),
-                        editor = KindEditor.create('textarea[editor="' + name + '"]');
-                    editor.html(el.val());
-                    el.data('editor', editor);
-                }
-            });
-        }).on('click', 'button.save-leaf-node',function (e) {
-            var $this = $(this),
-                leafNode = $this.parents('.leaf-node:eq(0)'),
-                leafNodeW = leafNode.parents('.record-tle-w:eq(0)').find('a.record-tle'),
-                d = {};
-
-            leafNode.find('.field').each(function (idx, el) {
-                el = $(el);
-                if (el.attr('editor') && el.data('editor')) {
-                    el.val(el.data('editor').html());
-                }
-                d[el.data('name')] = $.trim(el.val());
-            });
-            leafNodeW.text(d && d['title'] || '请输入内容');
-            leafNodeW.data('data', d);
-            leafNode.addClass('cardOutBottom').removeClass('cardInBottom').css('left', -(800 - leafNodeW.width()) / 2);
-        }).on('click', 'button.cancel-leaf-node',function (e) {
-            var $this = $(this),
-                leafNode = $this.parents('.leaf-node:eq(0)'),
-                leafNodeW = leafNode.parents('.record-tle-w:eq(0)').find('a.record-tle'),
-                d = leafNodeW.data('data') || {};
-
-            leafNode.addClass('cardOutBottom').removeClass('cardInBottom').removeClass('cardInBottom').css('left', -(800 - leafNodeW.width()) / 2);
-            leafNode.find('input.field').each(function (idx, el) {
-                $(el).val(d[$(el).data('name')]);
-            });
-        }).on('click', '.save-page',function (e) {
-            var $this = $(this),
-                level = $this.parents('[data-type="level"]:eq(0)');
-            saveData(level);
-            var editSeg = $('[edit_seg="on"]');
-            $.post('/generaldata/page_interpose_op', {
-                act: 'save_interpose',
-                app_id: app_id,
-                seg: editSeg.attr('seg'),
-                id: table_id,
-                'data[preview_interpose_data]': $.toJSON(editSeg.data('data'))
-            }, function (d) {
-                if (d > 0) {
-                    $this.parents('[data-type="level"]').eq(-2).data('belongTo').data('pub_st', 0)
-                        .find('.pub-st').addClass('label-danger').text(noPubTxt).show();
-                    editSeg.attr('edit_seg', 'off');
-                    alert('保存成功！');
-                }
-            });
-        }).on('click', 'button.publish-page',function (e) {
-            var $this = $(this);
-            $.post('/generaldata/page_interpose_op', {
-                act: 'pub_interpose',
-                app_id: app_id,
-                seg: $this.parents('[data-type="level"]').eq(-2).data('belongTo').attr('seg'),
-                id: table_id
-            }, function (d) {
-                if (d > 0) {
-                    alert('发布成功!');
-                    $this.parents('[data-type="level"]').eq(-2).data('belongTo').data('pub_st', 1)
-                        .find('.pub-st').hide();
-                }
-            })
-        }).on('click', '.remove-leaf-node',function (e) {
-            var $this = $(this);
-            $this.parents('.record-tle-w:eq(0)').remove();
-        }).on('mousedown', '.upload-file-form input[type="submit"]', function (e) {
-            global.attachmentInput = $(this).parents('.upload-file-form:eq(0)').prev();
-        });
-        var initData = {};
-        $.each(previewInterposeData, function (idx, el) {
-            initData[el['seg']] = {data: el['preview_data'], pub_st: el['pub_st']};
-        });
-        $.each(interposeConfig, function (idx, config) {
-            var seg = config['seg'],
-                data = initData[seg] && initData[seg]['data'],
-                extra = {pub_st: initData[seg] && initData[seg]['pub_st']};
-            renderModule(idx, config['extra'], data, interposeSegs, 0, seg, extra);
-        });
     }
 })(jQuery);

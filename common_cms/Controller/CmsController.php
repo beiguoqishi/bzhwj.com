@@ -1,14 +1,16 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: liupengtao
  * Date: 14-6-8
  * Time: 上午12:13
  */
+class CmsController
+{
 
-class CmsController {
-
-    function findListByTable($table,$page = 1,$params) {
+    function findListByTable($table, $page = 1, $params)
+    {
         CommonTableModel::$table_name = $table;
         $pageSize = isset($params['pageSize']) ? intval($params['pageSize']) : 20;
         $offset = ($page - 1) * $pageSize;
@@ -28,7 +30,7 @@ class CmsController {
         }
         $count_con = array();
         if (count($conditions) > 0) {
-            $count_con['conditions'] = $options['conditions'] = implode(' and ',$conditions);
+            $count_con['conditions'] = $options['conditions'] = implode(' and ', $conditions);
         }
         $count = CommonTableModel::count($count_con);
         $totalPage = $count % $pageSize == 0 ? $count / $pageSize : floor($count / $pageSize) + 1;
@@ -43,11 +45,12 @@ class CmsController {
         return $ret;
     }
 
-    function getConfigByTableAndAppId($table,$app_id) {
+    function getConfigByTableAndAppId($table, $app_id)
+    {
         CommonTableModel::$table_name = 'app_common_mis_page_table_fields_config';
         $options = array(
             'conditions' => "table_name = '" . mysql_real_escape_string($table) . "' and app_id=" . mysql_real_escape_string($app_id),
-            'select'     => 'fields'
+            'select' => 'fields'
         );
         $ret = CommonTableModel::first($options)->to_array();
         if ($ret && $ret['fields']) {
@@ -55,5 +58,54 @@ class CmsController {
             return $result;
         }
         return array();
+    }
+
+    function getDataFromTableById($table_name,$select,$conditions) {
+        DynamicTableModel::$table_name = $table_name;
+        $options = array(
+            'conditions' => implode(' and ',$conditions),
+            'select'     => implode(',',$select)
+        );
+        return DynamicTableModel::first($options)->to_array();
+    }
+
+    function getRecord($table_name, $app_id, $id,$id_field)
+    {
+        $ret = array();
+        $app_id = intval($app_id);
+        $id = intval($id);
+        $result = array();
+        if (!empty($table_name)) {
+            $fields_config = $this->getConfigByTableAndAppId($table_name, $app_id);
+            $raw_f_keys = array();
+            $exclude_keys = array();
+            foreach ($fields_config as $k => $v) {
+                if (empty($v['exclude'])) {
+                    $raw_f_keys[] = $k;
+                } else {
+                    $exclude_keys[] = $k;
+                }
+            }
+            $raw_f_keys = array_unique($raw_f_keys);
+            $id_field = empty($id_field) ? 'id' : $id_field;
+            $record = $this->getDataFromTableById($table_name, $raw_f_keys, array($id_field . "=" . $id));
+
+            foreach ($raw_f_keys as $k) {
+                $result[$k] = array(
+                    'data' => $record[$k],
+                    'config' => $fields_config[$k]
+                );
+            }
+
+            foreach ($exclude_keys as $k) {
+                $result[$k] = array(
+                    'data' => $record[$k],
+                    'config' => $fields_config[$k]
+                );
+            }
+            $ret = ($result);
+        }
+
+        return $ret;
     }
 } 
