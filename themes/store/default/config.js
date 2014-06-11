@@ -761,67 +761,67 @@ var fields = [
     },
     {
         "sgrade": {
-            "show":"等级",
-            "required":true
+            "show": "等级",
+            "required": true
         },
-        "credit_value":{
-            "show":"信用度",
-            "required":true
+        "credit_value": {
+            "show": "信用度",
+            "required": true
         }
     },
     {
         "title": {
-            "show":"标题",
-            "required":true
+            "show": "标题",
+            "required": true
         },
-        "cnt":{
-            "show":"常见问题内容",
+        "cnt": {
+            "show": "常见问题内容",
             "type": "editor",
-            "required":true
+            "required": true
         }
     },
     {
         "title": {
-            "show":"标题",
-            "required":true
+            "show": "标题",
+            "required": true
         },
-        "cnt":{
-            "show":"最新公告内容",
+        "cnt": {
+            "show": "最新公告内容",
             "type": "editor",
-            "required":true
+            "required": true
         }
     },
     {
         "title": {
-            "show":"标题",
-            "required":true
+            "show": "标题",
+            "required": true
         },
-        "cnt":{
-            "show":"关于百真无假内容",
+        "cnt": {
+            "show": "关于百真无假内容",
             "type": "editor",
-            "required":true
+            "required": true
         }
     },
     {
         "pingzhi": {
-            "show":"品质永远",
+            "show": "品质永远",
             "type": "editor",
-            "required":true
+            "required": true
         },
-        "baozhang_cnt":{
-            "show":"保障范围内容",
+        "baozhang_cnt": {
+            "show": "保障范围内容",
             "type": "editor",
-            "required":true
+            "required": true
         },
-        "tui_flow":{
-            "show":"退款流程",
+        "tui_flow": {
+            "show": "退款流程",
             "type": "editor",
-            "required":true
+            "required": true
         },
-        "action_tip":{
-            "show":"交易提醒",
+        "action_tip": {
+            "show": "交易提醒",
             "type": "editor",
-            "required":true
+            "required": true
         }
     },
     {
@@ -882,7 +882,7 @@ var fields = [
 
 
 var index_new = {
-    index_luobo:{
+    index_luobo: {
         "ctg": {
             "show": "第几屏",
             "type": "select",
@@ -900,69 +900,101 @@ var index_new = {
                     },
                     {
                         "v": 3,
-                        "k":"导师特辑"
+                        "k": "导师特辑"
                     },
                     {
                         "v": 4,
-                        "k":"约美周刊"
+                        "k": "约美周刊"
                     },
                     {
                         "v": 5,
-                        "k":"约美城市"
+                        "k": "约美城市"
                     },
                     {
                         "v": 6,
-                        "k":"旗舰店"
+                        "k": "旗舰店"
                     },
                     {
                         "v": 7,
-                        "k":"签约特选"
+                        "k": "签约特选"
                     }
                 ]
             }
         },
         "title": {
-            "show":"标题",
-            "required":true
+            "show": "标题",
+            "required": true
         },
-        "url":{
-            "show":"链接",
-            "required":true
+        "url": {
+            "show": "链接",
+            "required": true
         },
-        "imgurl":{
-            "show":"图片",
-            "type":"image"
+        "imgurl": {
+            "show": "图片",
+            "type": "image"
         },
-        "cnt":{
-            "show":"内容",
-            "type":"textarea"
+        "cnt": {
+            "show": "内容",
+            "type": "textarea"
         }
     },
-    index_mingdian:{
+    index_mingdian: {
         "title": {
-            "show":"标题",
-            "required":true
+            "show": "标题",
+            "required": true
         },
-        "url":{
-            "show":"链接",
-            "required":true
+        "url": {
+            "show": "链接",
+            "required": true
         },
-        "imgurl":{
-            "show":"图片",
-            "type":"image"
+        "imgurl": {
+            "show": "图片",
+            "type": "image"
         },
-        "s_imgurl":{
-            "show":"小图片",
-            "type":"image"
+        "s_imgurl": {
+            "show": "小图片",
+            "type": "image"
         },
-        "effect":{
-            "show":"特效"
+        "effect": {
+            "show": "特效"
         },
-        "price":{
-            "show":"价格"
+        "price": {
+            "show": "价格"
         },
-        "discount_price":{
-            "show":"打折价格"
+        "discount_price": {
+            "show": "打折价格"
+        }
+    },
+    store_recommend_goods: {
+        "title": {
+            "show": "标题",
+            "required": true
+        },
+        "store_id": {
+            "show": "store_id",
+            "type": "hidden",
+            "ref": "return window.store_id;"
+        },
+        "url": {
+            "show": "链接",
+            "required": true
+        },
+        "imgurl": {
+            "show": "图片",
+            "type": "image"
+        },
+        "s_imgurl": {
+            "show": "小图片",
+            "type": "image"
+        },
+        "effect": {
+            "show": "效果"
+        },
+        "price": {
+            "show": "价格"
+        },
+        "appoint_addr": {
+            "show": "预约地址"
         }
     }
 };

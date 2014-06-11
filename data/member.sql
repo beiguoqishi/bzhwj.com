@@ -53,3 +53,20 @@ create table app_bzhwj_index_mingdian(
   primary key (id),
   unique key title_idx(title)
 ) ENGINE=InnoDB CHARSET=utf8;
+
+create table app_bzhwj_store_baobei(
+  id int unsigned not null auto_increment,
+  store_id int unsigned not null,
+  title varchar(200),
+  url varchar(255),
+  imgurl varchar(1024),
+  s_imgurl varchar(1024),
+  effect varchar(255),
+  price double default 0,
+  appoint_addr varchar(255),
+  status tinyint not null default 1,
+  create_at int unsigned,
+  update_at int unsigned,
+  primary key (id),
+  unique key title_idx(title)
+) ENGINE=InnoDB CHARSET=utf8;
