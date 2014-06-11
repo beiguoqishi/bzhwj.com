@@ -67,7 +67,7 @@
                 <iframe name="bridge_win" src="http://admin.bzhwj.com/generaldata/bridge" style="display: none"></iframe>
            </form>
         </div>
-        <p class="item input-group">
+        <p class="item input-group" style="margin-top: 15px">
             <span class="input-group-addon">价格：</span>
             <input class="form-control" name="goods[price]" value="{$goods.price}">
         </p>
@@ -91,12 +91,25 @@
             <span class="input-group-addon">适用人群：</span>
             <input class="form-control" name="goods[suit_people]" value="{$goods.suit_people|escape}">
         </p>
-        <!--{if $lianbao_auth == 1}-->
+        <!--{if $lianbao_auth == 'temp_remove_actual_1'}-->
         <p class="item ">
             <span class="">百真联保：</span>
             <input class="" name="goods[lianbao]" id="lianbao" type="checkbox" <!--{if $goods.lianbao > 0}-->checked=""<!--{/if}--> value="{$goods.lianbao|default:0}">
         </p>
         <!--{/if}-->
+        <div class="item input-group">
+            <span class="input-group-addon">通道图片：</span>
+            <input class="" name="goods[channel_imgurl]" value="{$goods.channel_imgurl|escape}">
+        <form class="upload-file-form" enctype="multipart/form-data" method="post" target="bridge_win" action="http://admin.bzhwj.com/generaldata/upload">
+            <input type="file" name="fileinfo">
+            <input type="submit" value="上传">
+            <iframe name="bridge_win" src="http://admin.bzhwj.com/generaldata/bridge" style="display: none"></iframe>
+        </form>
+        </div>
+        <p class="item input-group" style="margin-top: 15px">
+            <span class="input-group-addon">通道链接：</span>
+            <input class="form-control" name="goods[channel_url]" value="{$goods.channel_url|escape}">
+        </p>
         <div id="pic_area" class="item" style="margin-top: 30px">
             <div>
                 <span>展示图片</span>
