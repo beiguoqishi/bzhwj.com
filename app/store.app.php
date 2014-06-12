@@ -16,6 +16,7 @@ class StoreApp extends StorebaseApp
         $store = $this->get_store_data();
         $this->assign('store', $store);
 
+        $this->assign('store_baobei', $this->_get_store_baobei($id));
         /* 取得友情链接 */
         $this->assign('partners', $this->_get_partners($id));
 
@@ -37,6 +38,7 @@ class StoreApp extends StorebaseApp
         $this->_config_seo('title', $store['store_name'] . ' - ' . Conf::get('site_title'));
         /* 配置seo信息 */
         $this->_config_seo($this->_get_seo_info($store));
+
 
         $this->display('store.index.html');
     }
@@ -590,6 +592,15 @@ class StoreApp extends StorebaseApp
         $seo_info['keywords'] = implode(',', $keywords);
         $seo_info['description'] = sub_str(strip_tags($data['description']), 10, true);
         return $seo_info;
+    }
+
+    /* 取得商品 */
+    function _get_store_baobei($id)
+    {
+        $db =& db();
+        $sql = "select * from app_bzhwj_store_baobei where store_id=".$id;
+        $store_baobei = $db->getall("$sql");
+        return $store_baobei;
     }
 }
 

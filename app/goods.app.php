@@ -54,6 +54,7 @@ class GoodsApp extends StorebaseApp
         $this->assign('appoint_list',$appoint_list);
 
         $this->assign('guest_comment_enable', Conf::get('guest_comment'));
+
         $this->display('goods.index.html');
     }
 

@@ -96,34 +96,34 @@
             </div>
         </div>
         
-        <div class="module_common">
-            <h2 class="common_title veins1">
-                <div class="ornament1"></div>
-                <div class="ornament2"></div>
-                <span class="ico1"><span class="ico2">{$lang.gcategory}</span></span>
-            </h2>
-            <div class="wrap">
-                <div class="wrap_child">
-                    <ul class="submenu">
-                        <li><span class="all-ctg st-icon none_ico"></span><a <!--{if $cur_ctg_id == 0}-->class="cur-ctg"<!--{/if}--> href="{url app=store&id=$store.store_id&act=search}">{$lang.all_goods}</a></li>
-                        <!--{foreach from=$store.store_gcates item=gcategory}-->
-                        <!--{if $gcategory.children}-->
-                        <li style="padding-left: 15px" class="subment-item">
-                            <span class="st-icon none_ico"></span><a <!--{if $cur_ctg_id == $gcategory.id}-->class="cur-ctg"<!--{/if}--> href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a>
-                            <ul>
-                                <!--{foreach from=$gcategory.children item=child_gcategory}-->
-                                <li><a <!--{if $cur_ctg_id == $child_gcategory.id}-->class="cur-ctg"<!--{/if}--> href="{url app=store&id=$store.store_id&act=search&cate_id=$child_gcategory.id}">{$child_gcategory.value|escape}</a></li>
-                                <!--{/foreach}-->
-                            </ul>
-                        </li>
-                        <!--{else}-->
-                        <li><a class="none_ico" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></li>
-                        <!--{/if}-->
-                        <!--{/foreach}-->
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <!--<div class="module_common">-->
+            <!--<h2 class="common_title veins1">-->
+                <!--<div class="ornament1"></div>-->
+                <!--<div class="ornament2"></div>-->
+                <!--<span class="ico1"><span class="ico2">{$lang.gcategory}</span></span>-->
+            <!--</h2>-->
+            <!--<div class="wrap">-->
+                <!--<div class="wrap_child">-->
+                    <!--<ul class="submenu">-->
+                        <!--<li><span class="all-ctg st-icon none_ico"></span><a &lt;!&ndash;{if $cur_ctg_id == 0}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search}">{$lang.all_goods}</a></li>-->
+                        <!--&lt;!&ndash;{foreach from=$store.store_gcates item=gcategory}&ndash;&gt;-->
+                        <!--&lt;!&ndash;{if $gcategory.children}&ndash;&gt;-->
+                        <!--<li style="padding-left: 15px" class="subment-item">-->
+                            <!--<span class="st-icon none_ico"></span><a &lt;!&ndash;{if $cur_ctg_id == $gcategory.id}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a>-->
+                            <!--<ul>-->
+                                <!--&lt;!&ndash;{foreach from=$gcategory.children item=child_gcategory}&ndash;&gt;-->
+                                <!--<li><a &lt;!&ndash;{if $cur_ctg_id == $child_gcategory.id}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search&cate_id=$child_gcategory.id}">{$child_gcategory.value|escape}</a></li>-->
+                                <!--&lt;!&ndash;{/foreach}&ndash;&gt;-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--&lt;!&ndash;{else}&ndash;&gt;-->
+                        <!--<li><a class="none_ico" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></li>-->
+                        <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                        <!--&lt;!&ndash;{/foreach}&ndash;&gt;-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         
         <!-- {if $smarty.get.app eq "store" and $smarty.get.act eq "index"} -->
                 <!--去掉友情链接-->
