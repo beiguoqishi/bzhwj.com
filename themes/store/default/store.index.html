@@ -95,7 +95,7 @@
                     <!--<div class="ornament2"></div>-->
                     <!--<span class="ico1"><span class="ico2">{$lang.gcategory}</span></span>-->
                 <!--</h2>-->
-                <div class="wrap">
+                <div class="wrap" id="global_ctg">
                     <div class="wrap_child">
                         <!--<ul class="submenu">-->
                             <!--<li><span class="all-ctg st-icon none_ico"></span><a &lt;!&ndash;{if $cur_ctg_id == 0}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search}">{$lang.all_goods}</a></li>-->
@@ -250,21 +250,13 @@
 
     function DisplayTr(table_num,display)
     {
-        var tempTable=document.getElementsByTagName_r("table")[table_num];//表示页面中第几个表格，在页面中从上往下数
+        var tempTable=document.getElementById('global_ctg').getElementsByTagName("table")[table_num];//表示页面中第几个表格，在页面中从上往下数
         var rows = tempTable.rows.length;
-        var i = 0;
-        tempTable.style.display="none";
-        /*while(i <= rows)
-         {
-         var tempTd=tempTable.getElementsByTagName_r("tr")[i];
-         if(display==1)
-         tempTd.style.display="";
-         }*/
+        var i = 2;
+        for (;i < rows;i++) {
+            tempTable.rows[i].style.display = '';
+        }
     }
-
-    //$('#button0').on('click',function(e){DisplayTr(0,1)})
-    //$('#button1').on('click',function(e){DisplayTr(1,1)})
-
     $(document).ready(function(){
         $('#button0').on('click',function(e){DisplayTr(0,1)});
         $('#button1').on('click',function(e){DisplayTr(1,1)});
