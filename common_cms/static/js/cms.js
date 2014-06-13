@@ -16,6 +16,7 @@
         };
         var fieldConfigCache = {};
         var $el = $(this[0]), $body = $('body');
+        var table_id = 0;
         options = $.extend({}, defaults, options);
         (function () {
             var params = {
@@ -142,6 +143,7 @@
             var table = ul.data('table');
             var app_id = ul.data('app_id');
             var id = $this.data('cid');
+            table_id = id;
             fetchFieldConfig(table, app_id, id).then(editTableData);
         });
 
@@ -348,7 +350,7 @@
             return fieldsInterpose;
         }
 
-        $('#fields-save').on('click', function (e) {
+        $('body').on('click', '#fields-save',function (e) {
             var $this = $(this),
                 fields = $this.parents('.fields-interpose').find('.form-control'),
                 args = {};
@@ -369,14 +371,11 @@
                 }
             });
             table_id == 0 ? params['act'] = 'add_record' : params['act'] = 'update_fields';
-            params['table'] = table;
             params['table_id'] = table_id;
-            params['app_id'] = app_id;
             params['id_field'] = id_field;
-            $.post('/generaldata/page_interpose_op', params, function (id) {
+            $.post('/' + options.urlPrefix + '/save/' + table + '/' + app_id, params, function (id) {
                 if (id > 0) {
                     alert('保存成功');
-                    window.location = '/generaldata/page_interpose_intellij' + location.search + '&id=' + (table_id == 0 ? id : table_id)
                 }
             });
         });
