@@ -87,86 +87,86 @@
                     <!--&lt;!&ndash;{/if}&ndash;&gt;-->
                 <!--</div>-->
             <!--</div>-->
+            {include file=store_fenlei.html}
 
+            <!--<div class="module_common">-->
+                <!--&lt;!&ndash;<h2 class="common_title veins1">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="ornament1"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="ornament2"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="ico1"><span class="ico2">{$lang.gcategory}</span></span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</h2>&ndash;&gt;-->
+                <!--<div class="wrap" id="global_ctg">-->
+                    <!--<div class="wrap_child">-->
+                        <!--&lt;!&ndash;<ul class="submenu">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<li><span class="all-ctg st-icon none_ico"></span><a &lt;!&ndash;{if $cur_ctg_id == 0}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search}">{$lang.all_goods}</a></li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;{foreach from=$store.store_gcates item=gcategory name=cate_table}&ndash;&gt;-->
+                            <!--&lt;!&ndash;{if $gcategory.children}&ndash;&gt;-->
+                            <!--&lt;!&ndash;<li style="padding-left: 15px" class="subment-item">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="st-icon none_ico"></span><a &lt;!&ndash;{if $cur_ctg_id == $gcategory.id}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<font color="#FF44FF">{$gcategory.value|escape}：</font>&ndash;&gt;-->
+                                <!--<ul>-->
+                                    <!--&lt;!&ndash;{if $smarty.foreach.cate_table.index==0 }&ndash;&gt;-->
+                                    <!--<table width="100%" id="table0">-->
+                                    <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;{if $smarty.foreach.cate_table.index==1}&ndash;&gt;-->
+                                    <!--<table width="100%" id="table1">-->
+                                    <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;{foreach from=$gcategory.children item=child_gcategory name=table_part}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{if ($smarty.foreach.table_part.index+1) % 6 == 1}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{if ($smarty.foreach.table_part.index+1) <= 7}&ndash;&gt;-->
+                                        <!--<tr width="100%">-->
+                                            <!--&lt;!&ndash;{if $smarty.foreach.table_part.index == 0}&ndash;&gt;-->
+                                            <!--<td width="12%" align="center">-->
+                                                <!--<font color="#FF44FF" size="2"><B>{$gcategory.value|escape}：</B></font>-->
+                                                <!--</td>-->
+                                            <!--&lt;!&ndash;{/if}&ndash;&gt;-->
 
-            <div class="module_common">
-                <!--<h2 class="common_title veins1">-->
-                    <!--<div class="ornament1"></div>-->
-                    <!--<div class="ornament2"></div>-->
-                    <!--<span class="ico1"><span class="ico2">{$lang.gcategory}</span></span>-->
-                <!--</h2>-->
-                <div class="wrap" id="global_ctg">
-                    <div class="wrap_child">
-                        <!--<ul class="submenu">-->
-                            <!--<li><span class="all-ctg st-icon none_ico"></span><a &lt;!&ndash;{if $cur_ctg_id == 0}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search}">{$lang.all_goods}</a></li>-->
-                            <!--{foreach from=$store.store_gcates item=gcategory name=cate_table}-->
-                            <!--{if $gcategory.children}-->
-                            <!--<li style="padding-left: 15px" class="subment-item">-->
-                                <!--<span class="st-icon none_ico"></span><a &lt;!&ndash;{if $cur_ctg_id == $gcategory.id}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a>-->
-                                <!--<font color="#FF44FF">{$gcategory.value|escape}：</font>-->
-                                <ul>
-                                    <!--{if $smarty.foreach.cate_table.index==0 }-->
-                                    <table width="100%" id="table0">
-                                    <!--{/if}-->
-                                    <!--{if $smarty.foreach.cate_table.index==1}-->
-                                    <table width="100%" id="table1">
-                                    <!--{/if}-->
-                                    <!--{foreach from=$gcategory.children item=child_gcategory name=table_part}-->
-                                        <!--{if ($smarty.foreach.table_part.index+1) % 6 == 1}-->
-                                        <!--{if ($smarty.foreach.table_part.index+1) <= 7}-->
-                                        <tr width="100%">
-                                            <!--{if $smarty.foreach.table_part.index == 0}-->
-                                            <td width="12%" align="center">
-                                                <font color="#FF44FF" size="2"><B>{$gcategory.value|escape}：</B></font>
-                                                </td>
-                                            <!--{/if}-->
-
-                                            <!--{if $smarty.foreach.table_part.index == 6}-->
-                                            <td width="12%" align="center"></td>
-                                            <!--{/if}-->
-                                        <!--{/if}-->
-                                        <!--{if ($smarty.foreach.table_part.index+1) > 7}-->
-                                        <tr width="100%" style="display: none">
-                                        <!--{if $smarty.foreach.table_part.index%6 == 0}-->
-                                        <td width="12%" align="center"></td>
-                                        <!--{/if}-->
-                                        <!--{/if}-->
-                                        <!--{/if}-->
-                                    <td width="12%" align="center"><a <!--{if $cur_ctg_id == $child_gcategory.id}-->class="cur-ctg"<!--{/if}--> href="{url app=store&id=$store.store_id&act=search&cate_id=$child_gcategory.id}">
-                                        <font size="2">{$child_gcategory.value|escape}</font></a></td>
-                                        <!--{if ($smarty.foreach.table_part.index==5 && $smarty.foreach.cate_table.index==0)}-->
-                                        <td width="12%" align="center">
-                                            <input type="button" name="button0" id="button0" value="更多" style="color: #FF44FF"/>
-                                        </td>
-                                        <!--{/if}-->
-                                        <!--{if ($smarty.foreach.table_part.index==5 && $smarty.foreach.cate_table.index==1)}-->
-                                        <td width="12%" align="center">
-                                            <input type="button" name="button1" id="button1" value="更多" onclick="javascript:DisplayTr(1,1)" style="color: #FF44FF"/>
-                                        </td>
-                                        <!--{/if}-->
-                                            <!--{if ($smarty.foreach.table_part.index+1) % 6 == 0}-->
-                                            </tr>
-                                            <!--{/if}-->
-                                    <!--{/foreach}-->
-                                        </table>
-                                    <!--{if $smarty.foreach.cate_table.index==0}-->
-                                    <!--<input type="button" name="button0" id="button0" value="更多" style="color: #FF44FF"/>-->
-                                    <!--<button type="button" id="button0" onclick="DisplayTr(0,1)"><font color="#FF44FF">更多</font></button>-->
-                                    <!--{/if}-->
-                                    <!--{if $smarty.foreach.cate_table.index==1}-->
-                                    <!--<input type="button" name="button1" id="button1" value="更多" onclick="javascript:DisplayTr(1,1)" style="color: #FF44FF"/>-->
-                                    <!--<button type="button" id="button1" onclick="DisplayTr(1,1)"><font color="#FF44FF">更多</font></button>-->
-                                    <!--{/if}-->
-                                </ul>
-                            <!--</li>-->
-                            <!--{else}-->
-                            <li><a class="none_ico" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></li>
-                            <!--{/if}-->
-                            <!--{/foreach}-->
-                        <!--</ul>-->
-                    </div>
-                </div>
-            </div>
+                                            <!--&lt;!&ndash;{if $smarty.foreach.table_part.index == 6}&ndash;&gt;-->
+                                            <!--<td width="12%" align="center"></td>-->
+                                            <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{if ($smarty.foreach.table_part.index+1) > 7}&ndash;&gt;-->
+                                        <!--<tr width="100%" style="display: none">-->
+                                        <!--&lt;!&ndash;{if $smarty.foreach.table_part.index%6 == 0}&ndash;&gt;-->
+                                        <!--<td width="12%" align="center"></td>-->
+                                        <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                    <!--<td width="12%" align="center"><a &lt;!&ndash;{if $cur_ctg_id == $child_gcategory.id}&ndash;&gt;class="cur-ctg"&lt;!&ndash;{/if}&ndash;&gt; href="{url app=store&id=$store.store_id&act=search&cate_id=$child_gcategory.id}">-->
+                                        <!--<font size="2">{$child_gcategory.value|escape}</font></a></td>-->
+                                        <!--&lt;!&ndash;{if ($smarty.foreach.table_part.index==5 && $smarty.foreach.cate_table.index==0)}&ndash;&gt;-->
+                                        <!--<td width="12%" align="center">-->
+                                            <!--<input type="button" name="button0" id="button0" value="更多" style="color: #FF44FF"/>-->
+                                        <!--</td>-->
+                                        <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{if ($smarty.foreach.table_part.index==5 && $smarty.foreach.cate_table.index==1)}&ndash;&gt;-->
+                                        <!--<td width="12%" align="center">-->
+                                            <!--<input type="button" name="button1" id="button1" value="更多" onclick="javascript:DisplayTr(1,1)" style="color: #FF44FF"/>-->
+                                        <!--</td>-->
+                                        <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                            <!--&lt;!&ndash;{if ($smarty.foreach.table_part.index+1) % 6 == 0}&ndash;&gt;-->
+                                            <!--</tr>-->
+                                            <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;{/foreach}&ndash;&gt;-->
+                                        <!--</table>-->
+                                    <!--&lt;!&ndash;{if $smarty.foreach.cate_table.index==0}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input type="button" name="button0" id="button0" value="更多" style="color: #FF44FF"/>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<button type="button" id="button0" onclick="DisplayTr(0,1)"><font color="#FF44FF">更多</font></button>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;{if $smarty.foreach.cate_table.index==1}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input type="button" name="button1" id="button1" value="更多" onclick="javascript:DisplayTr(1,1)" style="color: #FF44FF"/>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<button type="button" id="button1" onclick="DisplayTr(1,1)"><font color="#FF44FF">更多</font></button>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                                <!--</ul>-->
+                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;{else}&ndash;&gt;-->
+                            <!--<li><a class="none_ico" href="{url app=store&id=$store.store_id&act=search&cate_id=$gcategory.id}">{$gcategory.value|escape}</a></li>-->
+                            <!--&lt;!&ndash;{/if}&ndash;&gt;-->
+                            <!--&lt;!&ndash;{/foreach}&ndash;&gt;-->
+                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
         <!--<div class="module_special">-->
             <!--&lt;!&ndash;<h2 class="common_title veins2">&ndash;&gt;-->
@@ -246,20 +246,20 @@
 
     <div class="clear"></div>
 </div>
-<script language="javascript" type="text/javascript">
+<!--<script language="javascript" type="text/javascript">-->
 
-    function DisplayTr(table_num,display)
-    {
-        var tempTable=document.getElementById('global_ctg').getElementsByTagName("table")[table_num];//表示页面中第几个表格，在页面中从上往下数
-        var rows = tempTable.rows.length;
-        var i = 2;
-        for (;i < rows;i++) {
-            tempTable.rows[i].style.display = '';
-        }
-    }
-    $(document).ready(function(){
-        $('#button0').on('click',function(e){DisplayTr(0,1)});
-        $('#button1').on('click',function(e){DisplayTr(1,1)});
-    });
-</script>
+    <!--function DisplayTr(table_num,display)-->
+    <!--{-->
+        <!--var tempTable=document.getElementById('global_ctg').getElementsByTagName("table")[table_num];//表示页面中第几个表格，在页面中从上往下数-->
+        <!--var rows = tempTable.rows.length;-->
+        <!--var i = 2;-->
+        <!--for (;i < rows;i++) {-->
+            <!--tempTable.rows[i].style.display = '';-->
+        <!--}-->
+    <!--}-->
+    <!--$(document).ready(function(){-->
+        <!--$('#button0').on('click',function(e){DisplayTr(0,1)});-->
+        <!--$('#button1').on('click',function(e){DisplayTr(1,1)});-->
+    <!--});-->
+<!--</script>-->
 {include file=footer.html}
