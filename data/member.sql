@@ -47,6 +47,8 @@ create table app_bzhwj_index_mingdian(
   effect varchar(255),
   price double default 0,
   discount_price double default 0,
+  city varchar(255),
+  zone varchar(255),
   status tinyint not null default 1,
   create_at int unsigned,
   update_at int unsigned,
