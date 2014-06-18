@@ -23,8 +23,6 @@ class LbsApp extends MallbaseApp{
     }
     function lbs_get_cities_by_pid() {
         $pid = $_POST['pid'];
-        print_r($pid);
-        print_r('abc');
         $cities = json_encode(json_decode($this->get_cities_by_pid($pid),true));
         header('Content-Type: application/json; charset=utf-8');
         echo $cities;
