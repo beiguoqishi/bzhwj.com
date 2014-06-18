@@ -6,7 +6,6 @@ include(ROOT_PATH . '/eccore/ecmall.php');
 
 /* 定义配置信息 */
 ecm_define(ROOT_PATH . '/data/config.inc.php');
-echo 'test';
 /* 启动ECMall */
 ECMall::startup(array(
     'default_app'   =>  'default',
