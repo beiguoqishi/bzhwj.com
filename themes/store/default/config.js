@@ -936,6 +936,31 @@ var index_new = {
         "cnt": {
             "show": "内容",
             "type": "textarea"
+        },
+        "city": {
+            "show": "省份",
+            "type": "select",
+            "data_source": "jsonp",
+            "model":{
+                "url":"http://www.bzhwj.com/index.php?app=lbs&act=lbs_get_provinces",
+                "val_field":"id",
+                "name_field":"name",
+                "observer_children":["zone"],
+                "method":"get"
+            }
+        },
+        "zone": {
+            "show": "地区",
+            "type": "select",
+            "data_source": "jsonp",
+            "model": {
+                "url":"http://www.bzhwj.com/index.php?app=lbs&act=lbs_get_cities_by_pid",
+                "val_field":"id",
+                "name_field":"name",
+                "dependent_parent":"city",
+                "param_name":"pid",
+                "method":"post"
+            }
         }
     },
     index_mingdian: {

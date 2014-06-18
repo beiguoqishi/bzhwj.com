@@ -15,6 +15,12 @@ class LbsApp extends MallbaseApp{
     {
         parent::__construct();
     }
+    function lbs_get_provinces() {
+        $provinces = $this->get_provinces();
+        $provinces = json_encode(json_decode($provinces));
+        header('Content-Type: application/json; charset=utf-8');
+        echo $provinces;
+    }
     function lbs_get_cities_by_pid() {
         $pid = $_POST['pid'];
         $cities = json_encode(json_decode($this->get_cities_by_pid($pid),true));
